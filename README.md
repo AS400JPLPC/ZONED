@@ -2,26 +2,27 @@
 
 <p>Gestion de buffer fixe  type AS400 traitement char* decimal date   </p>
 
-<p>-une classe DECIMAL</p>
+
+<p>une classe DECIMAL</p>
 
 <p>Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31<br>
 origine "Mike Cowlishaw" lire le PDF<br>
 ex: Zdcml QSTKt(10,0);  variable quantité stock de 10 chiffres<br>
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
-operator=(const  int)<br>
-operator=(const  long int)<br>
-operator=(const double)<br>
-operator=(const char*)<br>
-operator=(const Zdcml  X</em>dcml)<br></p>
-<p>OPERATEURS ARITHMETIQUES EXTERNES<br>
-\ + - * / % <br></p>
+<pre><code>operator=(const  int)
+operator=(const  long int)
+operator=(const double)
+operator=(const char*)
+operator=(const Zdcml  X</em>dcml)<pre></code>
+<p>OPERATEURS ARITHMETIQUES EXTERNES</p>
+<pre><code\ + - * / % <pre></code>
 <h1>possibilité</h1>
-<p>
-add(const  std::string fmt<em>str, ...)     <em>ex:n.add("%s,%s", a.ToChar(),b.ToChar());</em><br>
-sub(const  std::string fmt</em>str, ...)<br>
-mult(const std::string fmt<em>str, ...)<br>
-div(const  std::string fmt</em>str, ...)<br>
-mod(const Zdcml)<br>
+<pre><code>
+add(const  std::string fmt<em>str, ...)     <em>ex:n.add("%s,%s", a.ToChar(),b.ToChar());</em>
+sub(const  std::string fmt</em>str, ...)
+mult(const std::string fmt<em>str, ...)
+div(const  std::string fmt</em>str, ...)
+mod(const Zdcml)<pre></code>
 OPERATEURS DE COMPARAISON<br>
 &lt; > &lt;= >= != cmp<br>
 FONCTIONS OUTPUT return VAL<br>
@@ -166,11 +167,10 @@ int   ResteJour();      /// le nombre jour restant dans l'année
 int   Semaine();        /// le numéro de semaine
 int   Ferie();          /// is fête ?? pour construire un calendrier
 </code></pre>
-
-<p>FONCTIONS status <br />
-unsigned int   status();
+<p>FONCTIONS status </p>
+</code></pre>unsigned int   status();
 char*          statusmsg();
-bool  Msgerr();</p>
+bool  Msgerr();</code></pre>
 
 
 
