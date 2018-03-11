@@ -17,43 +17,43 @@ operator=(const Zdcml  X</em>dcml)<br></p>
 \ + - * / % <br></p>
 <h1>possibilité</h1>
 <p>
-add(const  std::string fmt<em>str, ...)  <em>ex:<code>n.add("%s,%s", a.ToChar(),b.ToChar());</code></em><br>
+add(const  std::string fmt<em>str, ...)  <em>ex:n.add("%s,%s", a.ToChar(),b.ToChar());</em><br>
 sub(const  std::string fmt</em>str, ...)<br>
 mult(const std::string fmt<em>str, ...)<br>
 div(const  std::string fmt</em>str, ...)<br>
 mod(const Zdcml)<br>
 OPERATEURS DE COMPARAISON<br>
 &lt; > &lt;= >= != cmp<br>
--<strong>FONCTIONS OUTPUT return VAL</strong><br>
-  <code>ToChar(bool signe = false);</code>      <em><code>/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15</code></em><br>
-  <code>ConstChar(bool signe = false);</code>   <em><code>/// trim zero</code></em><br>
-  <code>StringChar(bool signe = false);</code>  <em><code>/// trim zero</code></em><br></p>
+FONCTIONS OUTPUT return VAL<br>
+  ToChar(bool signe = false)     <em>/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15</em><br>
+  ConstChar(bool signe = false) <em>/// trim zero</code></em><br>
+  StringChar(bool signe = false)  <em>/// trim zero</code></em><br></p>
 
-<p>ToInt();        /// cast par defaut
-TolongInt();    /// cast par defaut
-ToDouble();     /// cast par defaut
-/// FONCTION Contrôle Type --------------------------------------
-isTypDbl();     /// contrôle typ double
-isTypInt();     /// contrôle typ Int
-isTyplongInt(); /// contrôle typ long Int
-IsZeros();      /// contrôle ZEROS
-IsNegative();   /// contrôle IsNegative
-IsDecimale();   /// contrôle si valeur Décimale
-IsNumeric(const char *<em>X</em>); /// permet de tester si la valeur répond à un numeric</p>
+<p>ToInt();     /// cast par defaut<br>
+TolongInt();    /// cast par defaut<br>
+ToDouble();     /// cast par defaut<br>
+/// FONCTION Contrôle Type --------------------------------------<br>
+isTypDbl();     /// contrôle typ double<br>
+isTypInt();     /// contrôle typ Int<br>
+isTyplongInt(); /// contrôle typ long Int<br>
+IsZeros();      /// contrôle ZEROS<br>
+IsNegative();   /// contrôle IsNegative<br>
+IsDecimale();   /// contrôle si valeur Décimale<br>
+IsNumeric(const char * xxxx); /// permet de tester si la valeur répond à un numeric</p>
 
-<p>ToRound();      /// DEC<em>ROUND</em>HALF<em>EVEN
-NoRound();      /// DEC</em>ROUND<em>DOWN
-IsRound();      /// return  ToRound() or NoRound()        default  Noround
-checkInt();                /// permet de tester si la valeur répond à un int
-checkDouble();             /// permet de tester si la valeur répond à un double
-checklongInt();            /// permet de tester si la valeur répond à un long int
-ChekOverflow();            /// contrôle valeur def tampon
-/// FONCTION Utilitaire --------------------------------------
-ToEntier();         /// parti entiere
-ToDec();            /// partie decimale
-/// code retour _ERR</em>??? or OK ---------------------------------
-status();
-statusmsg();
+<p>ToRound();      /// DEC<em>ROUND</em>HALF<em>EVEN<br>
+NoRound();      /// DEC</em>ROUND<em>DOWN<br>
+IsRound();      /// return  ToRound() or NoRound()        default  Noround<br><br>
+checkInt();                /// permet de tester si la valeur répond à un int<br>
+checkDouble();             /// permet de tester si la valeur répond à un double<br>
+checklongInt();            /// permet de tester si la valeur répond à un long int<br>
+ChekOverflow();            /// contrôle valeur def tampon<br>
+/// FONCTION Utilitaire --------------------------------------<br>
+ToEntier();         /// parti entiere<br>
+ToDec();            /// partie decimale<br>
+/// code retour _ERR</em>??? or OK ---------------------------------<br>
+status();<br>
+statusmsg();<br>
 Msgerr();</p>
 
 <p>/// Format String--idem sprintf --------------------------</p>
