@@ -1,5 +1,5 @@
 Gestion de buffer fixe type AS400 traitement char* decimal date
-<pre><code>
+
 **une classe DECIMAL**
 
 Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31
@@ -25,6 +25,7 @@ ConstChar(bool signe = false);    /// trim zero
 StringChar(bool signe = false);   /// trim zero</code></pre>
 
 **FONCTION Contrôle Type**
+<pre><code>
 bool        isTypInt();     /// contrôle typ Int
 bool        isTyplongInt(); /// contrôle typ long Int
 bool        IsZeros();      /// contrôle ZEROS
@@ -38,11 +39,12 @@ unsigned int checkInt();                /// permet de tester si la valeur répon
 unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
 unsigned int checklongInt();            /// permet de tester si la valeur répond à un long int
 unsigned int ChekOverflow();            /// contrôle valeur def tampon
-
+</code></pre>
 **FONCTION Utilitaire**
+<pre><code>
 char *     ToEntier();         /// parti entiere
 char *     ToDec();            /// partie decimale
-
+</code></pre>
 **/// code retour <em>ERR</em>??? or OK**
 unsigned int status();
 char*        statusmsg();
