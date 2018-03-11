@@ -8,13 +8,13 @@ ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale
 
 <pre><code>
-<p>**OPERATEURS ARITHMETIQUES</p>
- + - * / %</p>
+**OPERATEURS ARITHMETIQUES
+ + - * / %
 add sub mult div mod 
 ex: n.add("%s,%s", a.ToChar(),b.ToChar());
-<p>**OPERATEURS DE COMPARAISON</p>
+**OPERATEURS DE COMPARAISON
 == &lt; > &lt;= >= != cmp
-<p>**FONCTIONS OUTPUT ---return VAL</p>
+**FONCTIONS OUTPUT ---return VAL
 <p><pre><code>ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
 ConstChar(bool signe = false);    /// trim zero
 StringChar(bool signe = false);   /// trim zero
