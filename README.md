@@ -8,18 +8,20 @@ ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale
 
 <pre><code>
-**OPERATEURS ARITHMETIQUES
+
+**OPERATEURS ARITHMETIQUES**
  + - * / %
 add sub mult div mod 
 ex: n.add("%s,%s", a.ToChar(),b.ToChar());
-**OPERATEURS DE COMPARAISON
+**OPERATEURS DE COMPARAISON**
 == &lt; > &lt;= >= != cmp
-**FONCTIONS OUTPUT ---return VAL
-<p><pre><code>ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
+
+**FONCTIONS OUTPUT ---return VAL**
+<pre><code>ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
 ConstChar(bool signe = false);    /// trim zero
 StringChar(bool signe = false);   /// trim zero
 
-<p>**FONCTION Contrôle Type </p>
+**FONCTION Contrôle Type**
 bool        isTypInt();     /// contrôle typ Int
 bool        isTyplongInt(); /// contrôle typ long Int
 bool        IsZeros();      /// contrôle ZEROS
@@ -33,15 +35,17 @@ unsigned int checkInt();                /// permet de tester si la valeur répon
 unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
 unsigned int checklongInt();            /// permet de tester si la valeur répond à un long int
 unsigned int ChekOverflow();            /// contrôle valeur def tampon
-<p>**FONCTION Utilitaire </p>
+
+**FONCTION Utilitaire**
 char *     ToEntier();         /// parti entiere
 char *     ToDec();            /// partie decimale
-<p>**/// code retour <em>ERR</em>??? or OK </p>
+
+**/// code retour <em>ERR</em>??? or OK**
 unsigned int status();
 char*        statusmsg();
 bool         Msgerr();
 
-<p>/// Format String--idem sprintf --------------------------</p>
+**/// Format String--idem sprintf**
 
-<p>std::string string<em>format(const std::string fmt</em>str, ...);</p>
+std::string string<em>format(const std::string fmt</em>str, ...);
 <pre><code>
