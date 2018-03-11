@@ -1,5 +1,5 @@
 Gestion de buffer fixe type AS400 traitement char* decimal date
-
+<pre><code>
 **une classe DECIMAL**
 
 Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31
@@ -17,7 +17,8 @@ ex: n.add("%s,%s", a.ToChar(),b.ToChar());
 == &lt; > &lt;= >= != cmp
 
 **FONCTIONS OUTPUT ---return VAL**
-<pre><code>ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
+
+ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
 ConstChar(bool signe = false);    /// trim zero
 StringChar(bool signe = false);   /// trim zero
 
@@ -49,6 +50,7 @@ bool         Msgerr();
 
 std::string string<em>format(const std::string fmt</em>str, ...);
 <pre></code>
+ 
 <br>
 
 **une classe Date**
