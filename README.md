@@ -1,6 +1,6 @@
 Gestion de buffer fixe type AS400 traitement char* decimal date
 
-une classe DECIMAL
+**une classe DECIMAL**
 
 Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31
 origine "Mike Cowlishaw" lire le PDF
@@ -49,3 +49,8 @@ bool         Msgerr();
 
 std::string string<em>format(const std::string fmt</em>str, ...);
 <pre><code>
+<br>
+
+**une classe Date**
+
+très classique je remercie tous les internautes qui par leurs publication ma permis de mettre en forme cette classe
