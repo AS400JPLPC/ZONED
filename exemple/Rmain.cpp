@@ -9,7 +9,7 @@
 #include <cgicc/HTTPHTMLHeader.h>
 #include <cgicc/HTMLClasses.h>
 
-/// var commune Html
+/// var commune Html 
 #include "FBDSQL.hpp"
 #include "ZONED.hpp"
 PG_DB *DB ;
