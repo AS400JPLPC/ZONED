@@ -77,14 +77,12 @@ très classique je remercie tous les internautes qui par leurs publication ma pe
     bool operator != (const Zdate);
     unsigned int  cmp(const Zdate) ;
 </code></pre>
-
 **YYYYMMDDHHMMSS + 3 quantieme naosecond 9 = 26 char**
 <pre><code>
     char* session();        ///  n° unique
     char* sysdattim();      ///  YYYYMMDDHHMMSS
-
+</code></pre>
 **SYSTEM**
-
 <pre><code>
     char* edtsysNUM();      /// YYYYMMDD
     char* edtsysYMD();      /// YYYY/MM/DD
@@ -119,7 +117,6 @@ très classique je remercie tous les internautes qui par leurs publication ma pe
 
     int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
 </code></pre>
-
 **Date personnel... table ... attention 00010101 = 0 **
 <pre><code>
     int   ToInt();          /// YYYYMMDD
@@ -156,7 +153,6 @@ très classique je remercie tous les internautes qui par leurs publication ma pe
     int   Semaine();        /// le numéro de semaine
     int   Ferie();          /// is fête ?? pour construire un calendrier
 </code></pre>
-
 **FONCTIONS status**
 <pre><code>
 unsigned int   status();
