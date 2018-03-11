@@ -8,10 +8,10 @@ ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale
 
 <pre><code>
-<p>**OPERATEURS ARITHMETIQUES <br>
+<p>**OPERATEURS ARITHMETIQUES</p>
  + - * / %</p>
-<p>add sub mult div mod 
-ex: n.add("%s,%s", a.ToChar(),b.ToChar());</p>
+add sub mult div mod 
+ex: n.add("%s,%s", a.ToChar(),b.ToChar());
 <p>**OPERATEURS DE COMPARAISON</p>
 == &lt; > &lt;= >= != cmp
 <p>**FONCTIONS OUTPUT ---return VAL</p>
@@ -19,24 +19,24 @@ ex: n.add("%s,%s", a.ToChar(),b.ToChar());</p>
 ConstChar(bool signe = false);    /// trim zero
 StringChar(bool signe = false);   /// trim zero
 
-**FONCTION Contrôle Type 
+<p>**FONCTION Contrôle Type </p>
 bool        isTypInt();     /// contrôle typ Int
 bool        isTyplongInt(); /// contrôle typ long Int
 bool        IsZeros();      /// contrôle ZEROS
 bool        IsNegative();   /// contrôle IsNegative
 bool        IsDecimale();   /// contrôle si valeur Décimale
 bool        IsNumeric(const char *<em>X</em>); /// permet de tester si la valeur répond à un numeric</p>
-<p>void        ToRound();      /// DEC<em>ROUND</em>HALF<em>EVEN
+void        ToRound();      /// DEC<em>ROUND</em>HALF<em>EVEN
 void        NoRound();      /// DEC</em>ROUND_DOWN
 bool        IsRound();      /// return  ToRound() or NoRound()        default  Noround
 unsigned int checkInt();                /// permet de tester si la valeur répond à un int
 unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
 unsigned int checklongInt();            /// permet de tester si la valeur répond à un long int
 unsigned int ChekOverflow();            /// contrôle valeur def tampon
-**FONCTION Utilitaire 
+<p>**FONCTION Utilitaire </p>
 char *     ToEntier();         /// parti entiere
 char *     ToDec();            /// partie decimale
-**/// code retour <em>ERR</em>??? or OK 
+<p>**/// code retour <em>ERR</em>??? or OK </p>
 unsigned int status();
 char*        statusmsg();
 bool         Msgerr();
