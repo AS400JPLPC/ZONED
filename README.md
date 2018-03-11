@@ -18,17 +18,17 @@ operator=(const Zdcml  X_dcml);<br>
 =OPERATEURS ARITHMETIQUES EXTERNES<br>
 <code> + - * / %</code><br>
 -<strong>possibilité</strong><br>
-add(const  std::string fmt_str, ...);  <em><code>ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></em><br
-sub(const  std::string fmt_str, ...);
-mult(const std::string fmt_str, ...);
-div(const  std::string fmt_str, ...);
-mod(const Zdcml);
-///OPERATEURS DE COMPARAISON------------------------------
+<code>add(const  std::string fmt_str, ...);</code>  <em><code>ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></em><br>
+<code>sub(const  std::string fmt_str, ...);</code><br>
+<code>mult(const std::string fmt_str, ...);</code><br>
+<code>div(const  std::string fmt_str, ...);</code><br>
+<code>mod(const Zdcml);</code><br>
+-<strong>OPERATEURS DE COMPARAISON</strong><br>
 <code>< > <= >= != cmp</code>
-/// FONCTIONS OUTPUT ---return VAL-------------------------
-ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
-ConstChar(bool signe = false);    /// trim zero
-StringChar(bool signe = false);   /// trim zero
+-<strong>FONCTIONS OUTPUT return VAL</strong><br>
+  <code>ToChar(bool signe = false);</code>      <em><code>/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15</code></em><br>
+  <code>ConstChar(bool signe = false);</code>   <em><code>/// trim zero</code></em><br>
+  <code>StringChar(bool signe = false);</code>  <em><code>/// trim zero</code></em><br>
 
 ToInt();        /// cast par defaut
 TolongInt();    /// cast par defaut
