@@ -43,15 +43,123 @@ unsigned int ChekOverflow();            /// contrôle valeur def tampon
 char *     ToEntier();         /// parti entiere
 char *     ToDec();            /// partie decimale
 </code></pre>
-**/// code retour <em>ERR</em>??? or OK**
+**code retour <em>ERR</em>??? or OK**
 <pre><code>
 unsigned int status();
 char*        statusmsg();
 bool         Msgerr();</code></pre>
-**/// Format String--idem sprintf**
+**Format String--idem sprintf**
 <pre><code>
 std::string string<em>format(const std::string fmt</em>str, ...);</code></pre>
-
-<br>
+<br><br>
 **une classe Date**
 très classique je remercie tous les internautes qui par leurs publication ma permis de mettre en forme cette classe
+
+*la date 0001-01-01 est valide pour ce programme uniquement pour donnée une Valeur "0"*
+<pre><code>
+    Zdate operator=(const int  );                       /// 20010101 YYYYMMDD      0 = 00010101
+    Zdate operator=(const char*);                       /// "2001-01-01" = 20010101
+                                                        /// "0001-01-01" YYYY-MM-DD (POUR Bd ex: Postgresql = 0)
+                                                        /// NULL etant possible mais pose des problèmes lors de clef  Non NULL voir le manuel d'ou 00010101
+                                                        /// pour faire de la gestion  acceptable Voir IBM  a pris le même raisonnement. Norme SQL
+                                                        /// "*SYS"   YYYY-MM-DD  du system
+
+    Zdate& operator++(int);                             /// prefix    + 1
+    Zdate& operator--(int);                             /// postfix   + 1
+    Zdate& operator+(const int);                        /// prefix    + n day
+    Zdate& operator-(const int);                        /// postfix   - n day
+
+    bool operator == (const Zdate);                     /// opération logique pour comparer des dates entre elles
+    bool operator <  (const Zdate);
+    bool operator >  (const Zdate);
+    bool operator >= (const Zdate);
+    bool operator <= (const Zdate);
+    bool operator != (const Zdate);
+    unsigned int  cmp(const Zdate) ;
+</code></pre>
+
+**YYYYMMDDHHMMSS + 3 quantieme naosecond 9 = 26 char**
+<pre><code>
+    char* session();        ///  n° unique
+    char* sysdattim();      ///  YYYYMMDDHHMMSS
+
+**SYSTEM**
+
+<pre><code>
+    char* edtsysNUM();      /// YYYYMMDD
+    char* edtsysYMD();      /// YYYY/MM/DD
+    char* edtsysDMY();      /// jj/MM/YYYY
+    char* edtsysMDY();      /// MM/JJ/YYYY
+    char* edttimesys();     /// HH:mn:sec
+    char* edtsysYM();       /// YYYY/MM
+    char* edtsysMY();       /// MM/YYYY
+
+    char* longdatesys();
+    char* D_datesys();      /// Texte
+    char* M_datesys();      /// Texte
+
+    int   timehr();         /// heure
+    int   timemin();        /// minute
+    int   timesec();        /// seconde
+
+    int   sysYM();          /// YYYYMM
+    int   sysday();         /// DD
+    int   sysmonth();       /// MM
+    int   sysyear();        /// YYYY
+    int   sysyear2();       /// YY
+    int   syssiecle();      /// NN
+
+    int   datesys();        /// YYYYMMDD
+    char* edtsysISO();      /// YYYY-MM-DD
+
+
+    int   Quantiemesys();   /// Quantieme
+    int   NumeroJoursys();  /// le Numéro du jour
+    int   Semainesys();     /// le numéro de semaine
+
+    int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
+</code></pre>
+
+**Date personnel... table ... attention 00010101 = 0 **
+<pre><code>
+    int   ToInt();          /// YYYYMMDD
+
+    char* edtISO();         /// YYYY-MM-DD  date ISO
+    char* edtNUM();         /// YYYYMMDD
+    char* edtYMD();         /// YYYY/MM/DD
+    char* edtDMY();         /// jj/MM/YYYY
+    char* edtMDY();         /// MM/JJ/YYYY
+    char* edtYM();          /// YYYY/MM
+    char* edtMY();          /// MM/YYYY
+    char* longdate();       /// vendredi 12 octobre 1950
+
+    char* ToChar(unsigned int date =0);             /// YYYYMMDD  full format
+    const char*   ConstChar(unsigned int date =0);  /// idem ToChar
+    std::string   StringChar(unsigned int date =0); /// idem ToChar
+
+    char* D_date();         /// Texte
+    char* M_date();         /// Texte
+
+    int   YM();             /// YYYYMM   periode
+    int   day();            /// Jour
+    int   month();          /// Mois
+    int   year();           /// Année
+    int   year2();          /// deux dernier chiffre de l'année
+    int   siecle();         /// siecle
+
+    bool  isBissextile();   /// ? bisexe tille ;)
+    void  Addmonth(int);    /// MOIS + n
+    int   PremierJanvier(); /// recupèrer 1 janvier n° du jour
+    int   Quantieme();      /// Quantieme
+    int   NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
+    int   ResteJour();      /// le nombre jour restant dans l'année
+    int   Semaine();        /// le numéro de semaine
+    int   Ferie();          /// is fête ?? pour construire un calendrier
+</code></pre>
+
+**FONCTIONS status**
+<pre><code>
+unsigned int   status();
+char*          statusmsg();
+bool  Msgerr();
+</code></pre>
