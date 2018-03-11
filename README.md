@@ -221,3 +221,5 @@ unsigned int   status();
 char*          statusmsg();
 bool           Msgerr();
 </code></pre>
+<br>
+<p> J'ai fait cest fonction pour travailler avec des bases de données pour de la gestion d'entreprise <p>
