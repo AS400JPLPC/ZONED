@@ -50,7 +50,6 @@ bool         Msgerr();
 
 std::string string<em>format(const std::string fmt</em>str, ...);
 <pre></code>
- 
 <br>
 
 **une classe Date**
