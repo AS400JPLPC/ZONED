@@ -1,5 +1,8 @@
 Gestion de buffer fixe type AS400 traitement char* decimal date
 
+<h1> RE-Typage </h1>
+
+
 **une classe DECIMAL**
 
 Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31<br>
