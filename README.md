@@ -7,20 +7,22 @@ origine "Mike Cowlishaw" lire le PDF
 ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale
 
-<pre><code>
+
 
 **OPERATEURS ARITHMETIQUES**
+<pre><code>
  + - * / %
 add sub mult div mod 
-ex: n.add("%s,%s", a.ToChar(),b.ToChar());
+ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></pre>
+
 **OPERATEURS DE COMPARAISON**
-== &lt; > &lt;= >= != cmp
+<pre><code>== &lt; > &lt;= >= != cmp</code></pre>
 
 **FONCTIONS OUTPUT ---return VAL**
-
+<pre><code>
 ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
 ConstChar(bool signe = false);    /// trim zero
-StringChar(bool signe = false);   /// trim zero
+StringChar(bool signe = false);   /// trim zero</code></pre>
 
 **FONCTION Contrôle Type**
 bool        isTypInt();     /// contrôle typ Int
@@ -49,10 +51,7 @@ bool         Msgerr();
 **/// Format String--idem sprintf**
 
 std::string string<em>format(const std::string fmt</em>str, ...);
-</code></pre>
 
- <br>
- 
+<br>
 **une classe Date**
-
 très classique je remercie tous les internautes qui par leurs publication ma permis de mettre en forme cette classe
