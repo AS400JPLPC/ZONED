@@ -2,10 +2,10 @@ Gestion de buffer fixe type AS400 traitement char* decimal date
 
 **une classe DECIMAL**
 
-Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31
-origine "Mike Cowlishaw" lire le PDF
-ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres
-Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale
+Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31<br>
+origine "Mike Cowlishaw" lire le PDF<br>
+ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres<br>
+Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
 
 **OPERATEURS ARITHMETIQUES**
 <pre><code>
@@ -158,4 +158,66 @@ très classique je remercie tous les internautes qui par leurs publication ma pe
 unsigned int   status();
 char*          statusmsg();
 bool  Msgerr();
+</code></pre>
+<br>
+<br>
+
+**Buffer fixe char**<br>
+Mon problème était la cohésion avec la base de donnée donc avec des buffers fixe<br>
+
+**AFFECTATION BUFFER **
+<pre><code>
+char*         ToChar();
+const char*   ConstChar();
+std::string        StringChar();
+
+Zchar operator=(const Zchar);
+Zchar operator+=(const Zchar);
+Zchar operator=(const char*);
+Zchar operator+=( const char*);
+
+
+Zchar           concat(const std::string fmt, ...);                                       // Concat from string
+Zchar           reset();
+
+///  substring
+Zchar           Replace(const char*  scrut ,const char * );
+Zchar           Move(const char*   src);
+Zchar           Movel(const char*   src);
+Zchar           Move(const Zchar);
+Zchar           Movel(const Zchar);
+Zchar           Extrac(const char*   src   ,unsigned int  , unsigned int  );
+Zchar           Extrac(const Zchar         ,unsigned int  , unsigned int  );
+Zchar           strtrim(const Zchar );
+char *          ExtracToChar(unsigned int  , unsigned int  );
+</code></pre>
+**FONCTIONS UTILE** 
+<pre><code>
+unsigned int    locfind( const char*);
+unsigned int    sizebuf();
+unsigned int    sizeval();
+</code></pre>
+**FONCTIONS operateur**
+<pre><code>
+bool operator!=( const char* );
+bool operator==( const char* );
+bool operator<( const char*  );
+bool operator>( const char*  );
+bool operator<=( const char* );
+bool operator>=( const char* );
+unsigned   int cmp( const char* );
+
+bool operator!=( Zchar );
+bool operator==( Zchar );
+bool operator<( Zchar  );
+bool operator>=( Zchar );
+bool operator<=( Zchar );
+bool operator>( Zchar  );
+unsigned   int  cmp( Zchar );
+</code></pre>
+**FONCTIONS status**
+<pre><code>
+unsigned int   status();
+char*          statusmsg();
+bool           Msgerr();
 </code></pre>
