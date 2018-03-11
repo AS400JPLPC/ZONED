@@ -49,9 +49,10 @@ bool         Msgerr();
 **/// Format String--idem sprintf**
 
 std::string string<em>format(const std::string fmt</em>str, ...);
-</pre></code>
+</code></pre>
 
  <br>
+ 
 **une classe Date**
 
 très classique je remercie tous les internautes qui par leurs publication ma permis de mettre en forme cette classe
