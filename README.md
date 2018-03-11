@@ -7,8 +7,6 @@ origine "Mike Cowlishaw" lire le PDF
 ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale
 
-
-
 **OPERATEURS ARITHMETIQUES**
 <pre><code>
  + - * / %
@@ -46,13 +44,13 @@ char *     ToEntier();         /// parti entiere
 char *     ToDec();            /// partie decimale
 </code></pre>
 **/// code retour <em>ERR</em>??? or OK**
+<pre><code>
 unsigned int status();
 char*        statusmsg();
-bool         Msgerr();
-
+bool         Msgerr();</code></pre>
 **/// Format String--idem sprintf**
-
-std::string string<em>format(const std::string fmt</em>str, ...);
+<pre><code>
+std::string string<em>format(const std::string fmt</em>str, ...);</code></pre>
 
 <br>
 **une classe Date**
