@@ -1,36 +1,35 @@
-# ZONED
-Gestion de buffer fixe  type AS400 traitement char* decimal date   
+<h1>ZONED</h1>
 
--une classe DECIMAL
+<p>Gestion de buffer fixe  type AS400 traitement char* decimal date   </p>
 
-Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31<br>
+<p>-une classe DECIMAL</p>
+
+<p>Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31<br>
 origine "Mike Cowlishaw" lire le PDF<br>
-ex: Zdcml V_QSTKt(10,0);  variable quantité stock de 10 chiffres<br>
-Zdcml KAMPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
-<br>
-<br>
+ex: Zdcml QSTKt(10,0);  variable quantité stock de 10 chiffres<br>
+Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
 operator=(const  int)<br>
 operator=(const  long int)<br>
 operator=(const double)<br>
 operator=(const char*)<br>
-operator=(const Zdcml  X_dcml)<br>
-
-<h1>OPERATEURS ARITHMETIQUES EXTERNES</h1><br>
-\\ + - * / % <bbr>
-<h1>possibilité</h1><br>
-add(const  std::string fmt_str, ...);  <em>ex: `n.add("%s,%s", a.ToChar(),b.ToChar());`</em><br>
-<code>sub(const  std::string fmt_str, ...);</code><br>
-<code>mult(const std::string fmt_str, ...);</code><br>
-<code>div(const  std::string fmt_str, ...);</code><br>
-<code>mod(const Zdcml);</code><br>
--<strong>OPERATEURS DE COMPARAISON</strong><br>
-<code>< > <= >= != cmp</code>
+operator=(const Zdcml  X</em>dcml)<br></p>
+<p>OPERATEURS ARITHMETIQUES EXTERNES<br>
+\ + - * / % <br></p>
+<h1>possibilité</h1>
+<p>
+add(const  std::string fmt<em>str, ...)  <em>ex:<code>n.add("%s,%s", a.ToChar(),b.ToChar());</code></em><br>
+sub(const  std::string fmt</em>str, ...)<br>
+mult(const std::string fmt<em>str, ...)<br>
+div(const  std::string fmt</em>str, ...)<br>
+mod(const Zdcml)<br>
+OPERATEURS DE COMPARAISON<br>
+&lt; > &lt;= >= != cmp<br>
 -<strong>FONCTIONS OUTPUT return VAL</strong><br>
   <code>ToChar(bool signe = false);</code>      <em><code>/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15</code></em><br>
   <code>ConstChar(bool signe = false);</code>   <em><code>/// trim zero</code></em><br>
-  <code>StringChar(bool signe = false);</code>  <em><code>/// trim zero</code></em><br>
+  <code>StringChar(bool signe = false);</code>  <em><code>/// trim zero</code></em><br></p>
 
-ToInt();        /// cast par defaut
+<p>ToInt();        /// cast par defaut
 TolongInt();    /// cast par defaut
 ToDouble();     /// cast par defaut
 /// FONCTION Contrôle Type --------------------------------------
@@ -40,10 +39,10 @@ isTyplongInt(); /// contrôle typ long Int
 IsZeros();      /// contrôle ZEROS
 IsNegative();   /// contrôle IsNegative
 IsDecimale();   /// contrôle si valeur Décimale
-IsNumeric(const char *_X_); /// permet de tester si la valeur répond à un numeric
+IsNumeric(const char *<em>X</em>); /// permet de tester si la valeur répond à un numeric</p>
 
-ToRound();      /// DEC_ROUND_HALF_EVEN
-NoRound();      /// DEC_ROUND_DOWN
+<p>ToRound();      /// DEC<em>ROUND</em>HALF<em>EVEN
+NoRound();      /// DEC</em>ROUND<em>DOWN
 IsRound();      /// return  ToRound() or NoRound()        default  Noround
 checkInt();                /// permet de tester si la valeur répond à un int
 checkDouble();             /// permet de tester si la valeur répond à un double
@@ -52,32 +51,32 @@ ChekOverflow();            /// contrôle valeur def tampon
 /// FONCTION Utilitaire --------------------------------------
 ToEntier();         /// parti entiere
 ToDec();            /// partie decimale
-/// code retour _ERR_??? or OK ---------------------------------
+/// code retour _ERR</em>??? or OK ---------------------------------
 status();
 statusmsg();
-Msgerr();
+Msgerr();</p>
 
-/// Format String--idem sprintf --------------------------
+<p>/// Format String--idem sprintf --------------------------</p>
 
-std::string string_format(const std::string fmt_str, ...);
+<p>std::string string<em>format(const std::string fmt</em>str, ...);</p>
 
-___________________________________________________________________________________________
+<hr />
 
-une classe DATE
-merci aux internautes et différents forum et aux nombreuse personnes qui ont publiés les conformitées
+<p>une classe DATE
+merci aux internautes et différents forum et aux nombreuse personnes qui ont publiés les conformitées</p>
 
-Zdate operator=(const int  );
+<p>Zdate operator=(const int  );
                     /// 20010101 YYYYMMDD      0 = 00010101
-Zdate operator=(const char*);                       
+Zdate operator=(const char<em>); <br />
                     /// "2001-01-01" = 20010101
                     /// "0001-01-01" YYYY-MM-DD (POUR Bd ex: Postgresql = 0)
                     /// NULL etant possible mais pose des problèmes lors de clef  Non NULL voir le manuel d'ou 00010101
                     /// pour faire de la gestion  acceptable Voir IBM  a pris le même raisonnement. Norme SQL
-                    /// "*SYS"   YYYY-MM-DD  du system
+                    /// "</em>SYS"   YYYY-MM-DD  du system</p>
 
-/// opération logique pour comparer des dates entre elles
+<p>/// opération logique pour comparer des dates entre elles</p>
 
-///---------------------------------------------------
+<p>///---------------------------------------------------
 /// YYYYMMDDHHMMSS + 3 quantieme naosecond 9 = 26 char
 ///---------------------------------------------------
 session();        ///  n° unique
@@ -92,37 +91,37 @@ edtsysDMY();      /// jj/MM/YYYY
 edtsysMDY();      /// MM/JJ/YYYY
 edttimesys();     /// HH:mn:sec
 edtsysYM();       /// YYYY/MM
-edtsysMY();       /// MM/YYYY
+edtsysMY();       /// MM/YYYY</p>
 
-longdatesys();
-D_datesys();      /// Texte
-M_datesys();      /// Texte
+<p>longdatesys();
+D<em>datesys();      /// Texte
+M</em>datesys();      /// Texte</p>
 
-timehr();         /// heure
+<p>timehr();         /// heure
 timemin();        /// minute
-timesec();        /// seconde
+timesec();        /// seconde</p>
 
-sysYM();          /// YYYYMM
+<p>sysYM();          /// YYYYMM
 sysday();         /// DD
 sysmonth();       /// MM
 sysyear();        /// YYYY
 sysyear2();       /// YY
-syssiecle();      /// NN
+syssiecle();      /// NN</p>
 
-datesys();        /// YYYYMMDD
-edtsysISO();      /// YYYY-MM-DD
+<p>datesys();        /// YYYYMMDD
+edtsysISO();      /// YYYY-MM-DD</p>
 
-Quantiemesys();   /// Quantieme
+<p>Quantiemesys();   /// Quantieme
 NumeroJoursys();  /// le Numéro du jour
-Semainesys();     /// le numéro de semaine
+Semainesys();     /// le numéro de semaine</p>
 
-Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
+<p>Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte</p>
 
-///---------------------------------------------------
+<p>///------------------------------------------------
 /// Date personnel... table ... attention 00010101 = 0
-/// les calculs sont manuels
-///---------------------------------------------------
-ToInt();          /// YYYYMMDD
+/// les calculs sont manuels<br>
+///---------------------------------------------------</p
+<p>ToInt();          /// YYYYMMDD
 
 edtISO();         /// YYYY-MM-DD  date ISO
 edtNUM();         /// YYYYMMDD
@@ -131,23 +130,23 @@ edtDMY();         /// jj/MM/YYYY
 edtMDY();         /// MM/JJ/YYYY
 edtYM();          /// YYYY/MM
 edtMY();          /// MM/YYYY
-longdate();       /// vendredi 12 octobre 1950
+longdate();       /// vendredi 12 octobre 1950</p>
 
-ToChar(unsigned int date =0);     /// YYYYMMDD  full format
+<p>ToChar(unsigned int date =0);     /// YYYYMMDD  full format
 ConstChar(unsigned int date =0);  /// idem ToChar
-StringChar(unsigned int date =0); /// idem ToChar
+StringChar(unsigned int date =0); /// idem ToChar</p>
 
-D_date();         /// Texte
-M_date();         /// Texte
+<p>D<em>date();         /// Texte
+M</em>date();         /// Texte</p>
 
-YM();             /// YYYYMM   periode ex: 195110
+<p>YM();             /// YYYYMM   periode ex: 195110
 day();            /// Jour    ex: 12
 month();          /// Mois    ex: 10
 year();           /// Année   ex: 1951
 year2();          /// deux dernier chiffres de l'année ex: 51
-siecle();         /// siecle  ex: 20 pour 1951
+siecle();         /// siecle  ex: 20 pour 1951</p>
 
-isBissextile();   /// ? bisexe tille ;)
+<p>isBissextile();   /// ? bisexe tille ;)
 Addmonth(int);    /// MOIS + n
 PremierJanvier(); /// recupèrer 1 janvier n° du jour
 Quantieme();      /// Quantieme
@@ -161,4 +160,5 @@ Ferie();          /// is fête ?? pour construire un calendrier ici ne sont mise
 ///---------------------------------------------------
 status();
 statusmsg();
-Msgerr();
+Msgerr();</p>
+
