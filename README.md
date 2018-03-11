@@ -17,7 +17,7 @@ operator=(const Zdcml  X</em>dcml)<br></p>
 \ + - * / % <br></p>
 <h1>possibilité</h1>
 <p>
-add(const  std::string fmt<em>str, ...)  <em>ex:n.add("%s,%s", a.ToChar(),b.ToChar());</em><br>
+add(const  std::string fmt<em>str, ...)     <em>ex:n.add("%s,%s", a.ToChar(),b.ToChar());</em><br>
 sub(const  std::string fmt</em>str, ...)<br>
 mult(const std::string fmt<em>str, ...)<br>
 div(const  std::string fmt</em>str, ...)<br>
@@ -25,9 +25,9 @@ mod(const Zdcml)<br>
 OPERATEURS DE COMPARAISON<br>
 &lt; > &lt;= >= != cmp<br>
 FONCTIONS OUTPUT return VAL<br>
-  ToChar(bool signe = false)     <em>/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15</em><br>
-  ConstChar(bool signe = false) <em>/// trim zero</code></em><br>
-  StringChar(bool signe = false)  <em>/// trim zero</code></em><br></p>
+  ToChar(bool signe = false)        <em>/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15</em><br>
+  ConstChar(bool signe = false)     <em>/// trim zero</code></em><br>
+  StringChar(bool signe = false)    <em>/// trim zero</code></em><br></p>
 
 <p>ToInt();     /// cast par defaut<br>
 TolongInt();    /// cast par defaut<br>
@@ -62,103 +62,115 @@ Msgerr();</p>
 
 <hr />
 
-<p>une classe DATE
-merci aux internautes et différents forum et aux nombreuse personnes qui ont publiés les conformitées</p>
+<p>class Zdate</p>
 
-<p>Zdate operator=(const int  );
-                    /// 20010101 YYYYMMDD      0 = 00010101
-Zdate operator=(const char<em>); <br />
-                    /// "2001-01-01" = 20010101
-                    /// "0001-01-01" YYYY-MM-DD (POUR Bd ex: Postgresql = 0)
-                    /// NULL etant possible mais pose des problèmes lors de clef  Non NULL voir le manuel d'ou 00010101
-                    /// pour faire de la gestion  acceptable Voir IBM  a pris le même raisonnement. Norme SQL
-                    /// "</em>SYS"   YYYY-MM-DD  du system</p>
+<p>/// la date 0001-01-01 est valide pour ce programme uniquement pour donnée une Valeur "0"</p>
 
-<p>/// opération logique pour comparer des dates entre elles</p>
+<pre><code>Zdate operator=(const int  );                       /// 20010101 YYYYMMDD      0 = 00010101
+Zdate operator=(const char*);                       /// "2001-01-01" = 20010101
+                                                    /// "0001-01-01" YYYY-MM-DD (POUR Bd ex: Postgresql = 0)
+                                                    /// NULL etant possible mais pose des problèmes lors de clef  Non NULL voir le manuel d'ou 00010101
+                                                    /// pour faire de la gestion  acceptable Voir IBM  a pris le même raisonnement. Norme SQL
+                                                    /// "*SYS"   YYYY-MM-DD  du system
 
-<p>///---------------------------------------------------
-/// YYYYMMDDHHMMSS + 3 quantieme naosecond 9 = 26 char
-///---------------------------------------------------
-session();        ///  n° unique
-sysdattim();      ///  YYYYMMDDHHMMSS
-///---------------------------------------------------
-/// SYSTEM
-///---------------------------------------------------
-edtsysISO();      /// YYYY-MM-DD      ex: 1951-10-12   (const char*)
-edtsysNUM();      /// YYYYMMDD
-edtsysYMD();      /// YYYY/MM/DD
-edtsysDMY();      /// jj/MM/YYYY
-edtsysMDY();      /// MM/JJ/YYYY
-edttimesys();     /// HH:mn:sec
-edtsysYM();       /// YYYY/MM
-edtsysMY();       /// MM/YYYY</p>
+Zdate&amp; operator++(int);                             /// prefix    + 1
+Zdate&amp; operator--(int);                             /// postfix   + 1
+Zdate&amp; operator+(const int);                        /// prefix    + n day
+Zdate&amp; operator-(const int);                        /// postfix   - n day
 
-<p>longdatesys();
-D<em>datesys();      /// Texte
-M</em>datesys();      /// Texte</p>
+bool operator == (const Zdate);                     /// opération logique pour comparer des dates entre elles
+bool operator &lt;  (const Zdate);
+bool operator &gt;  (const Zdate);
+bool operator &gt;= (const Zdate);
+bool operator &lt;= (const Zdate);
+bool operator != (const Zdate);
+unsigned int  cmp(const Zdate) ;
 
-<p>timehr();         /// heure
-timemin();        /// minute
-timesec();        /// seconde</p>
 
-<p>sysYM();          /// YYYYMM
-sysday();         /// DD
-sysmonth();       /// MM
-sysyear();        /// YYYY
-sysyear2();       /// YY
-syssiecle();      /// NN</p>
+YYYYMMDDHHMMSS + 3 quantieme naosecond 9 = 26 char
 
-<p>datesys();        /// YYYYMMDD
-edtsysISO();      /// YYYY-MM-DD</p>
+char* session();        ///  n° unique
+char* sysdattim();      ///  YYYYMMDDHHMMSS
+</code></pre>
 
-<p>Quantiemesys();   /// Quantieme
-NumeroJoursys();  /// le Numéro du jour
-Semainesys();     /// le numéro de semaine</p>
+<p>SYSTEM</p>
 
-<p>Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte</p>
+<pre><code>char* edtsysNUM();      /// YYYYMMDD
+char* edtsysYMD();      /// YYYY/MM/DD
+char* edtsysDMY();      /// jj/MM/YYYY
+char* edtsysMDY();      /// MM/JJ/YYYY
+char* edttimesys();     /// HH:mn:sec
+char* edtsysYM();       /// YYYY/MM
+char* edtsysMY();       /// MM/YYYY
 
-<p>///------------------------------------------------
+char* longdatesys();
+char* D_datesys();      /// Texte
+char* M_datesys();      /// Texte
+
+int   timehr();         /// heure
+int   timemin();        /// minute
+int   timesec();        /// seconde
+
+int   sysYM();          /// YYYYMM
+int   sysday();         /// DD
+int   sysmonth();       /// MM
+int   sysyear();        /// YYYY
+int   sysyear2();       /// YY
+int   syssiecle();      /// NN
+
+int   datesys();        /// YYYYMMDD
+char* edtsysISO();      /// YYYY-MM-DD
+
+
+int   Quantiemesys();   /// Quantieme
+int   NumeroJoursys();  /// le Numéro du jour
+int   Semainesys();     /// le numéro de semaine
+
+int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
+</code></pre>
+
+<p>///
 /// Date personnel... table ... attention 00010101 = 0
-/// les calculs sont manuels<br>
-///---------------------------------------------------</p
-<p>ToInt();          /// YYYYMMDD
+///
+    int   ToInt();          /// YYYYMMDD</p>
 
-edtISO();         /// YYYY-MM-DD  date ISO
-edtNUM();         /// YYYYMMDD
-edtYMD();         /// YYYY/MM/DD
-edtDMY();         /// jj/MM/YYYY
-edtMDY();         /// MM/JJ/YYYY
-edtYM();          /// YYYY/MM
-edtMY();          /// MM/YYYY
-longdate();       /// vendredi 12 octobre 1950</p>
+<pre><code>char* edtISO();         /// YYYY-MM-DD  date ISO
+char* edtNUM();         /// YYYYMMDD
+char* edtYMD();         /// YYYY/MM/DD
+char* edtDMY();         /// jj/MM/YYYY
+char* edtMDY();         /// MM/JJ/YYYY
+char* edtYM();          /// YYYY/MM
+char* edtMY();          /// MM/YYYY
+char* longdate();       /// vendredi 12 octobre 1950
 
-<p>ToChar(unsigned int date =0);     /// YYYYMMDD  full format
-ConstChar(unsigned int date =0);  /// idem ToChar
-StringChar(unsigned int date =0); /// idem ToChar</p>
+char* ToChar(unsigned int date =0);             /// YYYYMMDD  full format
+const char*   ConstChar(unsigned int date =0);  /// idem ToChar
+std::string   StringChar(unsigned int date =0); /// idem ToChar
 
-<p>D<em>date();         /// Texte
-M</em>date();         /// Texte</p>
+char* D_date();         /// Texte
+char* M_date();         /// Texte
 
-<p>YM();             /// YYYYMM   periode ex: 195110
-day();            /// Jour    ex: 12
-month();          /// Mois    ex: 10
-year();           /// Année   ex: 1951
-year2();          /// deux dernier chiffres de l'année ex: 51
-siecle();         /// siecle  ex: 20 pour 1951</p>
+int   YM();             /// YYYYMM   periode
+int   day();            /// Jour
+int   month();          /// Mois
+int   year();           /// Année
+int   year2();          /// deux dernier chiffre de l'année
+int   siecle();         /// siecle
 
-<p>isBissextile();   /// ? bisexe tille ;)
-Addmonth(int);    /// MOIS + n
-PremierJanvier(); /// recupèrer 1 janvier n° du jour
-Quantieme();      /// Quantieme
-NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
-ResteJour();      /// le nombre jour restant dans l'année
-Semaine();        /// le numéro de semaine
-Ferie();          /// is fête ?? pour construire un calendrier ici ne sont mise que les dates française
-                  /// j'ai fait pour les claculs de jour travaillé ex paye ou   quota production du mois  prévisionnel ..... 
-///---------------------------------------------------
-/// fonction status 
-///---------------------------------------------------
-status();
-statusmsg();
-Msgerr();</p>
+bool  isBissextile();   /// ? bisexe tille ;)
+void  Addmonth(int);    /// MOIS + n
+int   PremierJanvier(); /// recupèrer 1 janvier n° du jour
+int   Quantieme();      /// Quantieme
+int   NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
+int   ResteJour();      /// le nombre jour restant dans l'année
+int   Semaine();        /// le numéro de semaine
+int   Ferie();          /// is fête ?? pour construire un calendrier
+</code></pre>
+
+<p>FONCTIONS status <br />
+unsigned int   status();
+char*          statusmsg();
+bool  Msgerr();</p>
+
+
 
