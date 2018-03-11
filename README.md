@@ -10,15 +10,11 @@ Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale
 <p><pre><code>
 <p>**OPERATEURS ARITHMETIQUES <br>
  + - * / %</p>
-
 <p>add sub mult div mod 
 ex: n.add("%s,%s", a.ToChar(),b.ToChar());</p>
-
 <p>**OPERATEURS DE COMPARAISON</p>
 == &lt; > &lt;= >= != cmp
-
 <p>**FONCTIONS OUTPUT ---return VAL</p>
-
 <p><pre><code>ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
 ConstChar(bool signe = false);    /// trim zero
 StringChar(bool signe = false);   /// trim zero
@@ -30,7 +26,6 @@ bool        IsZeros();      /// contrôle ZEROS
 bool        IsNegative();   /// contrôle IsNegative
 bool        IsDecimale();   /// contrôle si valeur Décimale
 bool        IsNumeric(const char *<em>X</em>); /// permet de tester si la valeur répond à un numeric</p>
-
 <p>void        ToRound();      /// DEC<em>ROUND</em>HALF<em>EVEN
 void        NoRound();      /// DEC</em>ROUND_DOWN
 bool        IsRound();      /// return  ToRound() or NoRound()        default  Noround
@@ -38,14 +33,14 @@ unsigned int checkInt();                /// permet de tester si la valeur répon
 unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
 unsigned int checklongInt();            /// permet de tester si la valeur répond à un long int
 unsigned int ChekOverflow();            /// contrôle valeur def tampon
-/// FONCTION Utilitaire --------------------------------------
+**FONCTION Utilitaire 
 char *     ToEntier();         /// parti entiere
 char *     ToDec();            /// partie decimale</p>
 
-<p>/// code retour <em>ERR</em>??? or OK ---------------------------------
+**/// code retour <em>ERR</em>??? or OK 
 unsigned int status();
 char*        statusmsg();
-bool         Msgerr();</p>
+bool         Msgerr();
 
 <p>/// Format String--idem sprintf --------------------------</p>
 
