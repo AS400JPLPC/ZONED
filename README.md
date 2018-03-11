@@ -9,16 +9,16 @@ ex: Zdcml V_QSTKt(10,0);  variable quantité stock de 10 chiffres<br>
 Zdcml KAMPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
 <br>
 <br>
-operator=(const  int);<br>
-operator=(const  long int);<br>
-operator=(const double);<br>
-operator=(const char*);<br>
-operator=(const Zdcml  X_dcml);<br>
+operator=(const  int)<br>
+operator=(const  long int)<br>
+operator=(const double)<br>
+operator=(const char*)<br>
+operator=(const Zdcml  X_dcml)<br>
 
-=OPERATEURS ARITHMETIQUES EXTERNES<br>
-<code> + - * / %</code><br>
--<strong>possibilité</strong><br>
-<code>add(const  std::string fmt_str, ...);</code>  <em><code>ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></em><br>
+<h1>OPERATEURS ARITHMETIQUES EXTERNES</h1><br>
+\\ + - * / % <bbr>
+<h1>possibilité</h1><br>
+add(const  std::string fmt_str, ...);  <em>ex: `n.add("%s,%s", a.ToChar(),b.ToChar());`</em><br>
 <code>sub(const  std::string fmt_str, ...);</code><br>
 <code>mult(const std::string fmt_str, ...);</code><br>
 <code>div(const  std::string fmt_str, ...);</code><br>
