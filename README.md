@@ -2,12 +2,16 @@ Gestion de buffer fixe type AS400 traitement char* decimal date
 
 <h1> RE-Typage </h1>
 
+**Motivation**
+cet ensemble est réalisé pour traiter les données entre les bases de données et le programme qui les utilises
+on y retrouve le model de l'AS400 RPGILE cela ma permis de faire un export du model DDS (as400) définition data strucure de fichier SQL de diminuer considerablement l'interface programmation sur PC étant bien entendu que sur l'AS400 tout est natif.Afin de me rapprocher le plus possible de l'automatisation tel que le propose le compilateur RPGIV ILE 
+
 
 **une classe DECIMAL**
 
 Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31<br>
 origine "Mike Cowlishaw" lire le PDF<br>
-ex: Zdcml QSTKt(10,0); variable quantité stock de 10 chiffres<br>
+ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
 
 **OPERATEURS ARITHMETIQUES**
@@ -164,10 +168,12 @@ bool  Msgerr();
 </code></pre>
 <br>
 <br>
-
+<br>
+<br>
 **Buffer fixe char**<br>
 Mon problème était la cohésion avec la base de donnée donc avec des buffers fixe<br>
-
+Zchar NOM[10]; conforme avec les definitions SQL et traitement base de Données 
+je me suis appuyé sur la façon de traiter de l'AS400 /38 ... 
 **AFFECTATION BUFFER **
 <pre><code>
 char*         ToChar();
