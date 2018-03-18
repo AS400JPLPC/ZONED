@@ -93,7 +93,7 @@ Zdcml& Zdcml::operator=(const int _X_)
     else decNumberZero(_dcml);
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 #endif
     return *this;
 }
@@ -113,7 +113,7 @@ Zdcml& Zdcml::operator=(const long int _X_)
     else decNumberZero(_dcml);
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 #endif
 
   return *this;
@@ -137,7 +137,7 @@ Zdcml& Zdcml::operator=(const double _X_)
     else decNumberZero(_dcml);
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 #endif
   return *this;
 }
@@ -157,7 +157,7 @@ Zdcml& Zdcml::operator=(const char* _X_)
 
 #ifndef _DEBUG_   /// pour tester les formules
 
-    if ( !IsNumeric(_X_))  { MSGERR=ZONED_BAD;
+    if ( !isnumeric(_X_))  { MSGERR=ZONED_BAD;
                               sprintf(zmsg,"(DCML_NUM_BAD_NUMERIC) - Msgerror : %d",ZONED_BAD);
                               decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 #endif
@@ -165,7 +165,7 @@ Zdcml& Zdcml::operator=(const char* _X_)
     decNumberCopy( _dcml,C_dcml);
 
 #ifndef _DEBUG_   /// pour tester les formules
-     if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+     if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 #endif
 
     return *this;
@@ -187,7 +187,7 @@ Zdcml& Zdcml::operator=(const Zdcml X_dcml)
 
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 #endif
     return *this;
 }
@@ -214,7 +214,7 @@ Zdcml& Zdcml::operator++(int)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberAdd(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -233,7 +233,7 @@ Zdcml& Zdcml::operator--(int)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberSubtract(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -254,7 +254,7 @@ Zdcml& Zdcml::operator+=(const  int _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberAdd(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -275,7 +275,7 @@ Zdcml& Zdcml::operator-=(const  int _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberSubtract(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -294,7 +294,7 @@ Zdcml& Zdcml::operator-=(const  int _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberMultiply(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -315,7 +315,7 @@ Zdcml& Zdcml::operator/=(const  int _X_)
                                     decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     decNumberDivide(_dcml, _dcml,C_dcml,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     return *this;
 }
@@ -356,7 +356,7 @@ Zdcml& Zdcml::operator+=(const long int _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberAdd(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -375,7 +375,7 @@ Zdcml& Zdcml::operator-=(const long int _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberSubtract(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -394,7 +394,7 @@ Zdcml& Zdcml::operator-=(const long int _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberMultiply(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -415,7 +415,7 @@ Zdcml& Zdcml::operator/=(const  long int _X_)
                                     decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     decNumberDivide(_dcml, _dcml,C_dcml,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     return *this;
 }
@@ -452,7 +452,7 @@ Zdcml& Zdcml::operator+=(const  double _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberAdd(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -471,7 +471,7 @@ Zdcml& Zdcml::operator-=(const  double  _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberSubtract(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -490,7 +490,7 @@ Zdcml& Zdcml::operator-=(const  double  _X_)
     decNumberFromString( C_dcml, (char*)_STRING_.c_str(), &T_set);
 
     decNumberMultiply(_dcml, _dcml, C_dcml ,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -511,7 +511,7 @@ Zdcml& Zdcml::operator/=(const  double  _X_)
                                     decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     decNumberDivide(_dcml, _dcml,C_dcml,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
     return *this;
 }
 
@@ -546,7 +546,7 @@ Zdcml& Zdcml::operator+=(const Zdcml X_dcml)
     decNumberCopy( S_dcml,_dcml);
 
     decNumberAdd(_dcml, _dcml, X_dcml._dcml ,&T_set);            // a=a+b
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     return *this;
 }
@@ -563,7 +563,7 @@ Zdcml& Zdcml::operator-=(const Zdcml  X_dcml)
     decNumberCopy( S_dcml,_dcml);
 
     decNumberSubtract(_dcml,_dcml,X_dcml._dcml,&T_set);       // a=a-b
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     return *this;
 }
@@ -580,7 +580,7 @@ Zdcml& Zdcml::operator*=(const Zdcml  X_dcml)
     decNumberCopy( S_dcml,_dcml);
 
     decNumberMultiply(_dcml, _dcml,X_dcml._dcml,&T_set);       // a=a*b
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     return *this;
 }
@@ -602,7 +602,7 @@ Zdcml& Zdcml::operator/=(const Zdcml  X_dcml)
                                     decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     decNumberDivide(_dcml, _dcml,C_dcml,&T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
     return *this;
 }
@@ -665,7 +665,7 @@ Zdcml& Zdcml::add(const std::string fmt, ...)
                                                       decNumberCopy( _dcml,S_dcml);  ClearBufferDcml(); free(vParm) ; return *this; }
                      vParm= strtok (NULL, ",");
                 }
-                if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); free(vParm) ;return *this; }
+                if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); free(vParm) ;return *this; }
                 free(vParm) ;
                 return *this;
         }
@@ -717,7 +717,7 @@ Zdcml& Zdcml::sub(const std::string fmt, ...)
                                                      decNumberCopy( _dcml,S_dcml);  ClearBufferDcml(); free(vParm) ;return *this; }
                      vParm= strtok (NULL, ",");
                 }
-                if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); free(vParm) ; return *this; }
+                if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); free(vParm) ; return *this; }
                 free(vParm) ;
                 return *this;
         }
@@ -771,7 +771,7 @@ Zdcml& Zdcml::mult(const std::string fmt, ...)
                                                      decNumberCopy( _dcml,S_dcml);  ClearBufferDcml();free(vParm);  return *this; }
                      vParm= strtok (NULL, ",");
                 }
-                if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+                if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
                 free(vParm) ;
                 return *this;
         }
@@ -825,7 +825,7 @@ Zdcml& Zdcml::div(const std::string fmt, ...) {
                      vParm= strtok (NULL, ",");
                      nx++;
                 }
-                if ( ZONED_OK != ChekOverflow() ) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml();free(vParm) ; return *this; }
+                if ( ZONED_OK != chekoverflow() ) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml();free(vParm) ; return *this; }
                 if ( nx < 2 ) {MSGERR = ZONED_BAD  ;sprintf(zmsg,"(DCML_NUM_BAD_Paramettre) - Msgerror : %d",ZONED_BAD);
                                                      decNumberCopy( _dcml,S_dcml);  ClearBufferDcml();free(vParm) ; return *this; }
                 free(vParm) ;
@@ -869,7 +869,7 @@ Zdcml& Zdcml::pcent(const Zdcml X_dcml,const Zdcml Y_dcml)
     decNumberDivide(T_dcml, X_dcml._dcml, T_dcml ,&T_set);
 
     decNumberMultiply(_dcml, Y_dcml._dcml ,T_dcml, &T_set);
-    if ( ZONED_OK != ChekOverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
+    if ( ZONED_OK != chekoverflow()) {  decNumberCopy( _dcml,S_dcml); ClearBufferDcml(); return *this; }
 
   return *this;
 }
@@ -1188,7 +1188,7 @@ return CMP;
 }
 /// FONCTIONS CHECK  or Is...   -------------------------
 
-unsigned int Zdcml::checkInt()
+unsigned int Zdcml::checkint()
 {
 
     sprintf(zmsg," "); MSGERR=ZONED_OK;
@@ -1237,7 +1237,7 @@ unsigned int Zdcml::checkInt()
 }
 
 
-unsigned  int Zdcml::checklongInt()
+unsigned  int Zdcml::checklongint()
 {
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
@@ -1285,7 +1285,7 @@ unsigned  int Zdcml::checklongInt()
     return MSGERR;
 }
 
-unsigned  int Zdcml::checkDouble()
+unsigned  int Zdcml::checkdouble()
 {
 
     sprintf(zmsg," "); MSGERR=ZONED_OK;
@@ -1337,7 +1337,7 @@ unsigned  int Zdcml::checkDouble()
     return MSGERR;
 }
 
-unsigned int Zdcml::ChekOverflow()
+unsigned int Zdcml::chekoverflow()
 {
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
@@ -1350,7 +1350,7 @@ unsigned int Zdcml::ChekOverflow()
     decNumberFromString(C_dcml, T_string,&T_set);
 
 
-    if (!IsNegative()) {
+    if (!isnegative()) {
         decNumberFromString(T_dcml, n_mask,&T_set);
         decNumberCompare(C_dcml, C_dcml, T_dcml, &T_set);
 
@@ -1368,7 +1368,7 @@ unsigned int Zdcml::ChekOverflow()
         }
     }
 
-    if (!IsNegative()) {
+    if (!isnegative()) {
         decNumberFromString(T_dcml, p_mask,&T_set);
         decNumberCompare(C_dcml, C_dcml, T_dcml, &T_set);
 
@@ -1389,7 +1389,7 @@ unsigned int Zdcml::ChekOverflow()
 
 
 
-bool Zdcml::IsNumeric(const char *_X_)
+bool Zdcml::isnumeric(const char *_X_)
 {
 
 bool hitDecimal=false;
@@ -1421,27 +1421,27 @@ bool posDecimal=false;
   return true;
 }
 
-bool Zdcml::IsZeros()
+bool Zdcml::iszeros()
 {
     if(decNumberIsZero(_dcml)) return true;
     return false;
 }
 
 
-bool Zdcml::IsNegative()
+bool Zdcml::isnegative()
 {
     if( decNumberIsNegative(_dcml))  return true;
     return false;
 }
 
 
-bool Zdcml::IsDecimale()
+bool Zdcml::isdecimale()
 {
     ClearBufferDcml();
 
     decNumberCopy(C_dcml,_dcml);
 
-    decNumberFromString(T_dcml, ToEntier(),&T_set);
+    decNumberFromString(T_dcml, toentier(),&T_set);
     decNumberSubtract(C_dcml,C_dcml,T_dcml,&T_set);
 
     if( ! decNumberIsZero(C_dcml)) return false;
@@ -1452,7 +1452,7 @@ bool Zdcml::IsDecimale()
 /// FONCTIONS OUTPUT ---return VAL-------------------------
 
 
-char * Zdcml::ToEntier()
+char * Zdcml::toentier()
   {
   if(___obligatoire___ )  return (char*)("0");
 
@@ -1462,7 +1462,7 @@ char * Zdcml::ToEntier()
                                     decNumberCopy( _dcml,S_dcml);  ClearBufferDcml(); return (char*)("0"); }
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {ClearBufferDcml();  return (char*)("0"); }
+    if ( ZONED_OK != chekoverflow()) {ClearBufferDcml();  return (char*)("0"); }
 #endif
 
     ClearBufferDcml();  sprintf(T_string,"%c",'\0');
@@ -1477,7 +1477,7 @@ char * Zdcml::ToEntier()
     return  (char* )T_string;
 }
 
-char * Zdcml::ToDec()
+char * Zdcml::todec()
   {
 
   if(___obligatoire___ )  return (char*)("0");
@@ -1512,7 +1512,7 @@ char * Zdcml::ToDec()
 }
 
 
-char* Zdcml::ToChar(bool signe)
+char* Zdcml::tochar(bool signe)
 {
 if(___obligatoire___ ) {     return (char*)("0"); }
 
@@ -1522,7 +1522,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
                                     decNumberCopy( _dcml,S_dcml);  ClearBufferDcml(); return (char*)("0");}
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {ClearBufferDcml();  return (char*)("0"); }
+    if ( ZONED_OK != chekoverflow()) {ClearBufferDcml();  return (char*)("0"); }
 #endif
 
 
@@ -1531,7 +1531,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
 
     sprintf(T_string,"%c",'\0'); sprintf(T_value,"%c",'\0');
       decNumber  *X_dcml; X_dcml  = new decNumber ;  decNumberCopy( X_dcml,_dcml);
-     if(IsNegative()) {
+     if(isnegative()) {
     _STRING_ =string_format("-%ld",1);
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(),&T_set);
     decNumberMultiply(X_dcml, _dcml,T_dcml,&T_set);
@@ -1557,7 +1557,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
 
      /// cherche si 0
      if(  decNumberIsZero(X_dcml)  || decNumberIsNaN(X_dcml) ) sprintf(T_value,"0") ;
-    else {  if( signe == true)  {      if(IsNegative())   sprintf(T_value,"-");else sprintf(T_value,"+"); }
+    else {  if( signe == true)  {      if(isnegative())   sprintf(T_value,"-");else sprintf(T_value,"+"); }
                 /// calcul la longueur pour le pading '0'
                 for (unsigned  int u= ent.size(); u< _entier; u++) strcat(T_value,"0");
             strcat(T_value,T_string);
@@ -1569,7 +1569,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
 }
 
 
-const char* Zdcml::ConstChar(bool signe) {
+const char* Zdcml::toconstchar(bool signe) {
 if(___obligatoire___ ) {     return (char*)("0"); }
    sprintf(zmsg," "); MSGERR=ZONED_OK;
 
@@ -1577,7 +1577,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
                                     decNumberCopy( _dcml,S_dcml);  ClearBufferDcml(); return (char*)("0");}
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {ClearBufferDcml();  return (char*)("0"); }
+    if ( ZONED_OK != chekoverflow()) {ClearBufferDcml();  return (char*)("0"); }
 #endif
 
 
@@ -1586,7 +1586,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
 
     sprintf(T_string,"%c",'\0'); sprintf(T_value,"%c",'\0');
       decNumber  *X_dcml; X_dcml  = new decNumber ;  decNumberCopy( X_dcml,_dcml);
-     if(IsNegative()) {
+     if(isnegative()) {
     _STRING_ =string_format("-%ld",1);
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(),&T_set);
     decNumberMultiply(X_dcml, _dcml,T_dcml,&T_set);
@@ -1612,7 +1612,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
 
      /// cherche si 0
      if(  decNumberIsZero(X_dcml)  || decNumberIsNaN(X_dcml) ) sprintf(T_value,"0") ;
-    else {  if( signe == true)  {      if(IsNegative())   sprintf(T_value,"-");else sprintf(T_value,"+"); }
+    else {  if( signe == true)  {      if(isnegative())   sprintf(T_value,"-");else sprintf(T_value,"+"); }
             strcat(T_value,T_string);
     }
        sprintf(T_value,"%s",T_value);
@@ -1621,7 +1621,7 @@ return (const char *) T_value;
 }
 
 
-std::string Zdcml::StringChar(bool signe) {
+std::string Zdcml::tostring(bool signe) {
 if(___obligatoire___ ) {     return std::string("0"); }
 if(___obligatoire___ ) {     return (char*)("0"); }
 
@@ -1631,7 +1631,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
                                     decNumberCopy( _dcml,S_dcml);  ClearBufferDcml(); return (char*)("0");}
 
 #ifndef _DEBUG_   /// pour tester les formules
-    if ( ZONED_OK != ChekOverflow()) {ClearBufferDcml();  return (char*)("0"); }
+    if ( ZONED_OK != chekoverflow()) {ClearBufferDcml();  return (char*)("0"); }
 #endif
 
 
@@ -1640,7 +1640,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
 
     sprintf(T_string,"%c",'\0'); sprintf(T_value,"%c",'\0');
       decNumber  *X_dcml; X_dcml  = new decNumber ;  decNumberCopy( X_dcml,_dcml);
-     if(IsNegative()) {
+     if(isnegative()) {
     _STRING_ =string_format("-%ld",1);
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(),&T_set);
     decNumberMultiply(X_dcml, _dcml,T_dcml,&T_set);
@@ -1666,7 +1666,7 @@ if(___obligatoire___ ) {     return (char*)("0"); }
 
      /// cherche si 0
      if(  decNumberIsZero(X_dcml)  || decNumberIsNaN(X_dcml) ) sprintf(T_value,"0") ;
-    else {  if( signe == true)  {      if(IsNegative())   sprintf(T_value,"-");else sprintf(T_value,"+"); }
+    else {  if( signe == true)  {      if(isnegative())   sprintf(T_value,"-");else sprintf(T_value,"+"); }
             strcat(T_value,T_string);
     }
        sprintf(T_value,"%s",T_value);
@@ -1679,13 +1679,13 @@ return std::string(T_value);
 
 
 
-int Zdcml::ToInt()
+int Zdcml::toint()
 {
 if(___obligatoire___ ) return 0;
 
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
-   if (ZONED_OK != checkInt())  {return 0;}
+   if (ZONED_OK != checkint())  {return 0;}
 
     ClearBufferDcml();
 
@@ -1698,13 +1698,13 @@ if(___obligatoire___ ) return 0;
 }
 
 
-long int Zdcml::TolongInt()
+long int Zdcml::tolongint()
 {
 if(___obligatoire___ ) return 0;
 
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
-    if (ZONED_OK != checklongInt())  {return 0;}
+    if (ZONED_OK != checklongint())  {return 0;}
 
     ClearBufferDcml();
 
@@ -1720,15 +1720,15 @@ if(___obligatoire___ ) return 0;
 
 
 
-double Zdcml::ToDouble()
+double Zdcml::todouble()
 {
 if(___obligatoire___ ) return 0;
 
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
- if (ZONED_OK != checkDouble())  {return 0;}
+ if (ZONED_OK != checkdouble())  {return 0;}
 
-    sprintf(T_value,"%s", ToChar());
+    sprintf(T_value,"%s", tochar());
     ClearBufferDcml();
 
     //15 digit maxi
@@ -1737,33 +1737,33 @@ if(___obligatoire___ ) return 0;
 
 
 
-bool Zdcml::isTypDbl()
+bool Zdcml::istypdbl()
 {
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
-         if (ZONED_OK != checkDouble()  || _dec > 5 ) {
+         if (ZONED_OK != checkdouble()  || _dec > 5 ) {
         MSGERR = ZONED_OVR ;
         sprintf(zmsg,"%s %d","Msgerror - entier + dec = Max(15) dec =max(5) DCML_NUM_OVERFLOW  --   code Msgerror: " , ZONED_OVR );
         return false;
          } else return true;
 }
 
-bool Zdcml::isTypInt()
+bool Zdcml::istypint()
 {
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
-         if ( ZONED_OK != checkInt()  ||_dec > 0 ) {
+         if ( ZONED_OK != checkint()  ||_dec > 0 ) {
         MSGERR = ZONED_OVR ;
         sprintf(zmsg,"%s %d","Msgerror - entier + dec = Max(10) dec =max(0) DCML_NUM_OVERFLOW  --   -2147483648 à +2147483647   code Msgerror: " , ZONED_OVR );
         return false;
          } else return true;
 }
 
-bool Zdcml::isTyplongInt()
+bool Zdcml::istyplongint()
 {
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
-         if (ZONED_OK != checklongInt() ||_dec > 0 ) {
+         if (ZONED_OK != checklongint() ||_dec > 0 ) {
         MSGERR = ZONED_OVR ;
         sprintf(zmsg,"%s %d","Msgerror - entier + dec = Max(21) dec =max(0) DCML_NUM_OVERFLOW  --   -9223372036854775808 à +9223372036854775807    code Msgerror: " , ZONED_OVR );
         return false;
@@ -1812,13 +1812,13 @@ char* Zdcml::ZTrim0(char* _X_)
 
 
 
-void Zdcml::ToRound() { _round = true ;}
-void Zdcml::NoRound() { _round = false ;}
-bool Zdcml::IsRound() { return _round ;}
+void Zdcml::toround() { _round = true ;}
+void Zdcml::noround() { _round = false ;}
+bool Zdcml::isround() { return _round ;}
 /// code retour Msgerror or ok------------------------------
 unsigned int Zdcml::status() {return MSGERR;}
 char* Zdcml::statusmsg() {return zmsg;}
-bool  Zdcml::Msgerr() { if (MSGERR == ZONED_OK ) return false; else return true ;}
+bool  Zdcml::msgerr() { if (MSGERR == ZONED_OK ) return false; else return true ;}
 
 /// Double to char -----------------------------
 char* Zdcml::ZDoubleToChar(double _X_ ,unsigned _precision_)
@@ -1873,7 +1873,7 @@ if(___obligatoire___ ) return ;
 
     sprintf(zmsg," "); MSGERR=ZONED_OK;
 
-    if ( !IsNumeric(_X_))  { MSGERR=ZONED_BAD;
+    if ( !isnumeric(_X_))  { MSGERR=ZONED_BAD;
                              sprintf(zmsg,"(DCML_NUM_BAD_NUMERIC) - Msgerror : %d",ZONED_BAD);
                                         return; } ;
 

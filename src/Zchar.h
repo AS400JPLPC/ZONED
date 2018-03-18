@@ -50,9 +50,9 @@ public:
 ///****************************************************************************
 
 
-char*         ToChar();
-const char*   ConstChar();
-std::string        StringChar();
+char*         tochar();
+const char*   toconstchar();
+std::string   tostring();
 
 Zchar operator=(const Zchar);
 Zchar operator+=(const Zchar);
@@ -64,15 +64,15 @@ Zchar           concat(const std::string fmt, ...);                             
 Zchar           reset();
 
 ///  substring
-Zchar           Replace(const char*  scrut ,const char * );
-Zchar           Move(const char*   src);
-Zchar           Movel(const char*   src);
-Zchar           Move(const Zchar);
-Zchar           Movel(const Zchar);
-Zchar           Extrac(const char*   src   ,unsigned int  , unsigned int  );
-Zchar           Extrac(const Zchar         ,unsigned int  , unsigned int  );
+Zchar           replace(const char*  scrut ,const char * );
+Zchar           move(const char*   src);
+Zchar           movel(const char*   src);
+Zchar           move(const Zchar);
+Zchar           movel(const Zchar);
+Zchar           extrac(const char*   src   ,unsigned int  , unsigned int  );
+Zchar           extrac(const Zchar         ,unsigned int  , unsigned int  );
 Zchar           strtrim(const Zchar );
-char *          ExtracToChar(unsigned int  , unsigned int  );
+char *          extractochar(unsigned int  , unsigned int  );
 ///****************************************************************************
 /// FONCTIONS UTILE--------- --------------------------------------------------
 ///****************************************************************************
@@ -107,7 +107,7 @@ unsigned   int  cmp( Zchar );
 ///****************************************************************************
 unsigned int   status();
 char*          statusmsg();
-bool           Msgerr();
+bool           msgerr();
 };
 
 }

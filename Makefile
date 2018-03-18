@@ -6,7 +6,7 @@
 # nom de l'executable :
 PROJET = libZONED
 
-OBJLIB = $(NAME).a
+OBJLIB = $(PROJET).a
 
 # Addresse   , sources, lib , objets , includes :
 SRCDIR = $(CURDIR)/src/
@@ -16,6 +16,7 @@ BINDIR = $(CURDIR)/lib/
 OBJDIR = $(CURDIR)/obj/
 
 INCLUDES = \
+ -I $(CURDIR)/ \
 -I$ $(SRCDIR) \
 -I$ $(OBJDIR)
 
@@ -36,7 +37,7 @@ ifdef TEST
 endif
 
 $(OBJDIR)%.o: $(SRCDIR)%.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@ 
+	$(CXX)  $(CXXFLAGS) $(INCLUDES) -c $< -o $@ 
 
 
 

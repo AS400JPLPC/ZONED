@@ -137,16 +137,16 @@ public:
     char* edtsysISO();      /// YYYY-MM-DD
 
 
-    int   Quantiemesys();   /// Quantieme
+    int   quantiemesys();   /// Quantieme
     int   NumeroJoursys();  /// le Numéro du jour
-    int   Semainesys();     /// le numéro de semaine
+    int   semainesys();     /// le numéro de semaine
 
     int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
 
 ///---------------------------------------------------
 /// Date personnel... table ... attention 00010101 = 0
 ///---------------------------------------------------
-    int   ToInt();          /// YYYYMMDD
+    int   toint();          /// YYYYMMDD
 
     char* edtISO();         /// YYYY-MM-DD  date ISO
     char* edtNUM();         /// YYYYMMDD
@@ -157,9 +157,9 @@ public:
     char* edtMY();          /// MM/YYYY
     char* longdate();       /// vendredi 12 octobre 1950
 
-    char* ToChar(unsigned int date =0);             /// YYYYMMDD  full format
-    const char*   ConstChar(unsigned int date =0);  /// idem ToChar
-    std::string   StringChar(unsigned int date =0); /// idem ToChar
+    char* tochar(unsigned int date =0);             /// YYYYMMDD  full format
+    const char*   toconstchar(unsigned int date =0);  /// idem ToChar
+    std::string   tostring(unsigned int date =0); /// idem ToChar
 
     char* D_date();         /// Texte
     char* M_date();         /// Texte
@@ -171,21 +171,21 @@ public:
     int   year2();          /// deux dernier chiffre de l'année
     int   siecle();         /// siecle
 
-    bool  isBissextile();   /// ? bisexe tille ;)
-    void  Addmonth(int);    /// MOIS + n
+    bool  isbissextile();   /// ? bisexe tille ;)
+    void  addmonth(int);    /// MOIS + n
     int   PremierJanvier(); /// recupèrer 1 janvier n° du jour
-    int   Quantieme();      /// Quantieme
-    int   NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
+    int   quantieme();      /// Quantieme
+    int   numeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
     int   ResteJour();      /// le nombre jour restant dans l'année
-    int   Semaine();        /// le numéro de semaine
-    int   Ferie();          /// is fête ?? pour construire un calendrier
+    int   semaine();        /// le numéro de semaine
+    int   ferier();         /// is fête ?? pour construire un calendrier
 
 ///****************************************************************************
 /// FONCTIONS status   --------------------------------------------------------
 ///****************************************************************************
 unsigned int   status();
 char*          statusmsg();
-bool  Msgerr();
+bool  msgerr();
 };
 }
 #endif

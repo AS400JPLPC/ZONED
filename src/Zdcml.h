@@ -86,7 +86,6 @@ char* ZDoubleToChar(double _X_ ,unsigned _precision_);
 public:
 
 ///CONSTRUCTEURS ----------------------------------------------------------------
-
 Zdcml(unsigned int  ,unsigned int   );
 
 ~Zdcml();
@@ -172,37 +171,37 @@ unsigned int cmp(const Zdcml);
 
 
 /// FONCTIONS OUTPUT ---return VAL-------------------------
-char*           ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
-const char*     ConstChar(bool signe = false);    /// trim zero
-std::string     StringChar(bool signe = false);   /// trim zero
+char*           tochar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
+const char*     toconstchar(bool signe = false);    /// trim zero
+std::string     tostring(bool signe = false);   /// trim zero
 
-int         ToInt();        /// cast par defaut
-long int    TolongInt();    /// cast par defaut
-double      ToDouble();     /// cast par defaut
+int         toint();        /// cast par defaut
+long int    tolongint();    /// cast par defaut
+double      todouble();     /// cast par defaut
 /// FONCTION Contrôle Type --------------------------------------
-bool        isTypDbl();     /// contrôle typ double
-bool        isTypInt();     /// contrôle typ Int
-bool        isTyplongInt(); /// contrôle typ long Int
-bool        IsZeros();      /// contrôle ZEROS
-bool        IsNegative();   /// contrôle IsNegative
-bool        IsDecimale();   /// contrôle si valeur Décimale
-bool        IsNumeric(const char *_X_); /// permet de tester si la valeur répond à un numeric
+bool        istypdbl();     /// contrôle typ double
+bool        istypint();     /// contrôle typ Int
+bool        istyplongint(); /// contrôle typ long Int
+bool        iszeros();      /// contrôle ZEROS
+bool        isnegative();   /// contrôle IsNegative
+bool        isdecimale();   /// contrôle si valeur Décimale
+bool        isnumeric(const char *_X_); /// permet de tester si la valeur répond à un numeric
 
-void        ToRound();      /// DEC_ROUND_HALF_EVEN
-void        NoRound();      /// DEC_ROUND_DOWN
-bool        IsRound();      /// return  ToRound() or NoRound()        default  Noround
-unsigned int checkInt();                /// permet de tester si la valeur répond à un int
-unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
-unsigned int checklongInt();            /// permet de tester si la valeur répond à un long int
-unsigned int ChekOverflow();            /// contrôle valeur def tampon
+void        toround();      /// DEC_ROUND_HALF_EVEN
+void        noround();      /// DEC_ROUND_DOWN
+bool        isround();      /// return  ToRound() or NoRound()        default  Noround
+unsigned int checkint();                /// permet de tester si la valeur répond à un int
+unsigned int checkdouble();             /// permet de tester si la valeur répond à un double
+unsigned int checklongint();            /// permet de tester si la valeur répond à un long int
+unsigned int chekoverflow();            /// contrôle valeur def tampon
 /// FONCTION Utilitaire --------------------------------------
-char *     ToEntier();         /// parti entiere
-char *     ToDec();            /// partie decimale
+char *     toentier();         /// parti entiere
+char *     todec();            /// partie decimale
 
 /// code retour _ERR_??? or OK ---------------------------------
 unsigned int status();
 char*        statusmsg();
-bool         Msgerr();
+bool         msgerr();
 
 /// Format String--idem sprintf --------------------------
 
