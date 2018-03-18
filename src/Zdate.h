@@ -138,7 +138,7 @@ public:
 
 
     int   quantiemesys();   /// Quantieme
-    int   NumeroJoursys();  /// le Numéro du jour
+    int   numeroJoursys();  /// le Numéro du jour
     int   semainesys();     /// le numéro de semaine
 
     int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte

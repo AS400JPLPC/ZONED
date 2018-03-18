@@ -349,7 +349,7 @@ char * Zdate::longdatesys(){  ///  Name_JOUR JJ MOIS YEAR
     timeinfo = localtime (&rawtime);
 
     sprintf(buffer, "%s %02d %s %4d",
-    this->getdays(NumeroJoursys()),
+    this->getdays(numeroJoursys()),
     timeinfo->tm_mday,
     this->getmonths(timeinfo->tm_mon),
         1900 + timeinfo->tm_year);
@@ -424,7 +424,7 @@ char * Zdate::edttimesys(){
 
 char * Zdate::D_datesys(){
     char * buffer = (char*) malloc(15   * sizeof(char*));
-    sprintf(buffer,"%s",this->getdays(NumeroJoursys()));
+    sprintf(buffer,"%s",this->getdays(numeroJoursys()));
 
  return buffer;
 
@@ -488,7 +488,7 @@ int Zdate::semainesys()
 /// Retourne le NumeroJour de la date system
 ///----------------------------------------------------------------------------
 
-int Zdate::NumeroJoursys()
+int Zdate::numeroJoursys()
 {
     struct tm Temps ;
     char   * x_date =   (char*) malloc(3   * sizeof(char*));

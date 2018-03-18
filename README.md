@@ -25,36 +25,36 @@ ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></pre>
 
 **FONCTIONS OUTPUT ---return VAL**
 <pre><code>
-ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
-ConstChar(bool signe = false);    /// trim zero
-StringChar(bool signe = false);   /// trim zero</code></pre>
+tochar(bool signe = false);          /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
+toconstCchar(bool signe = false);    /// trim zero
+tostring(bool signe = false);        /// trim zero</code></pre>
 
 **FONCTION Contrôle Type**
 <pre><code>
-bool        isTypInt();     /// contrôle typ Int
-bool        isTyplongInt(); /// contrôle typ long Int
-bool        IsZeros();      /// contrôle ZEROS
-bool        IsNegative();   /// contrôle IsNegative
-bool        IsDecimale();   /// contrôle si valeur Décimale
-bool        IsNumeric(const char *<em>X</em>); /// permet de tester si la valeur répond à un numeric</p>
-void        ToRound();      /// DEC<em>ROUND</em>HALF<em>EVEN
-void        NoRound();      /// DEC</em>ROUND_DOWN
-bool        IsRound();      /// return  ToRound() or NoRound()        default  Noround
-unsigned int checkInt();                /// permet de tester si la valeur répond à un int
-unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
-unsigned int checklongInt();            /// permet de tester si la valeur répond à un long int
-unsigned int ChekOverflow();            /// contrôle valeur def tampon
+bool        istypint();     /// contrôle typ Int
+bool        istyplongint(); /// contrôle typ long Int
+bool        iszeros();      /// contrôle ZEROS
+bool        isnegative();   /// contrôle IsNegative
+bool        isdecimale();   /// contrôle si valeur Décimale
+bool        isnumeric(const char *<em>X</em>); /// permet de tester si la valeur répond à un numeric</p>
+void        toround();      /// DEC<em>ROUND</em>HALF<em>EVEN
+void        noround();      /// DEC</em>ROUND_DOWN
+bool        isround();      /// return  ToRound() or NoRound()        default  Noround
+unsigned int checkint();                /// permet de tester si la valeur répond à un int
+unsigned int checkdouble();             /// permet de tester si la valeur répond à un double
+unsigned int checklongint();            /// permet de tester si la valeur répond à un long int
+unsigned int chekoverflow();            /// contrôle valeur def tampon
 </code></pre>
 **FONCTION Utilitaire**
 <pre><code>
-char *     ToEntier();         /// parti entiere
-char *     ToDec();            /// partie decimale
+char *     toentier();         /// parti entiere
+char *     todec();            /// partie decimale
 </code></pre>
 **code retour <em>ERR</em>??? or OK**
 <pre><code>
 unsigned int status();
 char*        statusmsg();
-bool         Msgerr();</code></pre>
+bool         msgerr();</code></pre>
 **Format String--idem sprintf**
 <pre><code>
 std::string string<em>format(const std::string fmt</em>str, ...);</code></pre>
@@ -118,15 +118,15 @@ très classique je remercie tous les internautes qui par leurs publication ma pe
     char* edtsysISO();      /// YYYY-MM-DD
 
 
-    int   Quantiemesys();   /// Quantieme
-    int   NumeroJoursys();  /// le Numéro du jour
-    int   Semainesys();     /// le numéro de semaine
+    int   quantiemesys();   /// Quantieme
+    int   numeroJoursys();  /// le Numéro du jour
+    int   semainesys();     /// le numéro de semaine
 
     int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
 </code></pre>
 **Date personnel... table ... attention 00010101 = 0 **
 <pre><code>
-    int   ToInt();          /// YYYYMMDD
+    int   toint();          /// YYYYMMDD
 
     char* edtISO();         /// YYYY-MM-DD  date ISO
     char* edtNUM();         /// YYYYMMDD
@@ -151,14 +151,14 @@ très classique je remercie tous les internautes qui par leurs publication ma pe
     int   year2();          /// deux dernier chiffre de l'année
     int   siecle();         /// siecle
 
-    bool  isBissextile();   /// ? bisexe tille ;)
+    bool  isbissextile();   /// ? bisexe tille ;)
     void  Addmonth(int);    /// MOIS + n
     int   PremierJanvier(); /// recupèrer 1 janvier n° du jour
-    int   Quantieme();      /// Quantieme
-    int   NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
+    int   quantieme();      /// Quantieme
+    int   numeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
     int   ResteJour();      /// le nombre jour restant dans l'année
-    int   Semaine();        /// le numéro de semaine
-    int   Ferie();          /// is fête ?? pour construire un calendrier
+    int   semaine();        /// le numéro de semaine
+    int   ferier();         /// is fête ?? pour construire un calendrier
 </code></pre>
 **FONCTIONS status**
 <pre><code>
@@ -176,9 +176,9 @@ Zchar NOM[10]; conforme avec les definitions SQL et traitement base de Données
 je me suis appuyé sur la façon de traiter de l'AS400 /38 ... 
 **AFFECTATION BUFFER **
 <pre><code>
-char*         ToChar();
-const char*   ConstChar();
-std::string        StringChar();
+char*         tochar();
+const char*   toconstchar();
+std::string        tostring();
 
 Zchar operator=(const Zchar);
 Zchar operator+=(const Zchar);
@@ -190,15 +190,15 @@ Zchar           concat(const std::string fmt, ...);                             
 Zchar           reset();
 
 ///  substring
-Zchar           Replace(const char*  scrut ,const char * );
-Zchar           Move(const char*   src);
-Zchar           Movel(const char*   src);
-Zchar           Move(const Zchar);
-Zchar           Movel(const Zchar);
-Zchar           Extrac(const char*   src   ,unsigned int  , unsigned int  );
-Zchar           Extrac(const Zchar         ,unsigned int  , unsigned int  );
+Zchar           replace(const char*  scrut ,const char * );
+Zchar           move(const char*   src);
+Zchar           movel(const char*   src);
+Zchar           move(const Zchar);
+Zchar           movel(const Zchar);
+Zchar           extrac(const char*   src   ,unsigned int  , unsigned int  );
+Zchar           extrac(const Zchar         ,unsigned int  , unsigned int  );
 Zchar           strtrim(const Zchar );
-char *          ExtracToChar(unsigned int  , unsigned int  );
+char *          extractochar(unsigned int  , unsigned int  );
 </code></pre>
 **FONCTIONS UTILE** 
 <pre><code>
@@ -228,7 +228,7 @@ unsigned   int  cmp( Zchar );
 <pre><code>
 unsigned int   status();
 char*          statusmsg();
-bool           Msgerr();
+bool           msgerr();
 </code></pre>
 <br>
 <p> J'ai fait ces fonctions pour travailler avec des bases de données pour de la gestion d'entreprise <p>
