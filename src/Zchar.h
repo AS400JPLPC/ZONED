@@ -16,13 +16,15 @@
 
 namespace __ZONED__
 {
-#define   ZONED_OK     0       ///  OK
-#define   ZONED_BAD   22       ///  PGTYPES_CHAR_BAD
-#define   ZONED_OVR   33       ///  PGTYPES_CHAR_OVERFLOW
+#define   ZONED_OK	0  	///  OK
+#define   ZONED_BAD	22	///  DCML_NUM_BAD_NUMERIC
+#define   ZONED_OVR	33	///  DCML_NUM_OVERFLOW
+#define   ZONED_UND	66	///  DCML_NUM_UNDERFLOW
+#define   ZONED_DIV	99	///  DCML_NUM_DIVIDE_ZERO
 
-#define   LT          05       ///  inferieur
-#define   EQ          10       ///  egal
-#define   GT          15       ///  superieur
+#define   LT       05       ///  inferieur
+#define   EQ       10       ///  egal
+#define   GT       15       ///  superieur
 
 #define   ___max___ 1024    /// maxi length buffer
 
@@ -50,9 +52,9 @@ public:
 ///****************************************************************************
 
 
-char*         tochar();
-const char*   toconstchar();
-std::string   tostring();
+char*         ToChar();
+const char*   ConstChar();
+std::string        StringChar();
 
 Zchar operator=(const Zchar);
 Zchar operator+=(const Zchar);
@@ -64,15 +66,15 @@ Zchar           concat(const std::string fmt, ...);                             
 Zchar           reset();
 
 ///  substring
-Zchar           replace(const char*  scrut ,const char * );
-Zchar           move(const char*   src);
-Zchar           movel(const char*   src);
-Zchar           move(const Zchar);
-Zchar           movel(const Zchar);
-Zchar           extrac(const char*   src   ,unsigned int  , unsigned int  );
-Zchar           extrac(const Zchar         ,unsigned int  , unsigned int  );
+Zchar           Replace(const char*  scrut ,const char * );
+Zchar           Move(const char*   src);
+Zchar           Movel(const char*   src);
+Zchar           Move(const Zchar);
+Zchar           Movel(const Zchar);
+Zchar           Extrac(const char*   src   ,unsigned int  , unsigned int  );
+Zchar           Extrac(const Zchar         ,unsigned int  , unsigned int  );
 Zchar           strtrim(const Zchar );
-char *          extractochar(unsigned int  , unsigned int  );
+char *          ExtracToChar(unsigned int  , unsigned int  );
 ///****************************************************************************
 /// FONCTIONS UTILE--------- --------------------------------------------------
 ///****************************************************************************
@@ -107,7 +109,7 @@ unsigned   int  cmp( Zchar );
 ///****************************************************************************
 unsigned int   status();
 char*          statusmsg();
-bool           msgerr();
+bool           Msgerr();
 };
 
 }

@@ -23,8 +23,8 @@ INCLUDES = \
 # choix du compilateur :
 CXX = g++
 # options compilations :   
-CXXFLAGS= -fexpensive-optimizations -O2 -Os -Wmain -pedantic-errors -Wfatal-errors -Wall -std=c++14 -fexceptions  
-
+# C++11 C++14 c++17 
+CXXFLAGS= -fexpensive-optimizations -O2 -Os -Wmain -pedantic-errors -Wfatal-errors -Wall -Wextra -std=c++17   -Wparentheses
 OBJCPP = $(patsubst %.cpp,$(OBJDIR)%.o,$(notdir $(wildcard $(SRCDIR)*.cpp)))
 
 

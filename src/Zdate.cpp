@@ -74,7 +74,7 @@ Zdate Zdate::operator=(const int x_DATE )   /// YYYYMMDD
                                         return *this;}
 
 
-        if(!this->IsValid())            { this->rstdate();
+        if(!this->isValid())            { this->rstdate();
                                         MSGERR = ZONED_BAD;
                                         sprintf(zmsg,"Msgerror -  PGTYPES_NUM_BAD_DATE  -- Msgerror : %d" , ZONED_BAD);
                                         _YEAR =     1;
@@ -140,7 +140,7 @@ Zdate Zdate::operator=(const char* P_date )
             S_arg = S_arg.substr(6,2);  _JOUR = atoi(S_arg.c_str());
             _DATE =     (_YEAR*10000) + (_MOIS *100) + _JOUR;
             }
-            if(!this->IsValid())        { this->rstdate();
+            if(!this->isValid())        { this->rstdate();
                                         MSGERR = ZONED_BAD;
                                         sprintf(zmsg,"Msgerror -  PGTYPES_NUM_BAD_DATE  -- Msgerror : %d" , ZONED_BAD);
 
@@ -349,7 +349,7 @@ char * Zdate::longdatesys(){  ///  Name_JOUR JJ MOIS YEAR
     timeinfo = localtime (&rawtime);
 
     sprintf(buffer, "%s %02d %s %4d",
-    this->getdays(numeroJoursys()),
+    this->getdays(NumeroJoursys()),
     timeinfo->tm_mday,
     this->getmonths(timeinfo->tm_mon),
         1900 + timeinfo->tm_year);
@@ -424,7 +424,7 @@ char * Zdate::edttimesys(){
 
 char * Zdate::D_datesys(){
     char * buffer = (char*) malloc(15   * sizeof(char*));
-    sprintf(buffer,"%s",this->getdays(numeroJoursys()));
+    sprintf(buffer,"%s",this->getdays(NumeroJoursys()));
 
  return buffer;
 
@@ -445,7 +445,7 @@ char * Zdate::M_datesys(){
 /// Retourne le Quantieme de la date system
 ///----------------------------------------------------------------------------
 
-int Zdate::quantiemesys()
+int Zdate::Quantiemesys()
 {
     struct tm Temps ;
     char   * buffer =   (char*) malloc(3   * sizeof(char*));
@@ -467,7 +467,7 @@ int Zdate::quantiemesys()
 /// Retourne le Semaine de la date system
 ///----------------------------------------------------------------------------
 
-int Zdate::semainesys()
+int Zdate::Semainesys()
 {
     struct tm Temps ;
     char   * x_date =   (char*) malloc(2   * sizeof(char*));
@@ -488,7 +488,7 @@ int Zdate::semainesys()
 /// Retourne le NumeroJour de la date system
 ///----------------------------------------------------------------------------
 
-int Zdate::numeroJoursys()
+int Zdate::NumeroJoursys()
 {
     struct tm Temps ;
     char   * x_date =   (char*) malloc(3   * sizeof(char*));
@@ -549,7 +549,7 @@ char * Zdate::session(){
     struct timespec ts;
     clock_gettime(CLOCK_REALTIME, &ts);
 
-    sprintf(T_session,"%14s%03d%09ld",sessiond,this->quantiemesys(),ts.tv_nsec);
+    sprintf(T_session,"%14s%03d%09ld",sessiond,this->Quantiemesys(),ts.tv_nsec);
 return T_session;
 }
 
@@ -585,7 +585,7 @@ int     Zdate::year()   { return _YEAR ; }
 
 int     Zdate::year2()  {   int x_year = _YEAR/100;  x_year= x_year* 100;    return (_YEAR- x_year ); }
 
-int     Zdate::toint()  { return _DATE ; }
+int     Zdate::ToInt()  { return _DATE ; }
 
 int     Zdate::YM()  { int x_DATE =   _YEAR * 100 + _MOIS; return x_DATE ; }
 
@@ -695,7 +695,7 @@ char*   Zdate::longdate() {
 ///---------------------------------------------------------------------------
 /// renvoie date *char
 ///---------------------------------------------------------------------------
-char*   Zdate::tochar (unsigned int date) {
+char*   Zdate::ToChar (unsigned int date) {
 
 switch( date)
   {
@@ -726,7 +726,7 @@ switch( date)
     return edtISO();
 }
 
-const char* Zdate::toconstchar(unsigned int date) {
+const char* Zdate::ConstChar(unsigned int date) {
 
 switch( date)
   {
@@ -756,7 +756,7 @@ switch( date)
     return (const char *) edtISO();
 }
 
-std::string    Zdate::tostring(unsigned int date) {
+std::string    Zdate::StringChar(unsigned int date) {
 
 switch( date)
   {
@@ -907,7 +907,7 @@ return *this;
 ///  Contrôle Date
 ///---------------------------------------------------------------------------
 
-bool Zdate::IsValid(){
+bool Zdate::isValid(){
 
 if ( _DATE == 00010101) return true ;
 
@@ -923,7 +923,7 @@ if ((_JOUR ==31 && ( _MOIS ==2 || _MOIS ==4 || _MOIS ==6 || _MOIS ==9 || _MOIS =
 if ( _JOUR ==30 && _MOIS ==2) return false;
 
 
-                if ((_JOUR ==29 && _MOIS ==2) && !( false == isbissextile() )) return false;
+                if ((_JOUR ==29 && _MOIS ==2) && !( false == isBissextile() )) return false;
 
 
 return true;
@@ -945,7 +945,7 @@ char* Zdate::D_date()
 
     char * buffer = (char*) malloc( 15   * sizeof(char*));
 
-    sprintf (buffer,"%s", this->getdays(this->numeroJour()));
+    sprintf (buffer,"%s", this->getdays(this->NumeroJour()));
 
   return buffer ;
 }
@@ -970,7 +970,7 @@ char* Zdate:: M_date()
 /// Retourne 1 si l'annee est bissextile, sinon 0
 ///----------------------------------------------------------------------------
 
-bool Zdate::isbissextile()
+bool Zdate::isBissextile()
 {
     if ( _DATE == 00010101) return true;
 
@@ -1001,7 +1001,7 @@ void Zdate::next_day()
    switch(this->_MOIS){
       case 2:
 
-            if(this->isbissextile())
+            if(this->isBissextile())
             {if ( this->_JOUR == 29 ){ this->_JOUR=1; this->_MOIS=3;} else this->_JOUR++;}
             else {if ( this->_JOUR == 28 ) { this->_JOUR=1; this->_MOIS=3; } else this->_JOUR++;}
 
@@ -1064,7 +1064,7 @@ void Zdate::prev_day()
          break;
       case 3:
          if(1==this->_JOUR){
-            if(this->isbissextile()) {
+            if(this->isBissextile()) {
                this->_JOUR=29;
                this->_MOIS=2;
             } else
@@ -1101,7 +1101,7 @@ this->update();
 ///  avance de N mois
 ///----------------------------------------------------------------------------
 
-void Zdate::addmonth( int n)
+void Zdate::Addmonth( int n)
 {
     if ( _DATE == 00010101) return ;
 
@@ -1122,7 +1122,7 @@ void Zdate::addmonth( int n)
 
                 case  2 :   /// FÃ©vrier
                             /// Si Divisible par 400 alors Bisextile
-                        if (isbissextile()) jj = 29 ; else jj = 28;
+                        if (isBissextile()) jj = 29 ; else jj = 28;
                         break ;
                 default : jj = 31 ; break;
             }
@@ -1146,14 +1146,14 @@ int Zdate::PremierJanvier()
             (_YEAR / 100) / 4  +
             (_YEAR % 100)      +
             (_YEAR % 100) / 4  +
-            (this->isbissextile() ? 6 : 0)) % 7;
+            (this->isBissextile() ? 6 : 0)) % 7;
 }
 
 ///----------------------------------------------------------------------------
 /// Retourne le numero du jour dans l'annee (Quantieme) [1 ... 366]
 ///----------------------------------------------------------------------------
 
-int Zdate::quantieme()
+int Zdate::Quantieme()
 {
     if ( _DATE == 00010101) return 0 ;
 
@@ -1161,7 +1161,7 @@ int Zdate::quantieme()
 
     if(_MOIS == 2)          return _JOUR + 31;
 
-return _JOUR + (int)((((double)_MOIS) * 30.6) - 32.3) + (this->isbissextile()?1:0);
+return _JOUR + (int)((((double)_MOIS) * 30.6) - 32.3) + (this->isBissextile()?1:0);
 }
 
 ///----------------------------------------------------------------------------
@@ -1172,7 +1172,7 @@ int  Zdate::ResteJour()
 {
     if ( _DATE == 00010101) return 0;
 
-    return (365 + (this->isbissextile()? 1 : 0)) - this->quantieme();
+    return (365 + (this->isBissextile()? 1 : 0)) - this->Quantieme();
 }
 
 ///----------------------------------------------------------------------------
@@ -1196,7 +1196,7 @@ int  Zdate::Paques()
 
     _JOUR =21 ; _MOIS=  3;
 
-    int q = this->quantieme()+ h + i - 7 * j + 1;
+    int q = this->Quantieme()+ h + i - 7 * j + 1;
 
 return q ;
 }
@@ -1205,7 +1205,7 @@ return q ;
 /// Retourne un numero de jour ferie [1 ... 11], sinon 0
 ///----------------------------------------------------------------------------
 
-int  Zdate::ferier()
+int  Zdate::Ferie()
 {
         if ( _DATE == 00010101) return 0 ;
 
@@ -1223,7 +1223,7 @@ int  Zdate::ferier()
 
 
     /// Feries dates mobiles -----------------------------------------------------
-    q = this->quantieme();
+    q = this->Quantieme();
     p = this->Paques();
     if(q == p +  1 && _YEAR >= 1886) return  9;  // Lundi de Paques
     if(q == p + 39 && _YEAR >= 1802) return 10;  // Jeudi de l'Ascension
@@ -1237,7 +1237,7 @@ return 0;                                    // Non Ferie
 /// Retourne un numero du jour [1..366]
 ///----------------------------------------------------------------------------
 
-int Zdate::numeroJour()
+int Zdate::NumeroJour()
 {
 
     if ( _DATE == 00010101) return 0 ;
@@ -1262,22 +1262,22 @@ return day;
 /// Retourne le numero de la semaine [1 ... 53]
 ///----------------------------------------------------------------------------
 
-int Zdate::semaine()
+int Zdate::Semaine()
 {
 
     if ( _DATE == 00010101) return 0;
 
   int j = PremierJanvier();
-  int q = quantieme();
+  int q = Quantieme();
   int s = (j + q + 5) / 7 - (j / 5);
 
-   if(s== 0)  s =  semaine();
+   if(s== 0)  s =  Semaine();
 
 
 
   if(_MOIS == 12)
   {
-    int nj = this->numeroJour();
+    int nj = this->NumeroJour();
     if((nj == 1 && (_JOUR >= 29 && _JOUR<= 31)) ||
        (nj == 2 && (_JOUR == 30 || _JOUR == 31)) ||
        (nj == 3 &&  _JOUR == 31)) s= 1;
@@ -1294,7 +1294,7 @@ int Zdate::semaine()
 
 unsigned int Zdate::status() {return this->MSGERR;}
 char* Zdate::statusmsg() {return this->zmsg;}
-bool  Zdate::msgerr() { if (this->MSGERR == ZONED_OK ) return false; else return true ;}
+bool  Zdate::Msgerr() { if (this->MSGERR == ZONED_OK ) return false; else return true ;}
 
 
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

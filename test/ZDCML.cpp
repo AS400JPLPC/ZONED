@@ -39,7 +39,7 @@ if ( ! ZONED_OK) cout<<"statusmsg()"<<fra.statusmsg()<<endl;
 cout<<"fra.ToChar()"<<fra.ToChar()<<endl;
 if ( ! ZONED_OK) cout<<"statusmsg()"<<fra.statusmsg()<<endl;
 
-return 0;
+//return 0;
 
 Zdcml KSXCFU(5,0);
 Zdcml KSNXBO(4,0);
@@ -78,8 +78,8 @@ cout<<KSXCFU.ToDec()<<endl;
 
 
 Zchar NOM(30);
-Zdcml dd(19,3); ;
-Zdcml a(19,3); Zdcml e(29,2);
+Zdcml dd(16,3); ;
+Zdcml a(16,3); Zdcml e(29,2);
 Zdcml b(5,0);
 Zdcml c(20,5);
 Zdcml d(18,2);
@@ -94,7 +94,7 @@ double ddd= 0;
      // a=34567890.123;
      cout<<a.ToChar()<<" a:"<<a.ToDec()<<endl;
 
-        double _X_ = -99999999999999 ;
+        double _X_ = -9999.0 ;   cout<<"char * value "<<_X_<<endl;
 
         char sign =  '-';
         char * value   = (char*) malloc(256  * sizeof(char*));   sprintf(value,"%c",'\0');
@@ -104,11 +104,13 @@ double ddd= 0;
 
         cout<<"char * value "<<value<<endl;
 
-        cout<<"strtod * value "<<strtod (value, NULL)<<endl;
+       // cout<<"strtod * value "<<strtod(value, NULL)<<endl;
+
+
                     // 12345678901234
 //sprintf(x__char,"%s","+17976931348623"); dd=x__char;
           //12345678901234
-  ddd =99999999999999 ; dd=ddd; sprintf(x__char,"%s","-099999999999999.12345"); dd=x__char;
+  ddd =99999999999999 ; dd=ddd; sprintf(x__char,"%s","-09999999.12345"); dd=x__char;
 
 cout<<" +  dd:"<<dd.ToChar()<<" ToDec:"<<dd.ToDec()<<" Double:"<<dd.ToDouble()<<endl;
 //sprintf(x__char,"%s","-17999999999999"); dd=x__char;
@@ -128,7 +130,6 @@ cout<<" - dd:"<<dd.ToChar()<<" ToDec:"<<dd.ToDec()<<" Double:"<<dd.ToDouble()<<e
 cout<<" - dd:"<<dd.ToChar()<<" ToDec:"<<a.ToDec()<<" Double:"<<dd.ToDouble()<<std::flush;
 
 
-//return 0;
 
 dd=0; NOM="Jean-pierre"; cout<< NOM.ToChar()<<"--"<< NOM.sizebuf()<<"--"<< NOM.sizeval()<<endl;
 sprintf(x__char,"%s","1500.000"); a=x__char;
@@ -346,3 +347,4 @@ cout<<"reponse:"<<nom<<endl;
 
      return (0);
  }
+

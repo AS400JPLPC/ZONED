@@ -20,6 +20,9 @@
 
 #include <stdarg.h>                 /// For va_start, etc.
 
+
+#define  DECNUMDIGITS 128   /// work with up to 128 digits
+
 #include <decNumber.h>
 
 
@@ -27,15 +30,17 @@
 namespace __ZONED__
 {
 
-#define   ZONED_OK    0        ///  OK
-#define   ZONED_BAD  22        ///  DCML_NUM_BAD_NUMERIC
-#define   ZONED_OVR  33        ///  DCML_NUM_OVERFLOW
-#define   ZONED_UND  66        ///  DCML_NUM_UNDERFLOW
-#define   ZONED_DIV  99        ///  DCML_NUM_DIVIDE_ZERO
+#define   ZONED_OK	0  	///  OK
+#define   ZONED_BAD	22	///  DCML_NUM_BAD_NUMERIC
+#define   ZONED_OVR	33	///  DCML_NUM_OVERFLOW
+#define   ZONED_UND	66	///  DCML_NUM_UNDERFLOW
+#define   ZONED_DIV	99	///  DCML_NUM_DIVIDE_ZERO
 
-#define   LT         05        ///  inferieur
-#define   EQ         10        ///  egal
-#define   GT         15        ///  superieur
+
+
+#define   LT       05	///  inferieur
+#define   EQ       10	///  egal
+#define   GT       15	///  superieur
 
 
 
@@ -44,7 +49,7 @@ namespace __ZONED__
 class Zdcml
 {
 private:
-    decNumber  *_dcml;       /// Un nombre avec un développement décimal limité 31 chiffre ex: 29.2 = 31 
+    decNumber  *_dcml;       /// Un nombre décimal est un nombre possédant un développement décimal limité 31 chiffre 29.2 = 31
 
 protected:
 ///decNumber---------------------------------------------------------------------
@@ -86,6 +91,7 @@ char* ZDoubleToChar(double _X_ ,unsigned _precision_);
 public:
 
 ///CONSTRUCTEURS ----------------------------------------------------------------
+
 Zdcml(unsigned int  ,unsigned int   );
 
 ~Zdcml();
@@ -117,8 +123,8 @@ Zdcml& operator*=(const double);
 Zdcml& operator/=(const double);
 Zdcml& operator%=(const double);
 
-Zdcml& operator++(int);  
-Zdcml& operator--(int);  
+Zdcml& operator++(int);  /// plus 1
+Zdcml& operator--(int);  /// moin 1
 Zdcml& operator+=(const Zdcml);
 Zdcml& operator-=(const Zdcml);
 Zdcml& operator*=(const Zdcml);
@@ -171,41 +177,42 @@ unsigned int cmp(const Zdcml);
 
 
 /// FONCTIONS OUTPUT ---return VAL-------------------------
-char*           tochar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
-const char*     toconstchar(bool signe = false);    /// trim zero
-std::string     tostring(bool signe = false);   /// trim zero
+char*           ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = def
+const char*     ConstChar(bool signe = false);    /// trim zero
+std::string     StringChar(bool signe = false);   /// trim zero
 
-int         toint();        /// cast par defaut
-long int    tolongint();    /// cast par defaut
-double      todouble();     /// cast par defaut
+int         ToInt();        /// cast par defaut
+long int    TolongInt();    /// cast par defaut
+double      ToDouble();     /// cast par defaut
 /// FONCTION Contrôle Type --------------------------------------
-bool        istypdbl();     /// contrôle typ double
-bool        istypint();     /// contrôle typ Int
-bool        istyplongint(); /// contrôle typ long Int
-bool        iszeros();      /// contrôle ZEROS
-bool        isnegative();   /// contrôle IsNegative
-bool        isdecimale();   /// contrôle si valeur Décimale
-bool        isnumeric(const char *_X_); /// permet de tester si la valeur répond à un numeric
+bool        isTypDbl();     /// contrôle typ double
+bool        isTypInt();     /// contrôle typ Int
+bool        isTyplongInt(); /// contrôle typ long Int
+bool        isZeros();      /// contrôle ZEROS
+bool        isNegative();   /// contrôle IsNegative
+bool        isDecimale();   /// contrôle si valeur Décimale
+bool        isNumeric(const char *_X_); /// permet de tester si la valeur répond à un numeric
 
-void        toround();      /// DEC_ROUND_HALF_EVEN
-void        noround();      /// DEC_ROUND_DOWN
-bool        isround();      /// return  ToRound() or NoRound()        default  Noround
-unsigned int checkint();                /// permet de tester si la valeur répond à un int
-unsigned int checkdouble();             /// permet de tester si la valeur répond à un double
-unsigned int checklongint();            /// permet de tester si la valeur répond à un long int
-unsigned int chekoverflow();            /// contrôle valeur def tampon
+void        ToRound();      /// DEC_ROUND_HALF_EVEN
+void        NoRound();      /// DEC_ROUND_DOWN
+bool        isRound();      /// return  ToRound() or NoRound()        default  Noround
+unsigned int checkInt();                /// permet de tester si la valeur répond à un int
+unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
+unsigned int checklongInt();            /// permet de tester si la valeur répond à un long int
+unsigned int ChekOverflow();            /// contrôle valeur def tampon
 /// FONCTION Utilitaire --------------------------------------
-char *     toentier();         /// parti entiere
-char *     todec();            /// partie decimale
+char *     ToEntier();         /// parti entiere
+char *     ToDec();            /// partie decimale
 
-/// code retour _ERR_??? or OK ---------------------------------
+/// code retour _ERR_eur or ok ---------------------------------
 unsigned int status();
 char*        statusmsg();
-bool         msgerr();
+bool         Msgerr();
 
 /// Format String--idem sprintf --------------------------
 
 std::string string_format(const std::string fmt_str, ...);
+
 
 
 };

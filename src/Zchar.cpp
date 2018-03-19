@@ -23,8 +23,11 @@ Zchar::Zchar(int i)
 
 }
 
-Zchar::~Zchar(){  }
- 
+Zchar::~Zchar()
+{
+    return ;
+}
+
  Zchar  Zchar::operator=( const Zchar Z_fld)
 {
      if(___obligatoire___ )  return *this;
@@ -207,7 +210,7 @@ bool  Zchar::operator!=(Zchar Z_fld)
     if(___obligatoire___ )  return  0 ;
 
 char   * x_buffer =   (char*) malloc(___max___   * sizeof(char*));
-    sprintf(x_buffer,"%s",Z_fld.tochar());
+    sprintf(x_buffer,"%s",Z_fld.ToChar());
 
 int i= strcmp (P_buffer,x_buffer);
 
@@ -221,7 +224,7 @@ bool  Zchar::operator==(Zchar Z_fld)
      if(___obligatoire___ )  return  0 ;
 
 char   * x_buffer =   (char*) malloc(___max___   * sizeof(char*));
-        sprintf(x_buffer,"%s",Z_fld.tochar());
+        sprintf(x_buffer,"%s",Z_fld.ToChar());
 
 int i= strcmp (P_buffer,x_buffer);
 
@@ -236,7 +239,7 @@ bool  Zchar::operator<(Zchar Z_fld)
     if(___obligatoire___ )  return  0 ;
 
 char   * x_buffer =   (char*) malloc(___max___   * sizeof(char*));
-        sprintf(x_buffer,"%s",Z_fld.tochar());
+        sprintf(x_buffer,"%s",Z_fld.ToChar());
 
 int i= strcmp (P_buffer,x_buffer);
 
@@ -251,7 +254,7 @@ bool  Zchar::operator<=(Zchar Z_fld)
     if(___obligatoire___ )  return  0 ;
 
 char   * x_buffer =   (char*) malloc(___max___   * sizeof(char*));
-        sprintf(x_buffer,"%s",Z_fld.tochar());
+        sprintf(x_buffer,"%s",Z_fld.ToChar());
 
 int i= strcmp (P_buffer,x_buffer);
 
@@ -267,7 +270,7 @@ bool  Zchar::operator>(Zchar Z_fld)
     if(___obligatoire___ )  return  0 ;
 
 char   * x_buffer =   (char*) malloc(___max___   * sizeof(char*));
-        sprintf(x_buffer,"%s",Z_fld.tochar());
+        sprintf(x_buffer,"%s",Z_fld.ToChar());
 
 int i= strcmp (P_buffer,x_buffer);
 
@@ -281,7 +284,7 @@ bool  Zchar::operator>=(Zchar Z_fld)
     if(___obligatoire___ )  return  0 ;
 
 char   * x_buffer =   (char*) malloc(___max___   * sizeof(char*));
-        sprintf(x_buffer,"%s",Z_fld.tochar());
+        sprintf(x_buffer,"%s",Z_fld.ToChar());
 
 int i= strcmp (P_buffer,x_buffer);
 
@@ -335,21 +338,21 @@ return CMP;
 
 
 
-char*   Zchar::tochar()
+char*   Zchar::ToChar()
 {
     if(___obligatoire___ )  return  NULL ;
     this->strtrim();
     return P_buffer;
 }
 
-const char*   Zchar::toconstchar()
+const char*   Zchar::ConstChar()
 {
     if(___obligatoire___ )  return  NULL ;
     this->strtrim();
     return (const char *)P_buffer;
 }
 
-std::string   Zchar::tostring()
+std::string   Zchar::StringChar()
 {
     if(___obligatoire___ )  return  NULL ;
     this->strtrim();
@@ -415,7 +418,7 @@ if(___obligatoire___ )  return  *this ;
 /// substring
 
 
-Zchar Zchar::replace( const char*  scrut, const char * subst )
+Zchar Zchar::Replace( const char*  scrut, const char * subst )
 {
     if(___obligatoire___ )  return  *this ;
     std::string S_arg = std::string(P_buffer) ;
@@ -439,7 +442,7 @@ Zchar Zchar::replace( const char*  scrut, const char * subst )
 
 
 
-Zchar Zchar::extrac(const Zchar Z_fld ,unsigned int start , unsigned int len )
+Zchar Zchar::Extrac(const Zchar Z_fld ,unsigned int start , unsigned int len )
 {
 if(___obligatoire___ )  return   *this ;
     std::string S_arg = std::string(Z_fld.P_buffer) ;
@@ -460,7 +463,7 @@ if(___obligatoire___ )  return   *this ;
     }
 }
 
-Zchar Zchar::extrac(const char * src  ,unsigned int start , unsigned int len )
+Zchar Zchar::Extrac(const char * src  ,unsigned int start , unsigned int len )
 {
 if(___obligatoire___ )  return   *this ;
     std::string S_arg = std::string(src) ;
@@ -478,7 +481,7 @@ if(___obligatoire___ )  return   *this ;
     }
 }
 
-Zchar Zchar::move(const char * src  )
+Zchar Zchar::Move(const char * src  )
 {
 if(___obligatoire___ )  return   *this ;
     std::string S_arg = std::string(src) ;
@@ -497,7 +500,7 @@ if(___obligatoire___ )  return   *this ;
 
 }
 
-Zchar Zchar::movel(const char * src  )
+Zchar Zchar::Movel(const char * src  )
 {
 if(___obligatoire___ )  return   *this ;
     std::string S_arg = std::string(src) ;
@@ -515,7 +518,7 @@ if(___obligatoire___ )  return   *this ;
         }
 
 }
-Zchar Zchar::move(const Zchar Z_fld  )
+Zchar Zchar::Move(const Zchar Z_fld  )
 {
 if(___obligatoire___ )  return   *this ;
     std::string S_arg = std::string(Z_fld.P_buffer) ;
@@ -534,7 +537,7 @@ if(___obligatoire___ )  return   *this ;
 
 }
 
-Zchar Zchar::movel(const Zchar Z_fld )
+Zchar Zchar::Movel(const Zchar Z_fld )
 {
 if(___obligatoire___ )  return   *this ;
     std::string S_arg = std::string(Z_fld.P_buffer) ;
@@ -552,7 +555,7 @@ if(___obligatoire___ )  return   *this ;
         }
 
 }
-char * Zchar::extractochar(unsigned int start , unsigned int len )
+char * Zchar::ExtracToChar(unsigned int start , unsigned int len )
 {
 if(___obligatoire___ )  return   NULL ;
     std::string S_arg = std::string(P_buffer) ;
@@ -615,7 +618,7 @@ unsigned int   Zchar::sizeval()
 // code retour _MSGERR_eur or ok
 unsigned int Zchar::status() {return MSGERR;}
 char* Zchar::statusmsg() {return zmsg;}
-bool  Zchar::msgerr() { if (this->MSGERR == ZONED_OK ) return false; else return true ;}
+bool  Zchar::Msgerr() { if (this->MSGERR == ZONED_OK ) return false; else return true ;}
 
 
 }
