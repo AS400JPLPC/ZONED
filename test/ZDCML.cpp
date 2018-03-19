@@ -26,7 +26,8 @@ using namespace std;
 int main(void)
  {
 setlocale(LC_ALL,"fr_FR.UTF-8");
-Zdcml fra(6,2);
+
+Zdcml fra(4,2);
 const double frdbl =314.24;
 cout<<frdbl<<endl;
 
@@ -77,18 +78,17 @@ cout<<KSXCFU.ToDec()<<endl;
 
 
 Zchar NOM(30);
-Zdcml dd(21,3); //   19,3  21 chiffre dont 3 decimal
-Zdcml a(21,3); 
+Zdcml dd(19,3); ;
+Zdcml a(19,3); Zdcml e(29,2);
 Zdcml b(5,0);
-Zdcml c(25,5);
-Zdcml d(20,2);
-Zdcml e(31,2);
-Zdcml xx(12,2);
+Zdcml c(20,5);
+Zdcml d(18,2);
+Zdcml xx(10,2);
 Zdcml f(35,0);
 char * x__char ;
 double ddd= 0;
  x__char = new char[40];
- Zdcml yy(31,2); /// egal 31 chiffres
+ Zdcml yy(29,2); /// egal 31 chiffres
                      // 12345678901234
   sprintf(x__char,"%s","34567890.123"); a=x__char;
      // a=34567890.123;
@@ -107,7 +107,7 @@ double ddd= 0;
         cout<<"strtod * value "<<strtod (value, NULL)<<endl;
                     // 12345678901234
 //sprintf(x__char,"%s","+17976931348623"); dd=x__char;
-													  //12345678901234
+          //12345678901234
   ddd =99999999999999 ; dd=ddd; sprintf(x__char,"%s","-099999999999999.12345"); dd=x__char;
 
 cout<<" +  dd:"<<dd.ToChar()<<" ToDec:"<<dd.ToDec()<<" Double:"<<dd.ToDouble()<<endl;
@@ -346,4 +346,3 @@ cout<<"reponse:"<<nom<<endl;
 
      return (0);
  }
-
