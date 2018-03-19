@@ -11,7 +11,7 @@ Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
   {
 
 
-	 if (_e_ < _d_ ) MSGERR= ZONED_UND ;
+     if (_e_ < _d_ ) MSGERR= ZONED_UND ;
      if (_e_ < 1)  MSGERR= ZONED_UND ;
      if (_e_ > 31) MSGERR= ZONED_OVR ;
      if (_d_ > 31) MSGERR= ZONED_OVR ;
