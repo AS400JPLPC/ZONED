@@ -9,12 +9,29 @@ namespace __ZONED__
 //CONSTRUCTEURS ----------------------------------------------------------------
 Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
   {
-      ___obligatoire___ = false ;
 
 
-    _entier = _e_; _dec=_d_;   MSGERR= ZONED_OK; CMP=0;  _round = false;
+	 if (_e_ < _d_ ) MSGERR= ZONED_UND ;
+     if (_e_ < 1)  MSGERR= ZONED_UND ;
+     if (_e_ > 31) MSGERR= ZONED_OVR ;
+     if (_d_ > 31) MSGERR= ZONED_OVR ;
 
+     if (MSGERR != ZONED_OK ) { ___obligatoire___ = true;
 
+      sprintf(zmsg,"%s %d","Msgerror - BAD DEFINE  - Max 31 digits code Msgerror: " ,MSGERR  );
+
+       if(___obligatoire___ ) return ;
+
+     }
+
+	 ___obligatoire___ = false ;
+
+	_entier = _e_ - _d_ ; 
+    _dec=_d_;
+
+    MSGERR= ZONED_OK; CMP=0;  _round = false;
+
+    
     zmsg= (char*) malloc(128  * sizeof(char*));
     T_string = (char*) malloc(256  * sizeof(char*));
     T_value  = (char*) malloc(256  * sizeof(char*));
@@ -33,19 +50,7 @@ Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
     decNumberZero(T_dcml);
     decNumberZero(C_dcml);
 
-         MSGERR= ZONED_OK;
-#ifndef _DEBUG_
-     if (_e_ > 31) MSGERR= ZONED_OVR ;
-     if (_e_ < 1)  MSGERR= ZONED_UND ;
-     if (_d_ > 30) MSGERR= ZONED_OVR ;
-     if ( (_d_ + _e_ ) > 31  ) MSGERR=ZONED_OVR;
 
-     if (MSGERR != ZONED_OK ) { ___obligatoire___ = true;
-
-      sprintf(zmsg,"%s %d","Msgerror - BAD DEFINE  - Max 31 digits code Msgerror: " ,MSGERR  );
-
-     }
-#endif
         p_mask = (char*) malloc(36  * sizeof(char*));
         unsigned int pos =0, posd = 0;
         p_mask[pos] ='+';  /// positif
