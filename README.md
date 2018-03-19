@@ -9,10 +9,10 @@ on y retrouve le model de l'AS400 RPGILE cela ma permis de faire un export du mo
 
 **une classe DECIMAL**
 
-Un nombre avec un développement décimal limité 31 chiffre ex: +31.2 = 31 chiffre dont 29 entier et  2 decimal<br>
+Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31 chiffre dont 29 entier et  2 decimal<br>
 origine "Mike Cowlishaw" lire le PDF<br>
 ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
-Zdcml MPRIX(10.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
+Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
 
 **OPERATEURS ARITHMETIQUES**
 <pre><code>
