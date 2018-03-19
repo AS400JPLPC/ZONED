@@ -20,9 +20,9 @@ Zdcml MPRIX(10.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<b
 add sub mult div mod  pcent 
 ex: n.add("%s,%s", a.tochar(),b.tochar());</code></pre>
 
-**OPERATEURS DE COMPARAISON**
-== > <  <= >= != cmp
-**FONCTIONS OUTPUT ---return VAL**
+**OPERATEURS DE COMPARAISON**<br>
+== > <  <= >= != cmp<br>
+**FONCTIONS OUTPUT ---return VAL**<br>
 <pre><code>
 tochar(bool signe = false);          /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
 toconstCchar(bool signe = false);    /// trim zero
