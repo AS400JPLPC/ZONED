@@ -9,20 +9,19 @@ on y retrouve le model de l'AS400 RPGILE cela ma permis de faire un export du mo
 
 **une classe DECIMAL**
 
-Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31<br>
+Un nombre avec un développement décimal limité 31 chiffre ex: +31.2 = 31 chiffre dont 29 entier et  2 decimal<br>
 origine "Mike Cowlishaw" lire le PDF<br>
 ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
-Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
+Zdcml MPRIX(10.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
 
 **OPERATEURS ARITHMETIQUES**
 <pre><code>
  + - * / %
-add sub mult div mod 
-ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></pre>
+add sub mult div mod  pcent 
+ex: n.add("%s,%s", a.tochar(),b.tochar());</code></pre>
 
 **OPERATEURS DE COMPARAISON**
-<pre><code>== &lt; > &lt;= >= != cmp</code></pre>
-
+== > <  <= >= != cmp
 **FONCTIONS OUTPUT ---return VAL**
 <pre><code>
 tochar(bool signe = false);          /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
