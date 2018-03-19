@@ -18,7 +18,7 @@ Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br
 <pre><code>
  + - * / %
 add sub mult div mod  pcent 
-ex: n.add("%s,%s", a.tochar(),b.tochar());</code></pre>
+ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></pre>
 
 **OPERATEURS DE COMPARAISON**<br>
 == > <  <= >= != cmp<br>
