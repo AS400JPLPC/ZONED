@@ -26,7 +26,7 @@ Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
 
 	 ___obligatoire___ = false ;
 
-	_entier = _e_ - _d_ ; 
+    _entier = _e_ - _d_ ; 
     _dec=_d_;
 
     MSGERR= ZONED_OK; CMP=0;  _round = false;
