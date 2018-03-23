@@ -1,3 +1,24 @@
+/*
+ *
+ * M. laroche jean Pierre  12-10-1951    laroche.jeanpierre@gmail.com
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * 
+ */
+
 #ifndef ZDATE_H_INCLUDED
 #define ZDATE_H_INCLUDED
 
@@ -26,7 +47,7 @@
 
 
 
-namespace __ZONED__
+namespace ZONED
 {
 class Zdate {
 
@@ -67,7 +88,7 @@ public:
                 eMDY,   /// MM/DD/YYYY
                 eYM,    /// YYYY/MM
                 eMY,    /// MM/YYYY
-                elongdate,  /// vendredi 12 octobre 1950
+                elongdate,  /// vendredi 12 octobre 1951
                 ntime , /// HH:MM:SC
                 sISO,   /// idem date usuel s->system
                 sNUM,
@@ -182,7 +203,7 @@ public:
     int   NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
     int   ResteJour();      /// le nombre jour restant dans l'année
     int   Semaine();        /// le numéro de semaine
-    int   Ferie();          /// is fête ?? pour construire un calendrier
+    int   Ferier();          /// is fête ?? pour construire un calendrier
 
 ///****************************************************************************
 /// FONCTIONS status   --------------------------------------------------------

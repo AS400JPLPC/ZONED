@@ -1,9 +1,29 @@
+/*
+ *
+ * M. laroche jean Pierre  12-10-1951    laroche.jeanpierre@gmail.com
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * 
+ */
 #ifndef ZADTE_CPP_INCLUDED
 #define ZDATE_CPP_INCLUDED
 
 #include <Zdate.h>
 
-namespace __ZONED__
+namespace ZONED
 {
 #define ANNEE_MIN  1582  //Doit etre superieure a 1582 (Calendrier Gregorien)
 #define ANNEE_MAX  2501  //Doit etre inferieure a 2501
@@ -1205,7 +1225,7 @@ return q ;
 /// Retourne un numero de jour ferie [1 ... 11], sinon 0
 ///----------------------------------------------------------------------------
 
-int  Zdate::Ferie()
+int  Zdate::Ferier()
 {
         if ( _DATE == 00010101) return 0 ;
 

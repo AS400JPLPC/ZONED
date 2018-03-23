@@ -5,5 +5,5 @@
 #include <Zdcml.h>
 #include <Zdate.h>
 #include <Zind.h>
-using namespace __ZONED__;
+using namespace ZONED ;
 #endif // ZONED_H_INCLUDED
