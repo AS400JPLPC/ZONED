@@ -28,15 +28,14 @@ les trow
  lors de division par zeros
 
  les calculs interne sont libre
- seul des allerte sont là pour informer si tout reste viable sinon NaN sera le resultat 
+ seul des allertes sont là pour informer si tout reste viable sinon NaN sera le resultat 
 
- la sortie on tronque le resultat au format donné c'est un parti pris car rien ne vous empche de travailler avec des zones
+ la sortie je tronque le resultat au format donné c'est un parti pris car rien ne vous empêche de travailler avec des zones
 
  pour des 11.2 en 20.6 et de ramenez ..... enfin le metier.... 
 
- seul overflow peut vous genez mais là aussi les info sont de retour ......
-
- mais c'est surtout dans les mouvement de zone entre elle ......
+ seul overflow peut vous genez mais là aussi les info sont de retour ...... mais c'est surtout dans les mouvements
+ de zone entre elle ......
  
 
 
