@@ -1,233 +1,54 @@
-Gestion de buffer fixe type AS400 traitement char* decimal date
+Gestion de buffer fixe type AS400 traitement   char*   decimal   date   bool   time   text
 
 <h1> RE-Typage </h1>
 
 **Motivation**
 cet ensemble est réalisé pour traiter les données entre les bases de données et le programme qui les utilises
-on y retrouve le model de l'AS400 RPGILE cela ma permis de faire un export du model DDS (as400) définition data strucure de fichier SQL de diminuer considerablement l'interface programmation sur PC étant bien entendu que sur l'AS400 tout est natif.Afin de me rapprocher le plus possible de l'automatisation tel que le propose le compilateur RPGIV ILE 
+on y retrouve le model de l'AS400 RPGILE cela ma permis de faire un export du model DDS (as400) définition data strucure
+de fichier SQL de diminuer considerablement l'interface programmation sur PC étant bien entendu que sur l'AS400 tout est natif.
+Afin de me rapprocher le plus possible de l'automatisation tel que le propose le compilateur RPGIV ILE 
 
 
-**une classe DECIMAL**
+**une class DECIMAL**
 
 Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31 chiffre dont 29 entier et  2 decimal<br>
 origine "Mike Cowlishaw" lire le PDF<br>
 ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
 Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
 
-**OPERATEURS ARITHMETIQUES**
-<pre><code>
- + - * / %
-add sub mult div mod  pcent 
-ex: n.add("%s,%s", a.ToChar(),b.ToChar());</code></pre>
-
-**OPERATEURS DE COMPARAISON**<br>
-== > <  <= >= != cmp<br>
-**FONCTIONS OUTPUT ---return VAL**<br>
-<pre><code>
-char*           ToChar(bool signe = false);       /// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = def
-const char*     ConstChar(bool signe = false);    /// trim zero
-std::string     StringChar(bool signe = false);   /// trim zero</code></pre>
-
-**FONCTION Contrôle Type**
-<pre><code>
-bool        istypInt();     /// contrôle typ Int
-bool        isTyplongInt(); /// contrôle typ long Int
-bool        isZeros();      /// contrôle ZEROS
-bool        isNegative();   /// contrôle IsNegative
-bool        isDecimale();   /// contrôle si valeur Décimale
-bool        isNumeric(const char *<em>X</em>); /// permet de tester si la valeur répond à un numeric</p>
-void        Toround();      /// DEC<em>ROUND</em>HALF<em>EVEN
-void        Noround();      /// DEC</em>ROUND_DOWN
-bool        isRound();      /// return  ToRound() or NoRound()        default  Noround
-unsigned int checkInt();                /// permet de tester si la valeur répond à un int
-unsigned int checkDouble();             /// permet de tester si la valeur répond à un double
-unsigned int checklongiInt();            /// permet de tester si la valeur répond à un long int
-unsigned int chekOverflow();            /// contrôle valeur def tampon
-</code></pre>
-**FONCTION Utilitaire**
-<pre><code>
-char *     ToEntier();         /// parti entiere
-char *     ToDec();            /// partie decimale
-</code></pre>
-**code retour <em>ERR</em>??? or OK**
-<pre><code>
-unsigned int status();
-char*        statusmsg();
-bool         Msgerr();</code></pre>
-**Format String--idem sprintf**
-<pre><code>
-std::string string<em>format(const std::string fmt</em>str, ...);</code></pre>
-<br><br>
-**une classe Date**
-très classique je remercie tous les internautes qui par leurs publication ma permis de mettre en forme cette classe
-
-*la date 0001-01-01 est valide pour ce programme uniquement pour donnée une Valeur "0"*
-<pre><code>
-    Zdate operator=(const int  );                       /// 20010101 YYYYMMDD      0 = 00010101
-    Zdate operator=(const char*);                       /// "2001-01-01" = 20010101
-                                                        /// "0001-01-01" YYYY-MM-DD (POUR Bd ex: Postgresql = 0)
-                                                        /// NULL etant possible mais pose des problèmes lors de clef  Non NULL voir le manuel d'ou 00010101
-                                                        /// pour faire de la gestion  acceptable Voir IBM  a pris le même raisonnement. Norme SQL
-                                                        /// "*SYS"   YYYY-MM-DD  du system
-
-    Zdate& operator++(int);                             /// prefix    + 1
-    Zdate& operator--(int);                             /// postfix   + 1
-    Zdate& operator+(const int);                        /// prefix    + n day
-    Zdate& operator-(const int);                        /// postfix   - n day
-
-    bool operator == (const Zdate);                     /// opération logique pour comparer des dates entre elles
-    bool operator <  (const Zdate);
-    bool operator >  (const Zdate);
-    bool operator >= (const Zdate);
-    bool operator <= (const Zdate);
-    bool operator != (const Zdate);
-    unsigned int  cmp(const Zdate) ;
-</code></pre>
-**YYYYMMDDHHMMSS + 3 quantieme naosecond 9 = 26 char**
-<pre><code>
-    char* session();        ///  n° unique
-    char* sysdattim();      ///  YYYYMMDDHHMMSS
-</code></pre>
-**SYSTEM**
-<pre><code>
-    char* edtsysNUM();      /// YYYYMMDD
-    char* edtsysYMD();      /// YYYY/MM/DD
-    char* edtsysDMY();      /// jj/MM/YYYY
-    char* edtsysMDY();      /// MM/JJ/YYYY
-    char* edttimesys();     /// HH:mn:sec
-    char* edtsysYM();       /// YYYY/MM
-    char* edtsysMY();       /// MM/YYYY
-
-    char* longdatesys();
-    char* D_datesys();      /// Texte
-    char* M_datesys();      /// Texte
-
-    int   timehr();         /// heure
-    int   timemin();        /// minute
-    int   timesec();        /// seconde
-
-    int   sysYM();          /// YYYYMM
-    int   sysday();         /// DD
-    int   sysmonth();       /// MM
-    int   sysyear();        /// YYYY
-    int   sysyear2();       /// YY
-    int   syssiecle();      /// NN
-
-    int   datesys();        /// YYYYMMDD
-    char* edtsysISO();      /// YYYY-MM-DD
-
-
-    int   quantiemesys();   /// Quantieme
-    int   numeroJoursys();  /// le Numéro du jour
-    int   semainesys();     /// le numéro de semaine
-
-    int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
-</code></pre>
-**Date personnel... table ... attention 00010101 = 0 **
-<pre><code>
-    int   toint();          /// YYYYMMDD
-
-    char* edtISO();         /// YYYY-MM-DD  date ISO
-    char* edtNUM();         /// YYYYMMDD
-    char* edtYMD();         /// YYYY/MM/DD
-    char* edtDMY();         /// jj/MM/YYYY
-    char* edtMDY();         /// MM/JJ/YYYY
-    char* edtYM();          /// YYYY/MM
-    char* edtMY();          /// MM/YYYY
-    char* longdate();       /// vendredi 12 octobre 1950
-
-    char* ToChar(unsigned int date =0);             /// YYYYMMDD  full format
-    const char*   ConstChar(unsigned int date =0);  /// idem ToChar
-    std::string   StringChar(unsigned int date =0); /// idem ToChar
-
-    char* D_date();         /// Texte
-    char* M_date();         /// Texte
-
-    int   YM();             /// YYYYMM   periode
-    int   day();            /// Jour
-    int   month();          /// Mois
-    int   year();           /// Année
-    int   year2();          /// deux dernier chiffre de l'année
-    int   siecle();         /// siecle
-
-    bool  isbissextile();   /// ? bisexe tille ;)
-    void  Addmonth(int);    /// MOIS + n
-    int   PremierJanvier(); /// recupèrer 1 janvier n° du jour
-    int   Quantieme();      /// Quantieme
-    int   NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
-    int   ResteJour();      /// le nombre jour restant dans l'année
-    int   Semaine();        /// le numéro de semaine
-    int   Ferier();         /// is fête ?? pour construire un calendrier
-</code></pre>
-**FONCTIONS status**
-<pre><code>
-unsigned int   status();
-char*          statusmsg();
-bool  Msgerr();
-</code></pre>
-<br>
-<br>
-<br>
-<br>
-**Buffer fixe char**<br>
-Mon problème était la cohésion avec la base de donnée donc avec des buffers fixe<br>
-Zchar NOM[10]; conforme avec les definitions SQL et traitement base de Données 
-je me suis appuyé sur la façon de traiter de l'AS400 /38 ... 
-**AFFECTATION BUFFER **
-<pre><code>
-char*         ToChar();
-const char*   ToconstChar();
-std::string   StringChar();
-
-Zchar operator=(const Zchar);
-Zchar operator+=(const Zchar);
-Zchar operator=(const char*);
-Zchar operator+=( const char*);
-
-
-Zchar           concat(const std::string fmt, ...);                                       // Concat from string
-Zchar           reset();
-
-///  substring
-Zchar           Replace(const char*  scrut ,const char * );
-Zchar           Move(const char*   src);
-Zchar           Movel(const char*   src);
-Zchar           Move(const Zchar);
-Zchar           Movel(const Zchar);
-Zchar           Extrac(const char*   src   ,unsigned int  , unsigned int  );
-Zchar           Extrac(const Zchar         ,unsigned int  , unsigned int  );
-Zchar           strtrim(const Zchar );
-char *          ExtracToChar(unsigned int  , unsigned int  );
-</code></pre>
-**FONCTIONS UTILE** 
-<pre><code>
-unsigned int    locfind( const char*);
-unsigned int    sizebuf();
-unsigned int    sizeval();
-</code></pre>
-**FONCTIONS operateur**
-<pre><code>
-bool operator!=( const char* );
-bool operator==( const char* );
-bool operator<( const char*  );
-bool operator>( const char*  );
-bool operator<=( const char* );
-bool operator>=( const char* );
-unsigned   int cmp( const char* );
-
-bool operator!=( Zchar );
-bool operator==( Zchar );
-bool operator<( Zchar  );
-bool operator>=( Zchar );
-bool operator<=( Zchar );
-bool operator>( Zchar  );
-unsigned   int  cmp( Zchar );
-</code></pre>
-**FONCTIONS status**
-<pre><code>
-unsigned int   status();
-char*          statusmsg();
-bool           msgerr();
-</code></pre>
-<br>
 <p> J'ai fait ces fonctions pour travailler avec des bases de données pour de la gestion d'entreprise <p>
+
+** une class CHAR* ** ou les tampons sont contrôlés
+
+enfin de compte j'ai  avancé  dans mes élucubrations  vous vous apercevrez que j'utilise  la fonction try ... catch ou trow
+je part du principe que les buffers sont ou ne sont pas écrient ....
+C'est un excellent principe que j'ai repris de l'AS400 via 38 par contre vous avez un indicateur qui vous permet de savoir
+ou plutôt de comprendre pourquoi et comment....
+
+vous retrouverez tous ces principes dans ce projet il nen sera pas de même pour le wrapper PGSQL que je suis entrain de validé.
+
+il ce peut que je modifie par exmples j'ai rajouter des sorties pour prendre en compte les long long int etc...
+
+** une class DATE**
+toujours en accords avec SQL mais toutes ces classes sont pour mieux gérer et simplifier la programmation mon but étant de
+ revenir sur PC à une programmation de gestion ou l'on ne soccupe que de règle de gestion un peu comme on lit le journal.
+
+** une class BOOL **
+plus pour SQL compatibilité...
+
+** une class TEXT **
+c'est un principe sur lequel je vais me penché sérieusement actuellement elle est là pour traiter les string vevant de SQL une
+option qui permet tout en étant pas inscrit dans la convention SQL 92  et pourtant adopté dans beaucoup de moteur....
+elle permet de ne plus avoir de soucie avec les longueurs prédéfini dans une database .... bon cela n'empĉhera pas d'avoir
+ des normes par exemple pour les envoies postal.... les tests montre que cela n'impacte pas les services ni la vitesse,
+ faut-il encore être raisonnable...
+
+** une class TIME **
+plus pour SQL compatibilité...
+bon mon expérience ... j'ai rarrement mis un time dans un fichier , peut-être  timestamp mais c'est déjà dans date...
+
+tout ça fonctionnent et n'est pas clos .... et fera partit de l'ensemble comme un frameworck ....
+
+@bientôt 
+
+

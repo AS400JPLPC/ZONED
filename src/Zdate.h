@@ -30,25 +30,15 @@
 #include <stdlib.h>     /* atoi */
 #include <malloc.h>
 #include <string.h>
-
+#include <iomanip>
 #include <iostream>
-
-
-#define   ZONED_OK	0  	///  OK
-#define   ZONED_BAD	22	///  DCML_NUM_BAD_NUMERIC
-#define   ZONED_OVR	33	///  DCML_NUM_OVERFLOW
-#define   ZONED_UND	66	///  DCML_NUM_UNDERFLOW
-#define   ZONED_DIV	99	///  DCML_NUM_DIVIDE_ZERO
-
-#define   NE       02       ///  Non egal
-#define   LT       05       ///  inferieur
-#define   EQ       10       ///  egal
-#define   GT       15       ///  superieur
-
-
+#include <istream>
+#include <exception>
 
 namespace ZONED
 {
+#include <Zcomon.h>
+
 class Zdate {
 
 private:
@@ -58,6 +48,7 @@ private:
     int _JOUR  ;
     int _DATE  ;
 
+    std::string	CPFMSG="";				/// flag msg error 
 protected:
 
     int Cyear  ;
@@ -74,13 +65,14 @@ protected:
     void prev_day();
     char* getdays(int);
     char* getmonths(int);
-
+    
 //STATUS -----------------------------------------------------------------------
-    unsigned int  MSGERR;
-    char *        zmsg;
     unsigned int CMP;
 
 public:
+
+	bool 	CPFERR	= false;	/// flag si erreur
+
         enum date {eISO,    /// YYYY-MM-DD
                 eNUM,  /// YYYYMMDD
                 eYMD,   /// YYYY/MM/DD
@@ -89,6 +81,7 @@ public:
                 eYM,    /// YYYY/MM
                 eMY,    /// MM/YYYY
                 elongdate,  /// vendredi 12 octobre 1951
+                enull,
                 ntime , /// HH:MM:SC
                 sISO,   /// idem date usuel s->system
                 sNUM,
@@ -106,9 +99,9 @@ public:
 
 /// la date 0001-01-01 est valide pour ce programme uniquement pour donnée une Valeur "0"
 
-    Zdate operator=(const int  );                       /// 20010101 YYYYMMDD      0 = 00010101
-    Zdate operator=(const char*);                       /// "2001-01-01" = 20010101
-                                                        /// "0001-01-01" YYYY-MM-DD (POUR Bd ex: Postgresql = 0)
+    Zdate operator=(const int  );						/// 20010101 YYYYMMDD      0 = 00010101
+    Zdate operator=(const char*);						/// "2001-01-01" = 20010101
+	Zdate operator=(std::string);						/// "0001-01-01" YYYY-MM-DD (POUR Bd ex: Postgresql = 0)
                                                         /// NULL etant possible mais pose des problèmes lors de clef  Non NULL voir le manuel d'ou 00010101
                                                         /// pour faire de la gestion  acceptable Voir IBM  a pris le même raisonnement. Norme SQL
                                                         /// "*SYS"   YYYY-MM-DD  du system
@@ -121,9 +114,9 @@ public:
     bool operator == (const Zdate);                     /// opération logique pour comparer des dates entre elles
     bool operator <  (const Zdate);
     bool operator >  (const Zdate);
-    bool operator >= (const Zdate);
-    bool operator <= (const Zdate);
     bool operator != (const Zdate);
+    bool operator <= (const Zdate);
+    bool operator >= (const Zdate);
     unsigned int  cmp(const Zdate) ;
 
 /// *************************************************
@@ -164,6 +157,7 @@ public:
 
     int   Quantiemesys();   /// Quantieme
     int   NumeroJoursys();  /// le Numéro du jour
+    int   ResteJoursys();   /// le nombre jour restant dans l'année
     int   Semainesys();     /// le numéro de semaine
 
     int   Decalage_heuresys();  /// 0 =été 1= hiver  -1 pas pris en compte
@@ -175,6 +169,7 @@ public:
 
     char* edtISO();         /// YYYY-MM-DD  date ISO
     char* edtNUM();         /// YYYYMMDD
+    char* edtNYM();         /// YYYYMM     
     char* edtYMD();         /// YYYY/MM/DD
     char* edtDMY();         /// jj/MM/YYYY
     char* edtMDY();         /// MM/JJ/YYYY
@@ -182,9 +177,9 @@ public:
     char* edtMY();          /// MM/YYYY
     char* longdate();       /// vendredi 12 octobre 1950
 
-    char* ToChar(unsigned int date =0);             /// YYYYMMDD  full format
-    const char*   ConstChar(unsigned int date =0);  /// idem ToChar
-    std::string   StringChar(unsigned int date =0); /// idem ToChar
+    char* ToChar(unsigned int date );             /// YYYYMMDD  full format
+    const char*   ConstChar(unsigned int date );  /// idem ToChar
+    std::string   StringChar(unsigned int date ); /// idem ToChar
 
     char* D_date();         /// Texte
     char* M_date();         /// Texte
@@ -206,11 +201,23 @@ public:
     int   Ferier();          /// is fête ?? pour construire un calendrier
 
 ///****************************************************************************
-/// FONCTIONS status   --------------------------------------------------------
+/// FONCTIONS util     --------------------------------------------------------
 ///****************************************************************************
-unsigned int   status();
-char*          statusmsg();
-bool  Msgerr();
+	const char* 	cerror();
+
+	friend std::istream& operator>>(std::istream& is,  Zdate& t)
+	{
+		std::string _var_ ;
+		is >> _var_ ;  
+		t = _var_;
+		return is;
+	}
+
+	
+	friend std::ostream& operator<<(std::ostream& out, const Zdate& t)
+	{   out.fill('0');
+		return out << std::setw(4)<< t._YEAR<<"-"<< std::setw(2)<<t._MOIS<<"-"<< std::setw(2)<<t._JOUR;
+	}
 };
 }
 #endif

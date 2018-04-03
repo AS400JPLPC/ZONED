@@ -18,8 +18,8 @@
  * MA 02110-1301, USA.
  * 
  */
-#ifndef Zchar_H_INCLUDED
-#define Zchar_H_INCLUDED
+#ifndef ZCHAR_H_INCLUDED
+#define ZCHAR_H_INCLUDED
 
 #include <stdio.h>
 #include <cstring>
@@ -27,110 +27,148 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <string>
-#include <cstdarg>
+ 
+#include <algorithm>
 
 #include <cstddef>
 #include <cstring>
 #include <iostream>
-
+#include <exception>
+#include <typeinfo>
+#include <stdarg.h>                 /// For va_start, etc.
 
 namespace ZONED
 {
-#define   ZONED_OK	0  	///  OK
-#define   ZONED_BAD	22	///  DCML_NUM_BAD_NUMERIC
-#define   ZONED_OVR	33	///  DCML_NUM_OVERFLOW
-#define   ZONED_UND	66	///  DCML_NUM_UNDERFLOW
-#define   ZONED_DIV	99	///  DCML_NUM_DIVIDE_ZERO
-
-#define   LT       05       ///  inferieur
-#define   EQ       10       ///  egal
-#define   GT       15       ///  superieur
-
-#define   ___max___ 1024    /// maxi length buffer
+	
+#include <Zcomon.h>
 
 
 class Zchar                             /// buffer tampon zone à structure défini
 {
 private:
-    char* P_buffer;                     /// pointer to strorage
-
+    std::string P_buffer="";            /// pointer to strorage
+    std::string val = "";            	/// pointer to strorage
+    size_t _length =0;                  /// _length
+	void resize();
+	std::string _name_ ;				/// name of vairable
+    std::string	CPFMSG="";				/// flag msg error 
+//STATUS -----------------------------------------------------------------------
+    unsigned int  CMP;               	/// EQ -- LT -- GT 	
 
 protected :
-    bool   ___obligatoire___ ;
-    unsigned int I_length;                  // I_length
-    unsigned int  CMP;                      // 0 Egal  1 Supérieur  -1 Inférieur
-//STATUS -----------------------------------------------------------------------
-    unsigned int  MSGERR;
-    char *        zmsg;
     Zchar   strtrim();
+
+
 public:
-      Zchar(int i);
+
+	bool 	CPFERR	= false;	/// flag si erreur
+	Zchar();
+    Zchar(size_t i);
     ~Zchar();
 
 ///****************************************************************************
 ///AFFECTATION BUFFER       ---------------------------------------------------
-///****************************************************************************
+///**************************************************************************** 
 
+	char*         ToChar();
+	const char*   ConstChar();
+	std::string   StringChar();
 
-char*         ToChar();
-const char*   ConstChar();
-std::string   StringChar();
+	Zchar operator=(const Zchar);
+	Zchar operator+=(const Zchar);
 
-Zchar operator=(const Zchar);
-Zchar operator+=(const Zchar);
-Zchar operator=(const char*);
-Zchar operator+=(const char*);
+	Zchar operator=(const char*);
+	Zchar operator+=(const char*);
 
+	Zchar operator=(std::string);
+	Zchar operator+=(std::string);
 
-Zchar           concat(const std::string fmt, ...);                                       // Concat from string
-Zchar           reset();
+	Zchar           concat(const std::string fmt, ...);                                       // Concat from string
+	Zchar           clear();
 
 ///  substring
-Zchar           Replace(const char*  scrut ,const char * );
-Zchar           Move(const char*   src);
-Zchar           Movel(const char*   src);
-Zchar           Move(const Zchar);
-Zchar           Movel(const Zchar);
-Zchar           Extrac(const char*   src   ,unsigned int  , unsigned int  );
-Zchar           Extrac(const Zchar         ,unsigned int  , unsigned int  );
-Zchar           strtrim(const Zchar );
-char *          ExtracToChar(unsigned int  , unsigned int  );
+	Zchar           Replace(const char*  scrut ,const char * );
+	Zchar           Replace(const char*  scrut ,std::string  );
+	Zchar           Movel(const char*   src);
+	Zchar           Movel(const Zchar);
+	Zchar			ToUper();
+	Zchar			ToLower();
+	Zchar           Extrac(const char*   src   ,size_t , size_t );
+	Zchar           Extrac(const Zchar         ,size_t , size_t );
+	Zchar           strtrim(const Zchar );
+	char *          ExtracToChar(size_t , size_t );
 ///****************************************************************************
 /// FONCTIONS UTILE--------- --------------------------------------------------
 ///****************************************************************************
-
-unsigned int    locfind( const char*);
-unsigned int    sizebuf();
-unsigned int    sizeval();
+	void 	name( const char*);
+	int		cfind( const char*);
+	int		sfind( std::string);
+	int		deflen();
+	int		clen();
 
 ///****************************************************************************
 /// FONCTIONS operateur--------------------------------------------------------
 ///****************************************************************************
 
-bool operator!=( const char* );
-bool operator==( const char* );
-bool operator<( const char*  );
-bool operator>( const char*  );
-bool operator<=( const char* );
-bool operator>=( const char* );
-unsigned   int cmp( const char* );
+	bool operator!=( const char* );
+	bool operator==( const char* );
 
-bool operator!=( Zchar );
-bool operator==( Zchar );
-bool operator<( Zchar  );
-bool operator>=( Zchar );
-bool operator<=( Zchar );
-bool operator>( Zchar  );
-unsigned   int  cmp( Zchar );
+	bool operator<(  const char*  );
+	bool operator>(  const char*  );
+	bool operator<=( const char*  );
+	bool operator>=( const char*  );
+	unsigned   int cmp( const char* );
+
+
+
+	bool operator!=( std::string );
+	bool operator==( std::string );
+
+	bool operator<(  std::string  );
+	bool operator>(  std::string  );
+	bool operator<=( std::string  );
+	bool operator>=( std::string  );
+
+	unsigned   int cmp( std::string );
+
+	bool operator!=( Zchar );
+	bool operator==( Zchar );
+
+	bool operator<(  Zchar  );
+	bool operator>(  Zchar  );
+	bool operator<=( Zchar  );
+	bool operator>=( Zchar  );
+
+	unsigned   int  cmp( Zchar );
 
 
 ///****************************************************************************
-/// FONCTIONS status   --------------------------------------------------------
+/// FONCTIONS util     --------------------------------------------------------
 ///****************************************************************************
-unsigned int   status();
-char*          statusmsg();
-bool           Msgerr();
+	const char* cerror();
+	
+	friend std::istream& operator>>(std::istream& is,  Zchar& t)
+	{
+		std::string _var_ ;
+		is >> _var_ ;
+		for (size_t i = 0; i < _var_.size(); ++i)
+			{
+				if (_var_[i] == DeLiMiTaTioN)
+				{
+				_var_[i] = ' ';
+				}
+			}
+		t = _var_;
+		return is;
+	}
+	
+	friend std::ostream& operator<<(std::ostream& out, const Zchar& t)
+	{
+		return out << t.P_buffer;
+	}
 };
+
+
 
 }
 #endif // Zchar_H_INCLUDED

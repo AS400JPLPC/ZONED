@@ -29,27 +29,28 @@ long_line_column=120
 
 [files]
 current_page=0
-FILE_NAME_0=552;Make;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2FMakefile;0;4
-FILE_NAME_1=0;C;1;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecContext.c;0;4
-FILE_NAME_2=0;C++;1;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecContext.h;0;4
-FILE_NAME_3=0;C;1;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecNumber.c;0;4
-FILE_NAME_4=11128;C++;1;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecNumber.h;0;4
-FILE_NAME_5=0;C++;1;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecNumberLocal.h;0;4
-FILE_NAME_6=0;C++;1;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecNumberObjet.cpp;0;4
-FILE_NAME_7=84;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZchar.cpp;0;4
-FILE_NAME_8=266;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZchar.h;0;4
-FILE_NAME_9=85;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdate.cpp;0;4
-FILE_NAME_10=658;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdate.h;0;4
-FILE_NAME_11=86;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdcml.cpp;0;4
-FILE_NAME_12=534;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdcml.h;0;4
-FILE_NAME_13=116;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZind.h;0;4
-FILE_NAME_14=124;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZONED.hpp;0;4
-FILE_NAME_15=121;Conf;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FGIT%2FZONED%2F.git%2Fconfig;0;4
-FILE_NAME_16=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FGIT%2FZONED%2F.git%2Fpacked-refs;0;4
-FILE_NAME_17=455;Make;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FGIT%2FZONED%2FMakefile;0;4
+FILE_NAME_0=383;Make;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2FMakefile;0;4
+FILE_NAME_1=866;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdate.cpp;0;4
+FILE_NAME_2=889;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdate.h;0;4
+FILE_NAME_3=11513;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZchar.cpp;0;4
+FILE_NAME_4=4750;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZchar.h;0;4
+FILE_NAME_5=25148;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdcml.cpp;0;4
+FILE_NAME_6=5531;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZdcml.h;0;4
+FILE_NAME_7=859;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZind.h;0;4
+FILE_NAME_8=216;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZONED.hpp;0;4
+FILE_NAME_9=141;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZbool.cpp;0;4
+FILE_NAME_10=2104;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZbool.h;0;4
+FILE_NAME_11=1338;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZtext.cpp;0;4
+FILE_NAME_12=2016;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZtext.h;0;4
+FILE_NAME_13=7115;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZtime.cpp;0;4
+FILE_NAME_14=1081;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZtime.h;0;4
+FILE_NAME_15=1791;C;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecContext.c;0;4
+FILE_NAME_16=504;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZcomon.h;0;4
+FILE_NAME_17=121;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecNumberObjet.cpp;0;4
+FILE_NAME_18=4387;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FdecContext.h;0;4
 
 [VTE]
-last_dir=/home/soleil/CGIFCH
+last_dir=/home/soleil/Ztest/bin
 
 [build-menu]
 MakeFT_00_LB=Construire
@@ -70,13 +71,13 @@ EX_01_CM=
 EX_01_WD=
 C++FT_00_LB=_Compile
 C++FT_00_CM=make -f Makefile clean allcpp
-C++FT_00_WD=%p
+C++FT_00_WD=\s
 C++FT_01_LB=_Build
-C++FT_01_CM=make -f Makefile mrproper allcpp  build
-C++FT_01_WD=%p
+C++FT_01_CM=make  mrproper allcpp  build
+C++FT_01_WD=\s
 C++FT_02_LB=Clean
 C++FT_02_CM=make -f Makefile mrproper
-C++FT_02_WD=%p
+C++FT_02_WD=
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;

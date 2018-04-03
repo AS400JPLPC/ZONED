@@ -37,13 +37,13 @@ namespace ZONED
 
 Zdate::Zdate()
 {
-    zmsg = new char[80];
-     sprintf(zmsg," "); MSGERR=ZONED_OK;
+	CPFERR= false ; CPFMSG = "";
      _YEAR =     1;
      _MOIS =     1;
      _JOUR =     1;
      _DATE =     10101;
-    /// zeros c'est possible une date déclaré mais non active
+
+     /// zeros c'est possible une date déclaré mais non active
 }
 Zdate::~Zdate()
 {
@@ -58,53 +58,41 @@ Zdate::~Zdate()
 
 Zdate Zdate::operator=(const int x_DATE )   /// YYYYMMDD
 {
-    sprintf(zmsg," "); MSGERR=ZONED_OK;
-
-    if (x_DATE==0  or x_DATE == 00010101 ) {
+	CPFERR= false ; CPFMSG = "";
+	std::	stringstream ss;	ss << x_DATE;
+	
+	std::string x_date = ss.str();
+	
+    if (x_DATE==0  or x_DATE == 10101  ) {
             _YEAR =     1;
             _MOIS =     1;
             _JOUR =     1;
             _DATE =     10101;
             return *this;
           }
+    if (x_date.length() != 8 )
+    {
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED Type date invalide :" + ss.str(); return *this ;
+	}
 
-
-
-
-    this->savdate();
-    char * P_date = (char*) malloc(8  * sizeof(char*));
-        sprintf(P_date,"%08d%c",x_DATE,'\0');
-        std::string S_arg = P_date;
-        S_arg = S_arg.substr(0,4);  _YEAR = atoi(S_arg.c_str());
-        S_arg = P_date;
-        S_arg = S_arg.substr(4,2);  _MOIS = atoi(S_arg.c_str());
-        S_arg = P_date;
-        S_arg = S_arg.substr(6,2);  _JOUR = atoi(S_arg.c_str());
-
-
+	x_date = x_date.substr(0,4);  _YEAR = std::stoi(x_date); 
+	x_date = std::to_string( x_DATE );
+	x_date = x_date.substr(4,2);  _MOIS = std::stoi(x_date); 
+	x_date = std::to_string( x_DATE );
+	x_date = x_date.substr(6,2);  _JOUR = std::stoi(x_date); 
 
     if(_YEAR > ANNEE_MAX || _YEAR < ANNEE_MIN )         /// ANNEE_MIN  1582  ANNEE_MAX  2501
-                                        { this->rstdate();
-                                        MSGERR = ZONED_BAD;
-                                        sprintf(zmsg,"Msgerror -  PGTYPES_NUM_BAD_DATE  -- Msgerror : %d" , ZONED_BAD);
-                                        _YEAR =     1;
-                                        _MOIS =     1;
-                                        _JOUR =     1;
-                                        _DATE =     10101;
-                                        return *this;}
+	{
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED date YEAR <1582 > 2501 :" + ss.str() ; return *this ;
+	}
+	
+	if(!this->isValid())
+	{
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED date invalide :" + ss.str(); return *this ;
+	}
 
-
-        if(!this->isValid())            { this->rstdate();
-                                        MSGERR = ZONED_BAD;
-                                        sprintf(zmsg,"Msgerror -  PGTYPES_NUM_BAD_DATE  -- Msgerror : %d" , ZONED_BAD);
-                                        _YEAR =     1;
-                                        _MOIS =     1;
-                                        _JOUR =     1;
-                                        _DATE =     10101;
-                                        return *this;}
-
-        else this->update();
-        return *this;
+	 this->update();
+     return *this;
 }
 
 ///----------------------------------------------------------------------------
@@ -113,68 +101,139 @@ Zdate Zdate::operator=(const int x_DATE )   /// YYYYMMDD
 
 Zdate Zdate::operator=(const char* P_date )
 {
-    sprintf(zmsg," "); MSGERR=ZONED_OK;
+	CPFERR= false ; CPFMSG = "";
+	
+	std::string x_date = P_date;
+	
+    if(0==strcmp (P_date,"0001-01-01") or 0==strcmp (P_date,"")  or NULL==P_date or 0==strcmp (P_date,"00010101") or 0==strcmp (P_date,"0") )
+    {
+		_YEAR =     1;
+		_MOIS =     1;
+		_JOUR =     1;
+		_DATE =     10101;
+		return      *this;
+	}
 
 
-            if(0==strcmp (P_date,"0001-01-01") or 0==strcmp (P_date,"")  or NULL==P_date or 0==strcmp (P_date,"00010101") or 0==strcmp (P_date,"0") ) {
-            _YEAR =     1;
-            _MOIS =     1;
-            _JOUR =     1;
-            _DATE =     10101;
-            return      *this;
-            }
+	if(0==strcmp (P_date,"*SYS"))
+	{
+		_YEAR =     sysyear();
+		_MOIS =     sysmonth();
+		_JOUR =     sysday();
+		_DATE =     (_YEAR*10000) + (_MOIS *100) + _JOUR;
+		return      *this;
+	}
+
+	if (strlen(P_date) != 10 && strlen(P_date) != 8 )
+	{
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED Type date invalide :" + x_date; return *this ;
+	}
+       
+          
+	if (strlen(P_date) == 10)
+	{
+		x_date = x_date.substr(0,4);  _YEAR = atoi(x_date.c_str());  
+		x_date = P_date;
+		x_date = x_date.substr(5,2);  _MOIS = atoi(x_date.c_str());  
+		x_date = P_date;
+		x_date = x_date.substr(8,2);  _JOUR = atoi(x_date.c_str());  
+	}
+	
+	if (strlen(P_date) == 8)
+	{
+		x_date = x_date.substr(0,4);  _YEAR = atoi(x_date.c_str());
+		x_date =  P_date;
+		x_date = x_date.substr(4,2);  _MOIS = atoi(x_date.c_str());
+		x_date =  P_date;
+		x_date = x_date.substr(6,2);  _JOUR = atoi(x_date.c_str());
+	}
 
 
-            if(0==strcmp (P_date,"*SYS")) {
-            _YEAR =     sysyear();
-            _MOIS =     sysmonth();
-            _JOUR =     sysday();
-            _DATE =     (_YEAR*10000) + (_MOIS *100) + _JOUR;
-            return      *this;
-            }
 
 
-            this->savdate();
-            if (strlen(P_date) != 10){
-                                        this->rstdate();
-                                        MSGERR = ZONED_BAD;
-                                        sprintf(zmsg,"Msgerror -  PGTYPES_NUM_BAD_DATE  -- Msgerror : %d" , ZONED_BAD);
-                                        return *this;}
+            
 
-            std::string S_arg = P_date;
-            if (strlen(P_date) == 10){
+	if(_YEAR > ANNEE_MAX || _YEAR < ANNEE_MIN )         /// ANNEE_MIN  1582  ANNEE_MAX  2501
+    {
+		x_date = P_date;
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED date YEAR <1582 > 2501 :" + x_date; return *this ;
+	}
 
-            S_arg = S_arg.substr(0,4);  _YEAR = atoi(S_arg.c_str());
-            S_arg = (const char*) P_date;
-            S_arg = S_arg.substr(5,2);  _MOIS = atoi(S_arg.c_str());
-            S_arg = (const char*) P_date;
-            S_arg = S_arg.substr(8,2);  _JOUR = atoi(S_arg.c_str());
-            _DATE =     (_YEAR*10000) + (_MOIS *100) + _JOUR;
-            }
-            if (strlen(P_date) == 8){
 
-            S_arg = S_arg.substr(0,4);  _YEAR = atoi(S_arg.c_str());
-            S_arg = (const char*) P_date;
-            S_arg = S_arg.substr(4,2);  _MOIS = atoi(S_arg.c_str());
-            S_arg = (const char*) P_date;
-            S_arg = S_arg.substr(6,2);  _JOUR = atoi(S_arg.c_str());
-            _DATE =     (_YEAR*10000) + (_MOIS *100) + _JOUR;
-            }
-            if(!this->isValid())        { this->rstdate();
-                                        MSGERR = ZONED_BAD;
-                                        sprintf(zmsg,"Msgerror -  PGTYPES_NUM_BAD_DATE  -- Msgerror : %d" , ZONED_BAD);
+    if(!this->isValid())
+    {
+		x_date = P_date;
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED date invalide :" + x_date; return *this ;
+	}
 
-                                        _YEAR =     1;
-                                        _MOIS =     1;
-                                        _JOUR =     1;
-                                        _DATE =     10101;
-                                        return *this; }
+		this->update();
 
-            else this->update();
-
-        return *this;
+		return *this;
 }
 
+
+Zdate Zdate::operator=(std::string S_date)
+{
+	CPFERR= false ; CPFMSG = "";
+	
+	std::string x_date = S_date;
+
+	if( S_date == "0001-01-01" or S_date == ""   or S_date =="00010101" or S_date =="0" )
+	{
+		_YEAR =     1;
+		_MOIS =     1;
+		_JOUR =     1;
+		_DATE =     10101;
+		return      *this;
+	}
+	
+	if(S_date =="*SYS")
+	{
+		_YEAR =     sysyear();
+		_MOIS =     sysmonth();
+		_JOUR =     sysday();
+		_DATE =     (_YEAR*10000) + (_MOIS *100) + _JOUR;
+		return      *this;
+	}
+
+	if (x_date.length() != 10 && x_date.length() != 8 )
+	{
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED Type date invalide :" + S_date; return *this ;
+	}
+
+	if (S_date.length() == 10)
+	{
+		x_date = x_date.substr(0,4);  _YEAR = atoi(x_date.c_str());
+		x_date = S_date;
+		x_date = x_date.substr(5,2);  _MOIS = atoi(x_date.c_str());
+		x_date = S_date;
+		x_date = x_date.substr(8,2);  _JOUR = atoi(x_date.c_str());
+	}
+
+	if (S_date.length() == 8)
+	{
+		x_date = x_date.substr(0,4);  _YEAR = atoi(x_date.c_str());
+		x_date =  S_date;
+		x_date = x_date.substr(4,2);  _MOIS = atoi(x_date.c_str());
+		x_date =  S_date;
+		x_date = x_date.substr(6,2);  _JOUR = atoi(x_date.c_str());
+	}
+
+	if(_YEAR > ANNEE_MAX || _YEAR < ANNEE_MIN )         /// ANNEE_MIN  1582  ANNEE_MAX  2501
+	{
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED date YEAR <1582 > 2501 :" + S_date; return *this ;
+	}
+
+
+	if(!this->isValid())
+	{
+		CPFERR= true ; CPFMSG = "Msgerror :ZONED date invalide :" + S_date; return *this ;
+	}
+
+	this->update();
+
+	return *this; 
+}
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -524,7 +583,16 @@ int Zdate::NumeroJoursys()
    strftime(x_date, sizeof(x_date), "%w", &Temps );
     return atoi(x_date);
 }
+///----------------------------------------------------------------------------
+/// Retourne le nombre restant de jours dans l'annee [365 ... 0]
+///----------------------------------------------------------------------------
 
+int  Zdate::ResteJoursys()
+{
+    if ( _DATE == 00010101) return 0;
+
+    return (365 + (this->isBissextile()? 1 : 0)) - this->Quantiemesys();
+}
 ///----------------------------------------------------------------------------
 /// Retourne 1= heure été actif system 0= heure été inactif  -1 non disponible
 ///----------------------------------------------------------------------------
@@ -636,8 +704,16 @@ char*   Zdate::edtISO() {
 
 char*   Zdate::edtNUM() {
 
- char * P_date = (char*) malloc(10  * sizeof(char*));
+ char * P_date = (char*) malloc(8  * sizeof(char*));
  sprintf(P_date,"%04d%02d%02d",_YEAR,_MOIS,_JOUR);
+    return P_date;
+}
+
+
+char*   Zdate::edtNYM() {
+
+ char * P_date = (char*) malloc(6  * sizeof(char*));
+ sprintf(P_date,"%04d%02d",_YEAR,_MOIS);
     return P_date;
 }
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -715,7 +791,7 @@ char*   Zdate::longdate() {
 ///---------------------------------------------------------------------------
 /// renvoie date *char
 ///---------------------------------------------------------------------------
-char*   Zdate::ToChar (unsigned int date) {
+char*   Zdate::ToChar(unsigned int date = 0) {
 
 switch( date)
   {
@@ -728,6 +804,7 @@ switch( date)
      case eYM:          return edtYM(); break ;     /// YYYY/MM
      case eMY:          return edtMY(); break ;     /// MM/YYYY
      case elongdate:    return longdate(); break ;  /// vendrei 12 octobre 1951
+     case enull:        if (10101 == ToInt() ) return (char*) "" ; break ;
 
      case ntime:        return edttimesys(); break ;    /// HH:MM:SC
 
@@ -740,13 +817,12 @@ switch( date)
      case sYM:          return edtsysYM();  break ;    /// YYYY/MM
      case sMY:          return edtsysMY();  break ;    /// MM/YYYY
      case slongdate:    return longdatesys(); break ;  /// vendrei 12 octobre 1951
-
     };
 
     return edtISO();
 }
 
-const char* Zdate::ConstChar(unsigned int date) {
+const char* Zdate::ConstChar(unsigned int date = 0) {
 
 switch( date)
   {
@@ -759,7 +835,8 @@ switch( date)
      case eYM:          return (const char *) edtYM(); break ;     /// YYYY/MM
      case eMY:          return (const char *) edtMY(); break ;     /// MM/YYYY
      case elongdate:    return (const char *) longdate(); break ;  /// vendrei 12 octobre 1951
-
+     case enull:        if (10101 == ToInt() ) return (const char *) '\0' ; break ;
+     
      case ntime:        return (const char *) edttimesys(); break ;   /// HH:MM:SC
 
 
@@ -776,7 +853,7 @@ switch( date)
     return (const char *) edtISO();
 }
 
-std::string    Zdate::StringChar(unsigned int date) {
+std::string    Zdate::StringChar(unsigned int date =0) {
 
 switch( date)
   {
@@ -789,7 +866,8 @@ switch( date)
      case eYM:          return std::string( edtYM()  ); break ;    /// YYYY/MM
      case eMY:          return std::string( edtMY()  ); break ;    /// MM/YYYY
      case elongdate:    return std::string( longdate() ); break ;  /// vendrei 12 octobre 1951
-
+     case enull:        if (10101 == ToInt() ) return std::string('\0') ; break ;
+     
      case ntime:        return std::string( edttimesys() ); break ;   /// HH:MM:SC
 
 
@@ -837,27 +915,31 @@ bool Zdate::operator < ( const Zdate x_date)
 return false;
 }
 
-
-
-bool Zdate::operator > ( const Zdate x_date)
+bool Zdate::operator >( const Zdate x_date)
 {
     if ( _DATE > x_date._DATE) return true ;
 
 return false;
 }
 
-bool Zdate::operator >= (const Zdate  x_date)
-{
-    if ( _DATE > x_date._DATE) return false ;
 
-return true;
+bool Zdate::operator >= ( const Zdate x_date)
+{
+	std::string dx = std::to_string(_DATE);
+	std::string dy = std::to_string(x_date._DATE);
+    
+
+return dx>= dy;;
 }
 
-bool Zdate::operator<=(const Zdate x_date)
-{
-   if ( _DATE < x_date._DATE) return false ;
 
-return true;
+bool Zdate::operator <= ( const Zdate x_date)
+{
+	std::string dx = std::to_string(_DATE);
+	std::string dy = std::to_string(x_date._DATE);
+    
+
+return dx<= dy;;
 }
 
 
@@ -1308,15 +1390,6 @@ int Zdate::Semaine()
 
 
 
-///----------------------------------------------------------------------------
-/// code retour
-///----------------------------------------------------------------------------
-
-unsigned int Zdate::status() {return this->MSGERR;}
-char* Zdate::statusmsg() {return this->zmsg;}
-bool  Zdate::Msgerr() { if (this->MSGERR == ZONED_OK ) return false; else return true ;}
-
-
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ///                             interne
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -1392,6 +1465,14 @@ char * Zdate::getmonths(int _nummonth)
   return (char*)("");
 }
 
+///****************************************************************************
+/// FONCTIONS util     --------------------------------------------------------
+///****************************************************************************
+
+const char *  Zdate::cerror()
+{
+    return  CPFMSG.c_str() ;
+}
 
 }
 
