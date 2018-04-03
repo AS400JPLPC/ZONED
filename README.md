@@ -11,7 +11,9 @@ Afin de me rapprocher le plus possible de l'automatisation tel que le propose le
 
 **une class DECIMAL**
 
-Un nombre avec un développement décimal limité 34 chiffre <br>
+encore en test final mais vous avez un avant gout de comment ça tourne et ça tourne déjà 
+
+Un nombre avec un développement décimal limité 34 chiffre <br>    
 
 origine "Mike Cowlishaw" lire le PDF<br>
 
@@ -78,6 +80,6 @@ tout ça fonctionnent et n'est pas clos .... et fera partit de l'ensemble comme 
 tout n'est pas fini ....
 
 avec la sortie du wraper sql pour postgresql  je devrais encore faire quelques modifications
-du style clen srtlen ou length des zones de sortie pour sql en generale 
+du style clen  ( srtlen ou length des zones de sortie pour sql en generale )
 
 
