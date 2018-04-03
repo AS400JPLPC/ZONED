@@ -11,10 +11,34 @@ Afin de me rapprocher le plus possible de l'automatisation tel que le propose le
 
 **une class DECIMAL**
 
-Un nombre avec un développement décimal limité 31 chiffre ex: +29.2 = 31 chiffre dont 29 entier et  2 decimal<br>
+Un nombre avec un développement décimal limité 34 chiffre <br>
+
 origine "Mike Cowlishaw" lire le PDF<br>
+
 ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
-Zdcml MPRIX(8.2); variable montant de 10 chiffres dont 8 entier et 2 decimale<br>
+Zdcml MPRIX(8.2); variable montant de 8 chiffres == 6 entier et  2 decimale  soit 8 dont 2  <br>
+
+elle reprennet la plus grande partie de ce dont on abesoin pour faire de la gestion
+bien-sur libre a vous de mettre les fonction matheatique en oeuvre mais là je crois que c'est dommage
+ de ne pas ce servir directement de la solution de base .....
+
+les trow 
+
+ lors de l'initialisation
+ lors de division par zeros
+
+ les calculs interne sont libre
+ seul des allerte sont là pour informer si tout reste viable sinon NaN sera le resultat 
+
+ la sortie on tronque le resultat au format donné c'est un parti pris car rien ne vous empche de travailler avec des zones
+
+ pour des 11.2 en 20.6 et de ramenez ..... enfin le metier.... 
+
+ seul overflow peut vous genez mais là aussi les info sont de retour ......
+
+ mais c'est surtout dans les mouvement de zone entre elle ......
+ 
+
 
 <p> J'ai fait ces fonctions pour travailler avec des bases de données pour de la gestion d'entreprise <p>
 
@@ -27,7 +51,7 @@ ou plutôt de comprendre pourquoi et comment....
 
 vous retrouverez tous ces principes dans ce projet il nen sera pas de même pour le wrapper PGSQL que je suis entrain de validé.
 
-il ce peut que je modifie par exmples j'ai rajouter des sorties pour prendre en compte les long long int etc...
+etc...
 
 ** une class DATE**
 toujours en accords avec SQL mais toutes ces classes sont pour mieux gérer et simplifier la programmation mon but étant de
@@ -49,6 +73,12 @@ bon mon expérience ... j'ai rarrement mis un time dans un fichier , peut-être 
 
 tout ça fonctionnent et n'est pas clos .... et fera partit de l'ensemble comme un frameworck ....
 
-@bientôt 
+@bientôt
+
+
+tout n'est pas fini ....
+
+avec la sortie du wraper sql pour postgresql  je devrais encore faire quelques modifications
+du style clen srtlen ou length des zones de sortie pour sql en generale 
 
 
