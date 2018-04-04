@@ -186,7 +186,7 @@ std::string     StringChar();						/// idem ToChar
 /// FONCTIONS util  --------------------------------------------------------
 ///****************************************************************************
 	const char* cerror();							/// text flag error
-	int		clen();	
+	int		clen();									/// longueur maxi du champ 
 
 std::string string_format(const std::string fmt, ...);				/// Format String--idem sprintf
 

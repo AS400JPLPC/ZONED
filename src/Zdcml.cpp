@@ -1385,8 +1385,8 @@ void Zdcml::printformat()
 /// char length------------------------------
 int   Zdcml::clen()
 {
+	decNumberCopy( T_dcml,_dcml);
 	printformat();
-	decNumberToString(_dcml, T_string);
     return  (int) strlen(T_string);
 }
 /// code retour cerror or ok------------------------------
