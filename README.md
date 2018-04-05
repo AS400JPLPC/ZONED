@@ -20,8 +20,8 @@ origine "Mike Cowlishaw" lire le PDF<br>
 ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
 Zdcml MPRIX(8.2); variable montant de 8 chiffres == 6 entier et  2 decimale  soit 8 dont 2  <br>
 
-elle reprennet la plus grande partie de ce dont on abesoin pour faire de la gestion
-bien-sur libre a vous de mettre les fonction matheatique en oeuvre mais là je crois que c'est dommage
+elle reprenent la plus grande partie de ce dont on abesoin pour faire de la gestion
+bien-sur libre à vous de mettre les fonctions mathematique en oeuvre mais là je crois que c'est dommage
  de ne pas ce servir directement de la solution de base .....
 
 les trow 
@@ -45,12 +45,10 @@ les trow
 
 ** une class CHAR* ** ou les tampons sont contrôlés
 
-enfin de compte j'ai  avancé  dans mes élucubrations  vous vous apercevrez que j'utilise  la fonction try ... catch ou trow
+enfin de compte j'ai  avancé  dans mes élucubrations  <br>
 je part du principe que les buffers sont ou ne sont pas écrient ....
 C'est un excellent principe que j'ai repris de l'AS400 via 38 par contre vous avez un indicateur qui vous permet de savoir
 ou plutôt de comprendre pourquoi et comment....
-
-vous retrouverez tous ces principes dans ce projet il nen sera pas de même pour le wrapper PGSQL que je suis entrain de validé.
 
 etc...
 
@@ -62,10 +60,10 @@ toujours en accords avec SQL mais toutes ces classes sont pour mieux gérer et s
 plus pour SQL compatibilité...
 
 ** une class TEXT **
-c'est un principe sur lequel je vais me penché sérieusement actuellement elle est là pour traiter les string vevant de SQL une
+c'est un principe sur lequel je vais me penché sérieusement actuellement elle est là pour traiter les string venant de SQL une
 option qui permet tout en étant pas inscrit dans la convention SQL 92  et pourtant adopté dans beaucoup de moteur....
 elle permet de ne plus avoir de soucie avec les longueurs prédéfini dans une database .... bon cela n'empĉhera pas d'avoir
- des normes par exemple pour les envoies postal.... les tests montre que cela n'impacte pas les services ni la vitesse,
+ des normes par exemple pour les envoies postal.... les tests montrent que cela n'impacte pas les services ni la vitesse,
  faut-il encore être raisonnable...
 
 ** une class TIME **
@@ -79,7 +77,7 @@ tout ça fonctionnent et n'est pas clos .... et fera partit de l'ensemble comme 
 
 tout n'est pas fini ....
 
-avec la sortie du wraper sql pour postgresql  je devrais encore faire quelques modifications
+avec la sortie du wrapper sql pour postgresql  je devrais encore faire quelques modifications
 du style clen  ( srtlen ou length des zones de sortie pour sql en generale )
 
 
