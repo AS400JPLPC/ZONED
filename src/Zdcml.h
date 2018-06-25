@@ -19,7 +19,6 @@
  * 
  */
 
-
 #ifndef ZDCML_HPP_INCLUDED
 #define ZDCML_HPP_INCLUDED
 
@@ -66,7 +65,7 @@ protected:
     decContext  	T_set;
 
     unsigned int 	CMP;
-    std::string		CPFMSG="";				/// flag msg error
+    std::string		CPFMSG;				/// flag msg error
 ///LONGEUR MAXIMUN DU BUFFER ----------------------------------------------------
     unsigned int 	_entier;
     unsigned int 	_dec;
@@ -84,11 +83,11 @@ protected:
 
 /// FONCTIONS UTILE--------- ---------------------------------------------------
 
-	void ClearBufferDcml();       /// T_dcml C_dcml
+	void ClearBufferDcml();				/// T_dcml C_dcml
 
 	char* ZDoubleToChar(double _X_ ,unsigned _precision_);
 	
-	void printformat();
+	void printformat();					/// formate et tronque selon la definition
 
 ///=============================================================================
 public:
@@ -188,7 +187,7 @@ std::string     StringChar();						/// idem ToChar
 	const char* cerror();							/// text flag error
 	int		clen();									/// longueur maxi du champ 
 
-std::string string_format(const std::string fmt, ...);				/// Format String--idem sprintf
+	std::string string_format(const std::string fmt, ...);	/// Format String--idem sprintf
 
 	friend std::istream& operator>>(std::istream& is,  Zdcml& t)
 	{

@@ -46,7 +46,7 @@ private:
 
     bool P_buffer;                  /// pointer to strorage
 
-	std::string	CPFMSG="";			/// flag msg error 
+	std::string	CPFMSG;			/// flag msg error 
 protected:
 
 public:
@@ -71,14 +71,26 @@ public:
 	Zbool operator=(const Zbool);
 	Zbool operator=(const int);
 	    
-    bool operator==(bool );
-    bool operator!=(bool );    
-    bool operator==(const Zbool );
+	bool operator==(bool );
+	bool operator!=(bool );    
+	bool operator==(const Zbool );
 	bool operator!=(const Zbool);
 ///****************************************************************************
 /// FONCTIONS util     --------------------------------------------------------
 ///****************************************************************************
 	const char* cerror();
+	friend std::istream& operator>>(std::istream& is,  Zbool& t)
+	{
+		std::string _var_ ;
+		is >> _var_ ;
+		t = _var_;
+		return is;
+	}
+
+	friend std::ostream& operator<<(std::ostream& out, const Zbool& t)
+	{
+		return out << t.P_buffer;
+	}
 };
 }
 #endif

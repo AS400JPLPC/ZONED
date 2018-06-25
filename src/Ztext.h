@@ -67,13 +67,6 @@ std::string   StringChar();
 	{
 		std::string _var_ ;
 		is >> _var_ ;
-		for (size_t i = 0; i < _var_.size(); ++i)
-			{
-				if (_var_[i] == DeLiMiTaTioN)
-				{
-				_var_[i] = ' ';
-				}
-			}
 		t = _var_;
 		return is;
 	}

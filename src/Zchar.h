@@ -18,12 +18,14 @@
  * MA 02110-1301, USA.
  * 
  */
+
 #ifndef ZCHAR_H_INCLUDED
 #define ZCHAR_H_INCLUDED
 
 #include <stdio.h>
 #include <cstring>
 #include <cstdio>
+#include <cstddef>
 #include <stdlib.h>
 #include <malloc.h>
 #include <string>
@@ -46,12 +48,12 @@ namespace ZONED
 class Zchar                             /// buffer tampon zone à structure défini
 {
 private:
-    std::string P_buffer="";            /// pointer to strorage
-    std::string val = "";            	/// pointer to strorage
+    std::string P_buffer;            	/// pointer to strorage
+    std::string val 	;            	/// pointer to strorage
     size_t _length =0;                  /// _length
 	void resize();
 	std::string _name_ ;				/// name of vairable
-    std::string	CPFMSG="";				/// flag msg error 
+    std::string	CPFMSG ;				/// flag msg error 
 //STATUS -----------------------------------------------------------------------
     unsigned int  CMP;               	/// EQ -- LT -- GT 	
 
@@ -63,7 +65,7 @@ public:
 
 	bool 	CPFERR	= false;	/// flag si erreur
 	Zchar();
-    Zchar(size_t i);
+    Zchar(size_t);
     ~Zchar();
 
 ///****************************************************************************
@@ -151,13 +153,6 @@ public:
 	{
 		std::string _var_ ;
 		is >> _var_ ;
-		for (size_t i = 0; i < _var_.size(); ++i)
-			{
-				if (_var_[i] == DeLiMiTaTioN)
-				{
-				_var_[i] = ' ';
-				}
-			}
 		t = _var_;
 		return is;
 	}

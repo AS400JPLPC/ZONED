@@ -48,11 +48,11 @@ class Ztime {
 	int min;
 	int sec;
 	
-	std::string  am_pm ="";
+	std::string  am_pm ;
 
 	unsigned int hr;
 
-	std::string	CPFMSG="";				/// flag msg error
+	std::string	CPFMSG;				/// flag msg error
     
 	protected:
 

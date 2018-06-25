@@ -48,7 +48,7 @@ private:
     int _JOUR  ;
     int _DATE  ;
 
-    std::string	CPFMSG="";				/// flag msg error 
+    std::string	CPFMSG;				/// flag msg error 
 protected:
 
     int Cyear  ;
