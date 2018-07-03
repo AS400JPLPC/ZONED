@@ -28,14 +28,9 @@ long_line_behaviour=1
 long_line_column=120
 
 [files]
-current_page=6
+current_page=1
 FILE_NAME_0=769;Make;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZtest%2FMakefile;0;4
 FILE_NAME_1=1786;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZtest%2Fsrc%2FZTIME.cpp;0;4
-FILE_NAME_2=1177;Markdown;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FGIT%2FZONED%2FREADME.md;0;4
-FILE_NAME_3=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2F.wget-hsts;0;4
-FILE_NAME_4=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2Fcopycsv.txt;0;4
-FILE_NAME_5=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2Fcopytxt.txt;0;4
-FILE_NAME_6=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZONED%2Fsrc%2FZchar.h;0;4
 
 [VTE]
 last_dir=/home/soleil/Ztest/bin
@@ -75,6 +70,9 @@ NF_01_WD=
 NF_02_LB=
 NF_02_CM=
 NF_02_WD=
+EX_00_LB=_Execute
+EX_00_CM=%p/bin/%e
+EX_00_WD=
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;

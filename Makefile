@@ -1,5 +1,5 @@
 #définition des cibles particulières
-.PHONY: allcpp mrprope build
+.PHONY: all mrpropre build
 
 # désactivation des règles implicites
 .SUFFIXES:
@@ -23,12 +23,13 @@ INCLUDES = \
 # choix du compilateur :
 CXX = g++
 # options compilations :   
-CXXFLAGS=  -fexpensive-optimizations -O2 -Os -Wmain -pedantic-errors -Wfatal-errors -Wall -Wextra -std=c++17   -Wparentheses
+CXXFLAGS=  -fexpensive-optimizations -O2 -Os -Wmain -pedantic-errors -Wfatal-errors -Wall -Wextra -std=c++17   -Wparentheses 
+
 
 OBJCPP = $(patsubst %.cpp,$(OBJDIR)%.o,$(notdir $(wildcard $(SRCDIR)*.cpp)))
 
 
-allcpp : $(PROJET)
+all : $(PROJET)
  
 $(PROJET) : $(OBJCPP)
 		ar -r -s $(BINDIR)$(OBJLIB)  $^
@@ -41,15 +42,15 @@ $(OBJDIR)%.o: $(SRCDIR)%.cpp
 
 
 
-msg: mrprope
+msg: mrpropre
 	@echo "$(PROJET)"
 	@echo "$(CURDIR)"
 	@echo "$(SRCDIR)"
 	@echo "$(OBJDIR)"
 	@echo "$(OBJCPP)"
-	
+
 # pour effacer tous les objet et les executables :
-mrprope:
+mrpropre:
 	
 	rm -rf $(OBJDIR)*.*  
 	rm -rf $(BINDIR)*.*

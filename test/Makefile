@@ -25,8 +25,8 @@ RESULT= $(BINDIR)$(PROJET)
 # choix du compilateur :
 CXX = g++
 # options compilations :
-#CPPFLAGS=  -Wall -fexpensive-optimizations -O2 -Os  -pedantic-errors  -Wextra -std=c++11 -fPIC  -Wparentheses 
 CPPFLAGS=  -Wall -fexpensive-optimizations -O2 -Os -pedantic-errors  -Wextra -std=c++17 -fPIC  -Wparentheses -ftree-coalesce-vars  -fstack-protector
+
 LDFLAGS=   -lpthread -lctemplate  -lX11   
 
 INCLIB=\

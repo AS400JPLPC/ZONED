@@ -28,7 +28,7 @@ long_line_behaviour=1
 long_line_column=120
 
 [files]
-current_page=0
+current_page=1
 FILE_NAME_0=664;Make;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZtest%2FMakefile;0;4
 FILE_NAME_1=390;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsoleil%2FZtest%2Fsrc%2FZTEXT.cpp;0;4
 
@@ -70,6 +70,9 @@ NF_01_WD=
 NF_02_LB=
 NF_02_CM=
 NF_02_WD=
+EX_00_LB=_Execute
+EX_00_CM=%p/bin/ZTEXT
+EX_00_WD=
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
