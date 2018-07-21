@@ -1,4 +1,5 @@
 Gestion de buffer fixe type AS400 traitement   char*   decimal   date   bool   time   text
+Actuelement en modification pour traiter UTF8 attendre pour validation svp
 
 <h1> RE-Typage </h1>
 
