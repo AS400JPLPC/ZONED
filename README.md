@@ -19,7 +19,7 @@ Un nombre avec un développement décimal limité 34 chiffre <br>
 origine "Mike Cowlishaw" lire le PDF<br>
 
 ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
-Zdcml MPRIX(8.2); variable montant de 8 chiffres == 6 entier et  2 decimale  soit 8 dont 2  <br>
+Zdcml MPRIX(8,2); variable montant de 8 chiffres == 6 entier et  2 decimale  soit 8 dont 2  <br>
 
 elle reprenent la plus grande partie de ce dont on abesoin pour faire de la gestion
 bien-sur libre à vous de mettre les fonctions mathematique en oeuvre mais là je crois que c'est dommage
@@ -71,14 +71,9 @@ elle permet de ne plus avoir de soucie avec les longueurs prédéfini dans une d
 plus pour SQL compatibilité...
 bon mon expérience ... j'ai rarrement mis un time dans un fichier , peut-être  timestamp mais c'est déjà dans date...
 
-tout ça fonctionnent et n'est pas clos .... et fera partit de l'ensemble comme un frameworck ....
+tout ça fonctionnent ... et fera partit de l'ensemble comme un frameworck ....
 
 @bientôt
 
-
-tout n'est pas fini ....
-
-avec la sortie du wrapper sql pour postgresql  je devrais encore faire quelques modifications
-du style clen  ( srtlen ou length des zones de sortie pour sql en generale )
 
 
