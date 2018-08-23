@@ -17,7 +17,7 @@ int main()
 Zchar a(10) ;
 
 
-a="12345";
+a="1éÀ";
 std::cout<<a<<std::endl;
 
 a+="67890";
@@ -27,6 +27,52 @@ Zchar b(15) ;
 b="123456789012345";
 std::cout<<b<<std::endl;
 
+
+Zchar w(4) ;
+w="àéla";
+std::cout<<w<<std::endl;
+w.ToUper();
+std::cout<<w<<"   "<<w.deflen()<<" clen "<<w.clen()<<std::endl;
+std::cout<<"   w >"<<w<<"   w.ToChar() >  "<<w.ToChar()<<" w.ConstChar()  >"<<w.ConstChar()<<" w.StringChar() > "<<w.StringChar()<<std::endl;
+
+Zchar Tw(100) ;
+std::cout<<"-------------"<<std::endl;
+Tw.Extrac(a ,1,3 );
+if (Tw.CPFERR ) std::cout<<"   msgerr :		>"<<Tw.cerror()<<std::endl;
+std::cout<<a<<"   Tw.Extrac(a ,1, 2 ) :		>"<<Tw<<std::endl;
+Zchar Tx(100) ;
+a="z";
+Tw=" bonjour méméà{ test ";
+Tw.Replace("o","z");
+if (Tw.CPFERR ) std::cout<<"   msgerr :		>"<<Tw.cerror()<<std::endl;
+std::cout<<a<<"   "<<"Tw.Replace(\"o\",\"z\")		>"<<Tw<<std::endl;
+Tw.Replace(a.ToChar(),"o");
+if (Tw.CPFERR ) std::cout<<"   msgerr :		>"<<Tw.cerror()<<std::endl;
+std::cout<<a<<"   "<<"Tw.Replace(a.ToChar() = o ,\"o\")		>"<<Tw<<std::endl;
+
+
+Tx.concat("TEXT concat  %s %d  text %s",Tw.ToChar(),10,b.ToChar());
+if (Tx.CPFERR ) std::cout<<"   msgerr :		>"<<Tx.cerror()<<std::endl;
+std::cout<<"Tx.concat(\"bonjour  %s %d  text %s\",Tw.ToChar(),10,b.ToChar()); >"<<Tx<<std::endl;
+
+a="àéla";
+b="àéla";
+if ( a == b) std::cout<<"if ( a == b) " << std::endl; else std::cout<<"no if ( a == b)"<<std::endl;
+if ( a <  b) std::cout<<"if ( a <  b) " << std::endl; else std::cout<<"no if ( a <  b)"<<std::endl;
+if ( a >  b) std::cout<<"if ( a >  b) " << std::endl; else std::cout<<"no if ( a >  b)"<<std::endl;
+if ( a != b) std::cout<<"if ( a != b) " << std::endl; else std::cout<<"no if ( a != b)"<<std::endl;
+if ( a <= b) std::cout<<"if ( a <= b) " << std::endl; else std::cout<<"no if ( a <= b)"<<std::endl;
+if ( a >= b) std::cout<<"if ( a >= b) " << std::endl; else std::cout<<"no if ( a >= b)"<<std::endl;
+
+if ( EQ == a.cmp( b) ) std::cout<<"if (EQ == a.cmp( b)) " << std::endl; else std::cout<<"no if (EQ == a.cmp( b))"<<std::endl;
+if ( LT == a.cmp( b) ) std::cout<<"if (LT == a.cmp( b)) " << std::endl; else std::cout<<"no if (LT == a.cmp( b))"<<std::endl;
+if ( GT == a.cmp( b) ) std::cout<<"if (GT == a.cmp( b)) " << std::endl; else std::cout<<"no if (GT == a.cmp( b))"<<std::endl;
+std::cout<<"-------------"<<std::endl;
+
+
+
+
+b="123456789012345";
 a=b;
 std::cout<<"  a= b  "<<a;
 
@@ -156,7 +202,7 @@ if (text_B.CPFERR ) std::cout<<"   msgerr :		>"<<text_B.cerror()<<std::endl;
 std::cout<<text_B<<std::endl;
 
 std::cout<<"-------------"<<std::endl;
-text.Extrac("bonjour" ,3, 4 );
+text.Extrac("boéjour" ,3, 4 );
 std::cout<<"text.Extrac(\"bonjour\" ,3, 4 ) :		>"<<std::endl;
 if (text.CPFERR ) std::cout<<"   msgerr :		>"<<text.cerror()<<std::endl;
 std::cout<<text<<std::endl;
@@ -240,6 +286,11 @@ text_B = "11";
 
 std::cout<<text_A<<"  ---  "<<text_B<<std::endl;
 
+
+
+
+
+
 if ( text_A == text_B) std::cout<<"if ( text_A == text_B)"<<std::endl; else  std::cout<<"if ( text_A == text_B) *no"<<std::endl;
 if ( text_A != text_B) std::cout<<"if ( text_A != text_B)"<<std::endl; else  std::cout<<"if ( text_A != text_B) *no"<<std::endl;
 if ( text_A <= text_B) std::cout<<"if ( text_A <= text_B)"<<std::endl; else  std::cout<<"if ( text_A <= text_B) *no"<<std::endl;
@@ -248,15 +299,25 @@ if ( text_A >= text_B) std::cout<<"if ( text_A >= text_B)"<<std::endl; else  std
 if ( text_A < text_B) std::cout<<"if ( text_A < text_B)"<<std::endl; else  std::cout<<"if ( text_A < text_B) *no"<<std::endl;
 if ( text_A > text_B) std::cout<<"if ( text_A > text_B)"<<std::endl; else  std::cout<<"if ( text_A > text_B) *no"<<std::endl;
 
-text="bonjour";
+text="boéjour";
 text.ToUper();
 if (text_A.CPFERR ) std::cout<<"   msgerr :		>"<<text_A.cerror()<<std::endl;
 std::cout<<text<<std::endl;
 
-text="bonjour";
+text="boÉjour";
 text.ToLower();
 if (text_A.CPFERR ) std::cout<<"   msgerr :		>"<<text_A.cerror()<<std::endl;
 std::cout<<text<<std::endl;
+
+
+Zchar text_X(4);
+
+text_X = "éé";
+ 
+std::cout<<"  text_X = \"éééé <4  \"  "<<text_X<<"len "<<text_X.deflen()<<" clen "<<text_X.clen()<<std::endl;
+if (text_X.CPFERR ) std::cout<<"   msgerr :		>"<<text_X.cerror()<<std::endl;
+
+
      return (0);
 
 }

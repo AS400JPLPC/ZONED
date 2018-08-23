@@ -1,4 +1,3 @@
-
 #ifndef	indacteur
 #define	indacteur
 

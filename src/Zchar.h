@@ -38,7 +38,15 @@
 #include <exception>
 #include <typeinfo>
 #include <stdarg.h>                 /// For va_start, etc.
-
+#include <wchar.h>					/// for nbrcar ...
+#include <string>
+#include <cstdlib>
+#include <wctype.h>
+#include <codecvt>
+#include <locale>
+#include <algorithm>
+#include <cwchar>
+ 	
 namespace ZONED
 {
 	
@@ -59,8 +67,9 @@ private:
 
 protected :
     Zchar   strtrim();
-
-
+	size_t 	nbrcar(const  std::string& str);
+	std::wstring sTows(const std::string& str);
+	std::string  wsTos(const std::wstring& wstr);	
 public:
 
 	bool 	CPFERR	= false;	/// flag si erreur
@@ -157,7 +166,7 @@ public:
 		return is;
 	}
 	
-	friend std::ostream& operator<<(std::ostream& out, const Zchar& t)
+	friend std::ostream& operator<<(std::ostream& out,  Zchar& t)
 	{
 		return out << t.P_buffer;
 	}

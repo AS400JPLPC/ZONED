@@ -253,7 +253,7 @@ int Zdate::sysday() {
     time (&rawtime);
     timeinfo = localtime (&rawtime);
 
-    strftime (buffer,80,"%d\0",timeinfo);
+    strftime (buffer,80,"%d",timeinfo);
 
  return   atoi(buffer);
 }
@@ -268,7 +268,7 @@ int Zdate::sysmonth() {
     char * buffer = (char*) malloc( 2   * sizeof(char*));
     time (&rawtime);
     timeinfo = localtime (&rawtime);
-    strftime (buffer,80,"%m\0",timeinfo);
+    strftime (buffer,80,"%m",timeinfo);
 
  return   atoi(buffer);
 }
@@ -284,7 +284,7 @@ int Zdate::sysyear() {
     char * buffer = (char*) malloc( 4   * sizeof(char*));
     time (&rawtime);
     timeinfo = localtime (&rawtime);
-    strftime (buffer,80,"%Y\0",timeinfo);
+    strftime (buffer,80,"%Y",timeinfo);
 
  return   atoi(buffer);
 }
@@ -300,7 +300,7 @@ int Zdate::sysyear2() {
     char * buffer = (char*) malloc( 2   * sizeof(char*));
     time (&rawtime);
     timeinfo = localtime (&rawtime);
-    strftime (buffer,80,"%y\0",timeinfo);
+    strftime (buffer,80,"%y",timeinfo);
 
  return   atoi(buffer);
 }
@@ -313,7 +313,7 @@ int Zdate::syssiecle() {
     char * buffer = (char*) malloc( 2   * sizeof(char*));
     time (&rawtime);
     timeinfo = localtime (&rawtime);
-    strftime (buffer,80,"%C\0",timeinfo);
+    strftime (buffer,80,"%C",timeinfo);
 
  return   atoi(buffer)+1;
 }
@@ -329,7 +329,7 @@ int Zdate::sysYM() {
     time (&rawtime);
     timeinfo = localtime (&rawtime);
 
-    strftime (buffer,80,"%Y%d\0",timeinfo);
+    strftime (buffer,80,"%Y%d",timeinfo);
 
  return   atoi(buffer);
 }
@@ -538,7 +538,7 @@ int Zdate::Quantiemesys()
    Temps.tm_isdst = -1;  /// heur d'été non disponible
    mktime(&Temps);
 
-    strftime (buffer,80,"%j\0",&Temps );
+    strftime (buffer,80,"%j",&Temps );
     return atoi(buffer);
 }
 
@@ -624,7 +624,7 @@ char * Zdate::session(){
 
     time_t now = time(0);
     tm *ltm = localtime(&now);
-    strftime(sessiond, 30, "%04Y%02m%02d%02H%02M%02S", ltm);
+    strftime(sessiond, 30, "%Y%m%d%H%M%S", ltm);
 
 /*   windows
      struct timeval tp; gettimeofday(&tp, NULL);
@@ -652,7 +652,7 @@ char * Zdate::sysdattim(){
 
     time_t now = time(0);
     tm *ltm = localtime(&now);
-    strftime(T_sysdat , 30, "%04Y%02m%02d%02H%02M%02S", ltm);
+    strftime(T_sysdat , 30, "%Y%m%d%H%M%S", ltm);
 
     sprintf(T_sysdattim,"%14s",T_sysdat);
 return T_sysdattim;
@@ -866,7 +866,7 @@ switch( date)
      case eYM:          return std::string( edtYM()  ); break ;    /// YYYY/MM
      case eMY:          return std::string( edtMY()  ); break ;    /// MM/YYYY
      case elongdate:    return std::string( longdate() ); break ;  /// vendrei 12 octobre 1951
-     case enull:        if (10101 == ToInt() ) return std::string('\0') ; break ;
+     case enull:        if (10101 == ToInt() ) return std::string("") ; break ;
      
      case ntime:        return std::string( edttimesys() ); break ;   /// HH:MM:SC
 
@@ -1014,7 +1014,9 @@ bool Zdate::isValid(){
 if ( _DATE == 00010101) return true ;
 
 
-if (_YEAR <ANNEE_MIN) return false; if (_YEAR >ANNEE_MAX) return false;
+if (_YEAR <ANNEE_MIN) return false;
+
+if (_YEAR >ANNEE_MAX) return false;
 
 if (_MOIS >12 || _MOIS <1) return false;
 
@@ -1211,7 +1213,7 @@ void Zdate::Addmonth( int n)
     unsigned int jj ;
     unsigned int mm = this->_MOIS +n  ;
     unsigned int mx = this->_MOIS +1;
-    for(register unsigned int cnt=this->_MOIS ;  cnt < mm ; cnt++, mx++)
+    for(unsigned int cnt=this->_MOIS ;  cnt < mm ; cnt++, mx++)
     {
             if (mx > 12 ) mx = 1;
         	switch (mx)
@@ -1229,7 +1231,7 @@ void Zdate::Addmonth( int n)
                 default : jj = 31 ; break;
             }
             printf("%d jj", jj);
-            for(register unsigned int cntj=0; cntj<jj; cntj++) this->next_day();
+            for(unsigned int cntj=0; cntj<jj; cntj++) this->next_day();
    }
 
 this->update();
@@ -1346,15 +1348,15 @@ int Zdate::NumeroJour()
 
     int DM[]={0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
     int day;
-    if(_YEAR<1900)
-      day=5*((_YEAR-1860)/4);
-    else
-      day  = 5*((_YEAR-1900)/4);
+    if(_YEAR<1900)   day=5*((_YEAR-1860)/4);
+    else day  = 5*((_YEAR-1900)/4);
+    
       day += _YEAR%4;
       day += DM[_MOIS-1];
       day += _JOUR;
-    if(_YEAR%4  == 0 && _MOIS <= 2)
-      day += 6;
+      
+    if(_YEAR%4  == 0 && _MOIS <= 2) day += 6;
+    
      day  = (day%7);
 
 return day;

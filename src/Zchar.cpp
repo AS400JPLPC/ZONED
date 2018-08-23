@@ -27,7 +27,7 @@ namespace ZONED
 
 Zchar::Zchar()
 {
-std::cout<<"coucou"<<std::endl;
+throw std::invalid_argument("msg error : Initialised len = 0 ");
 }
 
 
@@ -38,6 +38,9 @@ Zchar::Zchar(size_t i =0 )
      _length = i;
      _name_ = "Zchar ";
      P_buffer.clear();
+     val.clear();
+     _name_.clear();
+     CPFMSG.clear();
 }
 
 Zchar::~Zchar()
@@ -54,7 +57,7 @@ Zchar::~Zchar()
 	CPFERR= false ; CPFMSG = "";
     
     P_buffer = Z_fld.P_buffer;
-    if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
+    if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
     
 	resize();
 	
@@ -66,7 +69,7 @@ Zchar Zchar::operator+=(const Zchar Z_fld)
 	CPFERR= false ; CPFMSG = "";
     
     P_buffer += Z_fld.P_buffer;
-    if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
+    if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
     
 	resize();
 	
@@ -135,7 +138,7 @@ Zchar Zchar::operator=( const char* _C_)
 	CPFERR= false ; CPFMSG = "";;
 	
     P_buffer= _C_;
-    if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
+    if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
     
     resize();
 
@@ -147,7 +150,7 @@ Zchar Zchar::operator+=( const char* _C_)
 	CPFERR= false ; CPFMSG = "";
 
     P_buffer+=_C_;
-    if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
+    if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "resultat overflow";}
     
 	resize();
 	
@@ -368,7 +371,7 @@ Zchar Zchar::concat(const std::string fmt, ...)									// fonctionne comme prin
             size *= 2;      // Guess at a larger size (OS specific)
     }
 
-    if (buffer.length() > _length ){ CPFERR= true ; CPFMSG = "concat : resultat overflow";}
+    if (nbrcar(buffer) > _length ){ CPFERR= true ; CPFMSG = "concat : resultat overflow";}
     
     P_buffer = buffer;
 	resize();
@@ -386,20 +389,21 @@ Zchar Zchar::Replace( const char*  scrut, const char * subst )
 {
 	CPFERR= false ; CPFMSG = "";
 	
-    std::string x_substr  =  P_buffer;
-    std::string x_search  =  scrut ;
-    std::string x_replace =  subst ;
+	std::wstring x_substr  =  sTows(P_buffer);
+	std::wstring x_search  =  sTows(scrut) ;
+	std::wstring x_replace =  sTows(subst);
+	
     size_t pos = 0;
     while((pos = x_substr.find(x_search, pos)) != std::string::npos)
     {
 		x_substr.replace(pos,x_search.length(), x_replace);
 		pos += x_replace.length();
 		
-		if (x_substr.length() > _length ) { CPFERR= true ; CPFMSG = "Replace : resultat overflow";}
+		if (nbrcar(wsTos(x_substr)) > _length ) { CPFERR= true ; CPFMSG = "Replace : resultat overflow";}
 		
-		P_buffer = x_substr;
+		P_buffer =  wsTos(x_substr);
     }
-    
+
 	resize();
 	
 	return *this;
@@ -407,19 +411,19 @@ Zchar Zchar::Replace( const char*  scrut, const char * subst )
 Zchar Zchar::Replace( const char*  scrut, std::string  subst )
 {
 	CPFERR= false ; CPFMSG = "";
-
-    std::string x_substr  =  P_buffer;
-    std::string x_search  =  scrut ;
-    std::string x_replace =  subst ;
-    size_t pos = 0;
-    while((pos = x_substr.find(x_search, pos)) != std::string::npos)
+	
+	std::wstring x_substr  =  sTows(P_buffer);
+	std::wstring x_search  =  sTows(scrut) ;
+	std::wstring x_replace =  sTows(subst) ;
+	size_t pos = 0;
+	while((pos = x_substr.find(x_search, pos)) !=  std::string::npos)
     {
 		x_substr.replace(pos,x_search.length(), x_replace);
 		pos += x_replace.length();
 		
-		if (x_substr.length() > _length ) { CPFERR= true ; CPFMSG = "Replace : resultat overflow";}
+		if (nbrcar(wsTos(x_substr)) > _length ) { CPFERR= true ; CPFMSG = "Replace : resultat overflow";}
 		
-		P_buffer = x_substr;
+		P_buffer = wsTos(x_substr);
     }
     
 	resize();
@@ -432,9 +436,16 @@ Zchar Zchar::Replace( const char*  scrut, std::string  subst )
 Zchar Zchar::ToUper()
 {
 	CPFERR= false ; CPFMSG = "";
-	
-	for_each(P_buffer.begin(), P_buffer.end(), [](char& in){ in = ::toupper(in); });
 
+	std::wstring P_ws = sTows(P_buffer );
+	
+	std::locale::global(std::locale(""));
+	auto& f = std::use_facet<std::ctype<wchar_t>>(std::locale());
+
+	f.toupper(&P_ws[0], &P_ws[0] + P_ws.size());		
+
+	 P_buffer = wsTos(P_ws);
+	 
 	return *this;
 }
 
@@ -444,7 +455,14 @@ Zchar Zchar::ToLower()
 {
 	CPFERR= false ; CPFMSG = "";
 	
-	for_each(P_buffer.begin(), P_buffer.end(), [](char& in){ in = ::tolower(in); });
+	std::wstring P_ws = sTows(P_buffer );
+	
+	std::locale::global(std::locale(""));
+	auto& f = std::use_facet<std::ctype<wchar_t>>(std::locale());
+
+	f.tolower(&P_ws[0], &P_ws[0] + P_ws.size());		
+
+	 P_buffer = wsTos(P_ws);
 
 	return *this;
 }
@@ -454,25 +472,25 @@ Zchar Zchar::ToLower()
 Zchar Zchar::Extrac(const Zchar Z_fld ,size_t start , size_t len  )
 {
 	CPFERR= false ; CPFMSG = "";
-
-	std::string s_arg = Z_fld.P_buffer ;
+ 
+	std::wstring s_arg = sTows(Z_fld.P_buffer );
 	
-	if ( start<= s_arg.length()  && (((start) + len) <= s_arg.length()))
+	if ( start<= s_arg.length()  && (((start) + len) <= s_arg.length() ))
 	{
 			s_arg = s_arg.substr(start,len);
 			
-			P_buffer = s_arg;
+			P_buffer = wsTos(s_arg);
 	}
 	else
 	{
-		_name_ +=  "val :" + s_arg;
+		_name_ +=  "val :" + wsTos(s_arg);
 		_name_ +=  " start :" + std::to_string(start);
 		_name_ +=  " len :" + std::to_string(len);
 		_name_ +=  " length :" + std::to_string(s_arg.length());
 		CPFERR= true ; CPFMSG = "Extrac : Zchar  borne invalide name :" + _name_ ; return *this ;
 	}
 
-	if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "Extrac :  Zchar  resultat overflow";}
+	if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "Extrac :  Zchar  resultat overflow";}
 
 	resize();
 	
@@ -486,26 +504,26 @@ Zchar Zchar::Extrac(const char * src  ,size_t start , size_t len )
 {
 	CPFERR= false ; CPFMSG = "";
 	
-    std::string s_arg = src ;
+    std::wstring s_arg = sTows(src) ;
     
-	if ( start<= s_arg.length() && (((start) + len) <=s_arg.length()))
+	if ( start<= s_arg.length()  && (((start) + len) <= s_arg.length() ))
 	{
 
 			s_arg = s_arg.substr(start,len);
 			
-			P_buffer = s_arg;
+			P_buffer = wsTos(s_arg);
 	
 	}
 	else
 	{
-		_name_ +=  "val :" + s_arg;
+		_name_ +=  "val :" + wsTos(s_arg);
 		_name_ +=  " start :" + std::to_string(start);
 		_name_ +=  " len :" + std::to_string(len);
 		_name_ +=  " length :" + std::to_string(s_arg.length());
 		CPFERR= true ; CPFMSG = "Extrac : Zchar  borne invalide name :" + _name_ ; return *this ;
 	}
 
-	if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "Extrac : char*  resultat overflow";}
+	if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "Extrac : char*  resultat overflow";}
 	
 	resize();
 	
@@ -524,7 +542,7 @@ Zchar Zchar::Movel(const char* src  )
     {
 		P_buffer += s_arg.substr(0,len);
 	}
-	if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "Move : resultat overflow";}
+	if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "Move : resultat overflow";}
 	resize();
 	
 	return *this;
@@ -542,7 +560,7 @@ Zchar Zchar::Movel(const Zchar Z_fld )
     {
 		P_buffer += s_arg.substr(0,len);
 	}
-	if (P_buffer.length() > _length ) { CPFERR= true ; CPFMSG = "Move : resultat overflow";}
+	if (nbrcar(P_buffer) > _length ) { CPFERR= true ; CPFMSG = "Move : resultat overflow";}
 	resize();
 	
 	return *this;
@@ -556,7 +574,7 @@ char * Zchar::ExtracToChar(size_t start , size_t len  )
 	
     std::string s_arg = P_buffer ;
 
-    if ( start<= s_arg.length() && (((start) + len) <=s_arg.length()))
+	if ( start<= nbrcar(s_arg)  && (((start) + len) <= nbrcar(s_arg) ))
 	{
 			s_arg = s_arg.substr(start,len);
 	
@@ -566,7 +584,7 @@ char * Zchar::ExtracToChar(size_t start , size_t len  )
 		_name_ +=  "val :" + s_arg;
 		_name_ +=  " start :" + std::to_string(start);
 		_name_ +=  " len :" + std::to_string(len);
-		_name_ +=  " length :" + std::to_string(s_arg.length());
+		_name_ +=  " length :" + std::to_string(nbrcar(s_arg.c_str()));
 		CPFERR= true ; CPFMSG = "Extrac : Zchar  borne invalide name :" + _name_ ; return (char*)"" ;
 	}
 	
@@ -620,19 +638,22 @@ int   Zchar::deflen()
 
 int   Zchar::clen()
 {
-    return  (int) P_buffer.length();
+    return  (int) nbrcar(P_buffer);
 }
 
 
 void Zchar::resize()
 {
+	std::wstring  P_ws = sTows(P_buffer) ;
+	std::wstring  P_wval ;
 
-	if ( P_buffer.size() > _length)
+	if ( nbrcar(P_buffer) > _length)
 	{
-		val = P_buffer;
-		P_buffer = val.substr(0,_length);
+		P_wval = P_ws.substr(0,_length); 
+		P_buffer = wsTos(P_wval);
+		
 	}
-
+	 
 }
 
 
@@ -643,6 +664,35 @@ const char *  Zchar::cerror()
 }
 
 
+
+size_t Zchar::nbrcar(const std::string& str)
+{
+	setlocale (LC_ALL, "");
+	const char *_C_ = str.c_str(); 
+    const size_t cSize = strlen(_C_)+1;
+    
+    wchar_t* wc = new wchar_t[cSize];
+    mbstowcs (wc, _C_, cSize);
+    
+    return  wcslen(wc);
+}
+
+std::wstring Zchar::sTows(const std::string& str)
+{
+    //setup converter
+    using convert_type = std::codecvt_utf8<wchar_t>;
+    std::wstring_convert<convert_type, wchar_t> converter;
+    
+    return converter.from_bytes(str);
+}
+
+std::string Zchar::wsTos(const std::wstring& wstr)
+{
+    using convert_type = std::codecvt_utf8<wchar_t>;
+    std::wstring_convert<convert_type, wchar_t> converter;
+
+    return converter.to_bytes(wstr);
+}
 
 }
 

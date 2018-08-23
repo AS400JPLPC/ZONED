@@ -63,7 +63,22 @@ std::string    Ztext::StringChar()
 
 int   Ztext::clen()
 {
-    return  (int) P_buffer.length();
+    return  (int) nbrcar(P_buffer);
 }
+
+
+size_t Ztext::nbrcar(const std::string& str)
+{
+	setlocale (LC_ALL, "");
+	const char *_C_ = str.c_str(); 
+    const size_t cSize = strlen(_C_)+1;
+    
+    wchar_t* wc = new wchar_t[cSize];
+    mbstowcs (wc, _C_, cSize);
+    
+    return  wcslen(wc);
+}
+
+
 }
 #endif

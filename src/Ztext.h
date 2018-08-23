@@ -29,6 +29,7 @@
 #include <iomanip>
 #include <iostream>
 #include <exception>
+#include <wchar.h>					/// for nbrcar ...
 
 namespace ZONED
 {
@@ -42,6 +43,10 @@ class Ztext
     private :
 	std::string P_buffer;
 	bool   ___obligatoire___ ;
+
+protected :
+	size_t 	nbrcar(const std::string& str);
+	
 ///****************************************************************************
 ///AFFECTATION BUFFER       ---------------------------------------------------
 ///****************************************************************************
