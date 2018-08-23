@@ -1,6 +1,6 @@
-Gestion de buffer fixe type AS400 traitement   char*   decimal   date   bool   time   text
-Actuelement en modification pour traiter UTF8 attendre pour validation svp
-
+Gestion de buffer fixe type AS400 traitement   char*   decimal   date   bool   time   text <br> <br>
+pour les longueurs de zone étandoné la possibilité d'avoir des caractère sur 2 octets j'ai modifié et pris en compte l'UTF8 : donc la longueur est le nombre de caractère si vous définisez a(10) je considère que la zone ne fera pas plus de 10 caractères ceci est compatible avec les bases de données qui gère de même.<br>
+ 
 <h1> RE-Typage </h1>
 
 **Motivation**
