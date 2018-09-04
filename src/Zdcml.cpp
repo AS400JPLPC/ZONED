@@ -1243,8 +1243,13 @@ char* Zdcml::ToChar()
 	decNumberToString(T_dcml, T_char);
 
 	ClearBufferDcml();
-	
-    return   T_char;
+
+	const struct lconv* loc = localeconv();
+	std::string ponct=".";
+	std::string _STRING_ = T_char;
+	int pos = _STRING_.find(ponct);            
+	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
+    return  (char*) _STRING_.c_str();
 }
 
 
@@ -1264,8 +1269,14 @@ const char* Zdcml::ConstChar()
 	decNumberToString(T_dcml, T_char);
 	
 	ClearBufferDcml();
+
+	const struct lconv* loc = localeconv();
+	std::string ponct=".";
+	std::string _STRING_ = T_char;
+	int pos = _STRING_.find(ponct);            
+	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
 	
-	return (const char *) T_char;
+	return _STRING_.c_str();
 }
 
 
@@ -1286,7 +1297,13 @@ std::string Zdcml::StringChar()
 	
 	ClearBufferDcml();
 	
-	return std::string(T_char);
+	const struct lconv* loc = localeconv();
+	std::string ponct=".";
+	std::string _STRING_ = T_char;
+	int pos = _STRING_.find(ponct);            
+	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
+	
+	return _STRING_;
 }
 
 
