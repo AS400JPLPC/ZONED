@@ -173,7 +173,7 @@ unsigned int cmp(const Zdcml);
 /// FONCTIONS OUTPUT ---return VAL-------------------------
 char*           ToChar();							/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = def
 const char*     ConstChar();						/// idem ToChar
-std::string     StringChar();						/// idem ToChar
+std::string     String();						/// idem ToChar
 
 /// FONCTION Contrôle Type --------------------------------------
 	bool isZeros();      							/// contrôle ZEROS
@@ -199,11 +199,17 @@ std::string     StringChar();						/// idem ToChar
 
 	friend std::ostream& operator<<(std::ostream& out, const Zdcml t)	
 	{   char *  _C_ = (char*) malloc(36  * sizeof(char*)); decNumberToString(t._dcml, _C_);
-		const struct lconv* loc = localeconv();
-		std::string ponct=".";
-		std::string _STRING_ = _C_;
-		int pos = _STRING_.find(ponct);            
-		if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
+	const struct lconv* loc = localeconv();
+	std::string ponct=".";
+	std::string _STRING_ = _C_;
+	int pos = _STRING_.find(ponct); 
+	int u = t._dec - (((_STRING_.length() -1 )- pos)) ; 
+	if ( u>0 )
+	{
+	for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
+	
+	}             
+	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),","); 
 		return out << _STRING_;
 	}
 

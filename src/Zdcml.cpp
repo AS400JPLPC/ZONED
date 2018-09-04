@@ -53,7 +53,7 @@ Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
 
 
     decContextDefault(&T_set, DEC_INIT_DECIMAL128 );    // initialize
-    T_set.digits = _entier+ _dec;                       // initialize
+    T_set.digits = _dec;                       // initialize T_set.digits = _entier+ _dec; 
     decContextSetRounding(&T_set,DEC_ROUND_DOWN);
 
 
@@ -1247,7 +1247,13 @@ char* Zdcml::ToChar()
 	const struct lconv* loc = localeconv();
 	std::string ponct=".";
 	std::string _STRING_ = T_char;
-	int pos = _STRING_.find(ponct);            
+	int pos = _STRING_.find(ponct); 
+	int u =  _dec - (((_STRING_.length() -1 )- pos)) ; 
+	if ( u>0 )
+	{
+	for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
+	
+	}             
 	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
     return  (char*) _STRING_.c_str();
 }
@@ -1273,14 +1279,20 @@ const char* Zdcml::ConstChar()
 	const struct lconv* loc = localeconv();
 	std::string ponct=".";
 	std::string _STRING_ = T_char;
-	int pos = _STRING_.find(ponct);            
-	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
+	int pos = _STRING_.find(ponct); 
+	int u =  _dec - (((_STRING_.length() -1 )- pos)) ; 
+	if ( u>0 )
+	{
+	for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
+	
+	}             
+	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");           
 	
 	return _STRING_.c_str();
 }
 
 
-std::string Zdcml::StringChar()
+std::string Zdcml::String()
 {
 	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
 	{
@@ -1300,8 +1312,14 @@ std::string Zdcml::StringChar()
 	const struct lconv* loc = localeconv();
 	std::string ponct=".";
 	std::string _STRING_ = T_char;
-	int pos = _STRING_.find(ponct);            
-	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
+	int pos = _STRING_.find(ponct); 
+	int u =  _dec - (((_STRING_.length() -1 )- pos)) ; 
+	if ( u>0 )
+	{
+	for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
+	
+	}             
+	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),","); 
 	
 	return _STRING_;
 }

@@ -27,13 +27,34 @@ int main(void)
  {
 setlocale(LC_ALL,"fr_FR.UTF-8");
 
+std::cout<<"-----double--------"<<std::endl;
+
+
+Zdcml test_dbl(5,2);
+//std::cout<<"init   "<<test_dbl<<std::endl;
+
+test_dbl=33.20;    std::cout<<test_dbl.clen()<<std::endl;
+
+printf(" test_dbl.ToChar() >>>    %s\n",test_dbl.ToChar());
+printf(" test_dbl.ConstChar() >>>    %s\n",test_dbl.ConstChar());
+
+std::string xstring = test_dbl.String();
+std::cout<<"test_dbl.String()  >>>"<<   xstring<<std::endl;
+
+
+if(test_dbl.CPFERR) std::cout<<"test_dbl=33.20;  "<<test_dbl.cerror()<<std::endl;
+std::cout<<"test_dbl=33.20;  >>"<<test_dbl<<std::endl;
+
+ 
+
 std::cout<<"-----int--------"<<std::endl;
 Zdcml test_int(2,0);
 
 std::cout<<"init   "<<test_int<<std::endl;
 
-
+ 
 test_int=33.2;
+
 if(test_int.CPFERR) std::cout<<"test_int=33.2; err  "<<test_int.cerror()<<std::endl;
 std::cout<<"test_int=33.2;  "<<test_int<<std::endl;
 
@@ -96,14 +117,14 @@ std::cout<<"test_int_lon=\"1234567890123456789\"  "<<test_int_lon<<std::endl;
 
 std::cout<<"-----double--------"<<std::endl;
 
-
+/*
 Zdcml test_dbl(5,2);
-std::cout<<"init   "<<test_dbl<<std::endl;
+//std::cout<<"init   "<<test_dbl<<std::endl;
 
-test_dbl=33.02;
+test_dbl=33.20; printf("33.20   >>> %s",test_dbl.ToChar());
 if(test_dbl.CPFERR) std::cout<<"test_dbl=33.02;  "<<test_dbl.cerror()<<std::endl;
-std::cout<<"test_dbl=33.02;  "<<test_dbl<<std::endl;
-
+std::cout<<"test_dbl=33.02;  >>"<<test_dbl.ToChar()<<std::endl;
+*/
 
 test_dbl=123456.99;
 if(test_dbl.CPFERR) std::cout<<"test_chr=\"12456.99\"  "<<test_dbl.cerror()<<std::endl;
@@ -247,6 +268,8 @@ std::cout<<"test_chr=\"test_x++;\"  "<<test<<std::endl;
 for (int i = 0; i<11; i++) test++;
 
 std::cout<<"test_chr=\"test_x++;\"  "<<test<<std::endl;
+
+return 0;
      
  }
 
