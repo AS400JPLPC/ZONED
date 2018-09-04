@@ -19,7 +19,7 @@ Un nombre avec un développement décimal limité 34 chiffre <br>
 origine "Mike Cowlishaw" lire le PDF<br>
 
 ex: Zdcml QSTKT(10,0); variable quantité stock de 10 chiffres<br>
-Zdcml MPRIX(8,2); variable montant de 8 chiffres == 6 entier et  2 decimale  soit 8 dont 2  <br>
+Zdcml MPRIX(8,2); variable montant de 10 chiffres == 8 entier et  2 decimale  soit 10 dont 2  <br>
 
 elle reprenent la plus grande partie de ce dont on abesoin pour faire de la gestion
 bien-sur libre à vous de mettre les fonctions mathematique en oeuvre mais là je crois que c'est dommage
