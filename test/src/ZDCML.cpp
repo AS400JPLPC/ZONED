@@ -30,6 +30,27 @@ setlocale(LC_ALL,"fr_FR.UTF-8");
 std::cout<<"-----double--------"<<std::endl;
 
 
+Zdcml test_dbl0(5,0);
+ std::cout<<"init   "<<test_dbl0<<std::endl;
+
+test_dbl0=33.00;    std::cout<<test_dbl0.clen()<<std::endl;
+
+printf(" test_dbl0.ToChar() >>>    %s\n",test_dbl0.ToChar());
+printf(" test_dbl0.ConstChar() >>>    %s\n",test_dbl0.ConstChar());
+
+std::string xstring0 = test_dbl0.String();
+std::cout<<"test_dbl0.String()  >>>"<<   xstring0<<std::endl;
+
+
+if(test_dbl0.CPFERR) std::cout<<"test_dbl0=33.20;  "<<test_dbl0.cerror()<<std::endl;
+std::cout<<"test_dbl0=33.20;  >>"<<test_dbl0<<std::endl;
+
+ 
+
+
+
+
+
 Zdcml test_dbl(5,2);
 //std::cout<<"init   "<<test_dbl<<std::endl;
 
@@ -269,6 +290,20 @@ for (int i = 0; i<11; i++) test++;
 
 std::cout<<"test_chr=\"test_x++;\"  "<<test<<std::endl;
 
+
+test_dblx =888.88;
+test_dblx%= 10;
+if(test_str.CPFERR) std::cout<<"test_dblx%= 10;  "<<test_dblx.cerror()<<std::endl;
+std::cout<<"test_dblx%= 10; "<<test_dblx<<std::endl;
+
+
+
+
+test_dblx =7;
+test =2;
+test_dblx%= test;
+if(test_str.CPFERR) std::cout<<"test_dblx%= test;  "<<test_dblx.cerror()<<std::endl;
+std::cout<<"test_dblx%= test; "<<test_dblx<<std::endl;
 return 0;
      
  }
