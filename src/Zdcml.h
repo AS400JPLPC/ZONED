@@ -202,14 +202,15 @@ std::string     String();						/// idem ToChar
 	const struct lconv* loc = localeconv();
 	std::string ponct=".";
 	std::string _STRING_ = _C_;
-	int pos = _STRING_.find(ponct); 
-	int u = t._dec - (((_STRING_.length() -1 )- pos)) ; 
-	if ( u>0 )
+	int pos = _STRING_.find(ponct);
+	if (pos >0)
 	{
-	for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
+		int u = t._dec - (((_STRING_.length() -1 )- pos)) ; 
 	
-	}             
-	if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),","); 
+		if ( u>0 ) for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
+         
+		if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
+	} 
 		return out << _STRING_;
 	}
 
