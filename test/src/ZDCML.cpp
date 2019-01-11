@@ -63,9 +63,10 @@ std::string xstring = test_dbl.String();
 std::cout<<"test_dbl.String()  >>>"<<   xstring<<std::endl;
 
 
+
 if(test_dbl.CPFERR) std::cout<<"test_dbl=33.20;  "<<test_dbl.cerror()<<std::endl;
 std::cout<<"test_dbl=33.20;  >>"<<test_dbl<<std::endl;
-
+std::cout<<"test_dbl=33.20; Editcode >>>"<<   test_dbl.Editcode()<<std::endl;
  
 
 std::cout<<"-----int--------"<<std::endl;

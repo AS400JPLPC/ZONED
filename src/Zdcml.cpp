@@ -1244,19 +1244,7 @@ char* Zdcml::ToChar()
 
 	ClearBufferDcml();
 
-	const struct lconv* loc = localeconv();
-	std::string ponct=".";
-	std::string _STRING_ = T_char;
-	int pos = _STRING_.find(ponct);  
-	if (pos >0)
-	{
-		int u = _dec - (((_STRING_.length() -1 )- pos)) ; 
-	
-		if ( u>0 ) for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
-         
-		if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
-	}
-    return  (char*) _STRING_.c_str();
+    return T_char;
 }
 
 
@@ -1276,21 +1264,9 @@ const char* Zdcml::ConstChar()
 	decNumberToString(T_dcml, T_char);
 	
 	ClearBufferDcml();
-
-	const struct lconv* loc = localeconv();
-	std::string ponct=".";
-	std::string _STRING_ = T_char;
-	int pos = _STRING_.find(ponct); 
-	if (pos >0)
-	{
-		int u = _dec - (((_STRING_.length() -1 )- pos)) ; 
-	
-		if ( u>0 ) for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
          
-		if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
-	}           
 	
-	return _STRING_.c_str();
+	return (const char*) T_char;
 }
 
 
@@ -1310,11 +1286,34 @@ std::string Zdcml::String()
 	decNumberToString(T_dcml, T_char);
 	
 	ClearBufferDcml();
+
+	std::string _STRING_ = T_char;
+
+	return _STRING_;
+}
+
+std::string Zdcml::Editcode()
+{
+	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
+	{
+		CPFERR = true ;  CPFMSG = "DCML numeric   StringChar() ";  return NULL;
+	}
+    
+	ClearBufferDcml();
+	
+	decNumberCopy( T_dcml,_dcml);
+	
+	printformat();
+	
+	decNumberToString(T_dcml, T_char);
+	
+	ClearBufferDcml();
+
+	std::string _STRING_ = T_char;
 	
 	const struct lconv* loc = localeconv();
 	std::string ponct=".";
-	std::string _STRING_ = T_char;
-	int pos = _STRING_.find(ponct); 
+	int pos = _STRING_.find(ponct);
 	if (pos >0)
 	{
 		int u = _dec - (((_STRING_.length() -1 )- pos)) ; 
@@ -1322,8 +1321,8 @@ std::string Zdcml::String()
 		if ( u>0 ) for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
          
 		if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
-	}
-	
+	} 
+
 	return _STRING_;
 }
 

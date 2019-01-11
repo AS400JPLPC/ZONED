@@ -173,8 +173,8 @@ unsigned int cmp(const Zdcml);
 /// FONCTIONS OUTPUT ---return VAL-------------------------
 char*           ToChar();							/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = def
 const char*     ConstChar();						/// idem ToChar
-std::string     String();						/// idem ToChar
-
+std::string     String();							/// idem ToChar
+std::string     Editcode();							/// idem ToChar + edtcode
 /// FONCTION Contrôle Type --------------------------------------
 	bool isZeros();      							/// contrôle ZEROS
 	bool isNegative();   							/// contrôle IsNegative
@@ -197,20 +197,9 @@ std::string     String();						/// idem ToChar
 		return is;
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, const Zdcml t)	
+	friend std::ostream& operator<<(std::ostream& out, const Zdcml t)	// out only ponct . use sql or cout 
 	{   char *  _C_ = (char*) malloc(36  * sizeof(char*)); decNumberToString(t._dcml, _C_);
-	const struct lconv* loc = localeconv();
-	std::string ponct=".";
-	std::string _STRING_ = _C_;
-	int pos = _STRING_.find(ponct);
-	if (pos >0)
-	{
-		int u = t._dec - (((_STRING_.length() -1 )- pos)) ; 
-	
-		if ( u>0 ) for ( ;u > 0 ; u-- )  _STRING_  = _STRING_ +"0";
-         
-		if (loc->decimal_point[0]==',' && pos >= 0 ) _STRING_.replace(pos,ponct.length(),",");
-	} 
+		std::string _STRING_ = _C_;
 		return out << _STRING_;
 	}
 

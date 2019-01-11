@@ -39,7 +39,7 @@ les trow
 
  seul overflow peut vous genez mais là aussi les info sont de retour ...... mais c'est surtout dans les mouvements
  de zone entre elle ......
- prise en charge ',' '.'
+ prise en charge ',' '.'  sortie sql and cout only '.'
 
 
 <p> J'ai fait ces fonctions pour travailler avec des bases de données pour de la gestion d'entreprise <p>

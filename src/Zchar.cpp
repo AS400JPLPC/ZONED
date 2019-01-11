@@ -626,8 +626,12 @@ int   Zchar::sfind( std::string _S_)
 {
 	CPFERR= false ; CPFMSG = "";
 
-	const char* scrut = _S_.c_str();
-    return   (int) P_buffer.find(scrut);
+    char* scrut =  new char[_S_.length() + 1];
+	strcpy(scrut, _S_.c_str());
+	int  _len_= (int) P_buffer.find(scrut);
+
+	delete[] scrut;
+    return   _len_;
 
 }
 
@@ -668,13 +672,17 @@ const char *  Zchar::cerror()
 size_t Zchar::nbrcar(const std::string& str)
 {
 	setlocale (LC_ALL, "");
-	const char *_C_ = str.c_str(); 
+	char *_C_ = new char[str.length() + 1];
+	strcpy(_C_, str.c_str());
     const size_t cSize = strlen(_C_)+1;
-    
-    wchar_t* wc = new wchar_t[cSize];
-    mbstowcs (wc, _C_, cSize);
-    
-    return  wcslen(wc);
+    wchar_t* _wc_ = new wchar_t[ cSize];
+    mbstowcs (_wc_, _C_, cSize);
+
+    size_t _len_ =  wcslen(_wc_);
+     
+    delete[] _C_;
+    delete[] _wc_;
+    return  _len_;
 }
 
 std::wstring Zchar::sTows(const std::string& str)
