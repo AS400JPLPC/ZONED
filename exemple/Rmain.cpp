@@ -259,7 +259,7 @@ else {
 
 
     IN40 =  OFF;
-     if (26 >  strlen(V_NJOB.ToChar()))
+     if (26 >  strlen(V_NJOB.Chr()))
      {
         IN40 =  ON;
         V_MSG ="Session Invalide 00";
@@ -388,20 +388,20 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
 
 ///___________________________________
 
-             FX03DMD.SetValue("IMGLOGO", (const char*)RIZLNK.ToChar());     /// * IMGLOGO
-             FX03DMD.SetValue("C2AZNOM", (const char*)C2AZNOM.ToChar());    /// * NOM CLIENT
-             FX03DMD.SetValue("C2AECLI", (const char*)C2AECLI.ToChar());    /// * N°Compte
-             FX03DMD.SetValue("C2AECLX", (const char*)C2AECLX.ToChar());    /// * Code Adresse
-             FX03DMD.SetValue("C2AZRU1", (const char*)C2AZRU1.ToChar());    /// * RUE1
-             FX03DMD.SetValue("C2AZRU2", (const char*)C2AZRU2.ToChar());    /// * RUE2
-             FX03DMD.SetValue("C2AZVIL", (const char*)C2AZVIL.ToChar());    /// * VILLE
+             FX03DMD.SetValue("IMGLOGO", (const char*)RIZLNK.Chr());     /// * IMGLOGO
+             FX03DMD.SetValue("C2AZNOM", (const char*)C2AZNOM.Chr());    /// * NOM CLIENT
+             FX03DMD.SetValue("C2AECLI", (const char*)C2AECLI.Chr());    /// * N°Compte
+             FX03DMD.SetValue("C2AECLX", (const char*)C2AECLX.Chr());    /// * Code Adresse
+             FX03DMD.SetValue("C2AZRU1", (const char*)C2AZRU1.Chr());    /// * RUE1
+             FX03DMD.SetValue("C2AZRU2", (const char*)C2AZRU2.Chr());    /// * RUE2
+             FX03DMD.SetValue("C2AZVIL", (const char*)C2AZVIL.Chr());    /// * VILLE
              if (C2ANPTT > 0 )
-             FX03DMD.SetValue("C2ANPTT", (const char*)C2ANPTT.ToChar());    /// * Code Postal FR
+             FX03DMD.SetValue("C2ANPTT", (const char*)C2ANPTT.Chr());    /// * Code Postal FR
              else
-             FX03DMD.SetValue("C2AZPTT", (const char*)C2AZPTT.ToChar());    /// * Code Postal Non FR
+             FX03DMD.SetValue("C2AZPTT", (const char*)C2AZPTT.Chr());    /// * Code Postal Non FR
 
-             FX03DMD.SetValue("C2ACPAY", (const char*)C2ACPAY.ToChar());    /// * code pays
-             FX03DMD.SetValue("NAZCDE", (const char*)NAZCDE.ToChar());      /// * Ref.Imprimer
+             FX03DMD.SetValue("C2ACPAY", (const char*)C2ACPAY.Chr());    /// * code pays
+             FX03DMD.SetValue("NAZCDE", (const char*)NAZCDE.Chr());      /// * Ref.Imprimer
 
              if ( RITLNG == "FRA") FX03DMD.SetValue("TXTA", "Veuillez Choisir  un article et entrez une Quantitée");
              if ( RITLNG == "ENG") FX03DMD.SetValue("TXTA", "Want To Choose an item and entry a Quantity");
@@ -415,7 +415,7 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
                         FKTFSTK->chain(TL2CGIM,TL2CDPO,TL2CSTD);
                             if ( FKTDSTK->chain(KTFCLGO) ) {
                                 OPT_dict->AddSectionDictionary("OPT");
-                                OPT_dict->SetValue("OPTSTE",(const char*) KTDZLGO.ToChar());      /// * Code regroupement catalogue
+                                OPT_dict->SetValue("OPTSTE",(const char*) KTDZLGO.Chr());      /// * Code regroupement catalogue
                                 OPT_dict->ShowSection("OPT");
                             }
                         }
@@ -425,7 +425,7 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
 /// FILTRE
              FX03DMD.ShowSection("FILTRE");
 /// MGRID
-             FX03DMD.SetValue("V_DIR", (const char*)RIZUSR.ToChar());     /// * Folder = USER
+             FX03DMD.SetValue("V_DIR", (const char*)RIZUSR.Chr());     /// * Folder = USER
              FX03DMD.ShowSection("MGRID");
 /// IMG00 - IMG01 - IMG99
             if (TL1WIMG=="N") FX03DMD.ShowSection("IMG00");
@@ -469,12 +469,12 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
                 }
 
             MGRID00_dict->SetValue("WH00","O");
-            MGRID00_dict->SetValue("WH01", (const char*)TL1WH01.ToChar());
-            MGRID00_dict->SetValue("WH02", (const char*)TL1WH02.ToChar());
-            MGRID00_dict->SetValue("WH03", (const char*)TL1WH03.ToChar());
-            MGRID00_dict->SetValue("WH04", (const char*)TL1WH04.ToChar());
-            MGRID00_dict->SetValue("WH05", (const char*)TL1WH05.ToChar());
-            MGRID00_dict->SetValue("WH06", (const char*)TL1WH06.ToChar());
+            MGRID00_dict->SetValue("WH01", (const char*)TL1WH01.Chr());
+            MGRID00_dict->SetValue("WH02", (const char*)TL1WH02.Chr());
+            MGRID00_dict->SetValue("WH03", (const char*)TL1WH03.Chr());
+            MGRID00_dict->SetValue("WH04", (const char*)TL1WH04.Chr());
+            MGRID00_dict->SetValue("WH05", (const char*)TL1WH05.Chr());
+            MGRID00_dict->SetValue("WH06", (const char*)TL1WH06.Chr());
 
             MGRID00_dict->ShowSection("MGRID00");
 /// CTRLSTK
@@ -501,16 +501,16 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
 
                             ctemplate::TemplateDictionary*  LIGN_dict = FX03DMD.AddSectionDictionary("LIGN");
                             LIGN_dict->AddSectionDictionary("LIGN");
-                             V_KART.concat("%s%s%s",TL2CGIM.ToChar(), TL2CDPO.ToChar(),TL2CSTD.ToChar());
-                            LIGN_dict->SetValue("VKEYID",(const char*) V_KART.ToChar());                            /// * Key Code ARTICLE
-                            if(IN55 == OFF) LIGN_dict->SetValue("KEQLVD",(const char*) KEQLVD.ToChar());            /// * QT demander ARTICLE
-                            LIGN_dict->SetValue("KECSTD",(const char*) TL2CSTD.ToChar());                           /// * Code Article
+                             V_KART.concat("%s%s%s",TL2CGIM.Chr(), TL2CDPO.Chr(),TL2CSTD.Chr());
+                            LIGN_dict->SetValue("VKEYID",(const char*) V_KART.Chr());                            /// * Key Code ARTICLE
+                            if(IN55 == OFF) LIGN_dict->SetValue("KEQLVD",(const char*) KEQLVD.Chr());            /// * QT demander ARTICLE
+                            LIGN_dict->SetValue("KECSTD",(const char*) TL2CSTD.Chr());                           /// * Code Article
                             if(IN55 == OFF)V_QLVD = 0; else V_QLVD= KEQLVD;                                         /// * Quantité demandé
                             LIGN_dict->SetValue("KEQLVD",(const char*)  V_QLVD.ConstChar()  );
 
-                            if(TL1WAFF.cmp('O') ) LIGN_dict->SetValue("V_CREF",  KTZLBA.ToChar());                  /// * texte Article
+                            if(TL1WAFF.cmp('O') ) LIGN_dict->SetValue("V_CREF",  KTZLBA.Chr());                  /// * texte Article
 
-                            V_CCND.mult("%s,%s",KTNXBO.ToChar(),KTXCFU.ToChar());
+                            V_CCND.mult("%s,%s",KTNXBO.Chr(),KTXCFU.Chr());
                             LIGN_dict->SetValue("V_CCND",(const char*) V_CCND.ToDec());                             /// * CONDITIONNEMENT
 
                             if(IN55 == OFF) LIGN_dict->SetValue("KE0LVD",(const char*) " ");                        /// * Date demande  livraison
@@ -524,7 +524,7 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
                             FKTFSTK->chain(TL2CGIM,TL2CDPO,TL2CSTD);
                             IN55 = OFF;
                             if(FKTDSTK->chain(KTFCLGO)) IN55 = ON;
-                            if(IN55 == ON) LIGN_dict->SetValue("KTDZLGO",(const char*) KTDZLGO.ToChar());            /// * LOGO
+                            if(IN55 == ON) LIGN_dict->SetValue("KTDZLGO",(const char*) KTDZLGO.Chr());            /// * LOGO
                             else LIGN_dict->SetValue("KTDZLGO","");
 /*                            V_QREL = 0; V_QSTK = 0 ;
 
@@ -533,29 +533,29 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
                                   V_QRELt = 0; V_QSTKt = 0 ;
                                         if(TL1WCSK.cmp('O') && KSNDOS.cmp(RINDOS))
                                                     {
-                                                     V_QRELt.mult("%s,%s",KSNBTE.ToChar(),KSNXBO.ToChar());
+                                                     V_QRELt.mult("%s,%s",KSNBTE.Chr(),KSNXBO.Chr());
                                                      if ( V_QREL == 0 )  V_QREL =V_QRELt; else V_QREL +=V_QRELt;
-                                                     V_QSTKt.mult("%s,%s,%s",KSNBTE.ToChar(),KSNXBO.ToChar(),KSXCFU.ToChar());
+                                                     V_QSTKt.mult("%s,%s,%s",KSNBTE.Chr(),KSNXBO.Chr(),KSXCFU.Chr());
                                                      if ( V_QSTK == 0 )  V_QSTK =V_QSTKt; else V_QSTK +=V_QSTKt;
                                                     }
                                          if(TL1WCSK.cmp('N'))
                                                     {
-                                                     V_QSTKt.mult("%s,%s,%s",KSNBTE.ToChar(),KSNXBO.ToChar(),KSXCFU.ToChar());
+                                                     V_QSTKt.mult("%s,%s,%s",KSNBTE.Chr(),KSNXBO.Chr(),KSXCFU.Chr());
                                                      if ( V_QSTK == 0 )  V_QSTK =V_QSTKt; else V_QSTK +=V_QSTKt;
                                                     }
                             } while (LKSSTKA->readEQ() );
 */
                             if(KTQREL==0) LIGN_dict->SetValue("KTQREL"," ");                                        /// * Qte reel
-                            else LIGN_dict->SetValue("KTQREL",(const char*) KTQREL.ToChar());
+                            else LIGN_dict->SetValue("KTQREL",(const char*) KTQREL.Chr());
                             if(KTQDST==0) LIGN_dict->SetValue("V_QREL"," ");                                        /// * Qte en stock
-                            else LIGN_dict->SetValue("V_QREL",(const char*) KTQDST.ToChar());
+                            else LIGN_dict->SetValue("V_QREL",(const char*) KTQDST.Chr());
 
 
-                        LIGN_dict->SetValue("V_QINI",(const char*) V_QLVD.ToChar());                                /// * QT.INIT
+                        LIGN_dict->SetValue("V_QINI",(const char*) V_QLVD.Chr());                                /// * QT.INIT
                         LIGN_dict->SetValue("V_MINI","0");                                                          /// * QT.MINI
                         LIGN_dict->SetValue("V_MAXI","0");                                                          /// * QT.MAXI
-                        LIGN_dict->SetValue("V_NDOS",(const char*) RINDOS.ToChar());                                /// * N° DOSSIER
-                        LIGN_dict->SetValue("LIGN1" ,(const char*) LIGN1.ToChar());                                 /// * N° ligne
+                        LIGN_dict->SetValue("V_NDOS",(const char*) RINDOS.Chr());                                /// * N° DOSSIER
+                        LIGN_dict->SetValue("LIGN1" ,(const char*) LIGN1.Chr());                                 /// * N° ligne
                         LIGN_dict->ShowSection("LIGN");
                         LIGN1 += 1;
                     } /// ligne detail
@@ -567,7 +567,7 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
 
             ctemplate::TemplateDictionary*  FIN00_dict = FX03DMD.AddSectionDictionary("FIN00");
             FIN00_dict->AddSectionDictionary("FIN00");
-            FIN00_dict->SetValue("RITLNG", (const char*)RITLNG.ToChar());
+            FIN00_dict->SetValue("RITLNG", (const char*)RITLNG.Chr());
 
         if( EQ ==  RITLNG.cmp("FRA"))
                 {
@@ -589,7 +589,7 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
             FIN00_dict->SetValue("XLIBP", vlib);
 
             FIN00_dict->SetValue("FART", ("Article"));
-            FIN00_dict->SetValue("V_NJOB",(const char*)V_NJOB.ToChar());
+            FIN00_dict->SetValue("V_NJOB",(const char*)V_NJOB.Chr());
             FIN00_dict->ShowSection("FIN00");
 /// FIN01
 /// Send sections  AFFICHAGE STOCK
@@ -597,7 +597,7 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
                 {
                     ctemplate::TemplateDictionary*  FIN01_dict = FX03DMD.AddSectionDictionary("FIN01");
                     FIN01_dict->AddSectionDictionary("FIN01");
-                    FIN01_dict->SetValue("V_NJOB",(const char*)V_NJOB.ToChar());
+                    FIN01_dict->SetValue("V_NJOB",(const char*)V_NJOB.Chr());
                     FIN01_dict->ShowSection("FIN01");
                 }
 /// FIN02
@@ -631,15 +631,15 @@ FX03DMD.SetTemplateGlobalValue("XLIBP", vlib);
 
             END_dict->SetValue("V_FXX", ("F21"));
 
-            END_dict->SetValue("RITLNG", (const char*)RITLNG.ToChar());
+            END_dict->SetValue("RITLNG", (const char*)RITLNG.Chr());
 
-            END_dict->SetValue("V_NFMT", (const char*)RINFMT.ToChar());
+            END_dict->SetValue("V_NFMT", (const char*)RINFMT.Chr());
 
-            END_dict->SetValue("V_NJOB",(const char*)V_NJOB.ToChar());
+            END_dict->SetValue("V_NJOB",(const char*)V_NJOB.Chr());
 
-            END_dict->SetValue("V_KSFL",(const char*)RINCLZ.ToChar());
+            END_dict->SetValue("V_KSFL",(const char*)RINCLZ.Chr());
 
-            END_dict->SetValue("V_ECLX",(const char*)RIECLX.ToChar());
+            END_dict->SetValue("V_ECLX",(const char*)RIECLX.Chr());
 
             END_dict->SetValue("V_XART","00000000000");
 
@@ -702,7 +702,7 @@ if(vport  !=0) {
             V_KART   = formData(vNAME).c_str();
 
             KECGIM.Extrac(V_KART,1,1);
-            KECDPO = atoi(V_KART.ExtracToChar(2,2));
+            KECDPO = atoi(V_KART.ExtracChr(2,2));
             KECSTD.Extrac(V_KART,4,8);
 
             sprintf(vNAME ,"V_QTE%d", occurs);
@@ -720,7 +720,7 @@ if(vport ==0) {
 
 
             KECGIM.Extrac(V_KART,1,1);
-            KECDPO = atoi(V_KART.ExtracToChar(2,2));
+            KECDPO = atoi(V_KART.ExtracChr(2,2));
             KECSTD.Extrac(V_KART,4,8);
 
 

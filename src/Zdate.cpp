@@ -690,8 +690,8 @@ int     Zdate::siecle() {
 ///---------------------------------------------------------------------------
 char*   Zdate::edtISO() {
 
- char * P_date = (char*) malloc(10  * sizeof(char*));
- sprintf(P_date,"%04d-%02d-%02d",_YEAR,_MOIS,_JOUR);
+	char * P_date = (char*) malloc(10  * sizeof(char*));
+	sprintf(P_date,"%04d-%02d-%02d",_YEAR,_MOIS,_JOUR);
     return P_date;
 }
 
@@ -704,18 +704,18 @@ char*   Zdate::edtISO() {
 
 char*   Zdate::edtNUM() {
 
- char * P_date = (char*) malloc(8  * sizeof(char*));
- sprintf(P_date,"%04d%02d%02d",_YEAR,_MOIS,_JOUR);
+	char * P_date = (char*) malloc(8  * sizeof(char*));
+	sprintf(P_date,"%04d%02d%02d",_YEAR,_MOIS,_JOUR);
     return P_date;
 }
-
 
 char*   Zdate::edtNYM() {
 
- char * P_date = (char*) malloc(6  * sizeof(char*));
- sprintf(P_date,"%04d%02d",_YEAR,_MOIS);
+	char * P_date = (char*) malloc(6  * sizeof(char*));
+	sprintf(P_date,"%04d%02d",_YEAR,_MOIS);
     return P_date;
 }
+
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ///                 Edition
 
@@ -725,10 +725,11 @@ char*   Zdate::edtNYM() {
 
 char*   Zdate::edtYMD() {
 
- char * P_date = (char*) malloc(10  * sizeof(char*));
- sprintf(P_date,"%04d/%02d/%02d",_YEAR,_MOIS,_JOUR);
-    return P_date;
+	char * P_date = (char*) malloc(10  * sizeof(char*));
+	sprintf(P_date,"%04d/%02d/%02d",_YEAR,_MOIS,_JOUR);
+	return P_date;
 }
+
 ///---------------------------------------------------------------------------
 /// renvoie date *char  JJ/MM/YYYY
 ///---------------------------------------------------------------------------
@@ -746,9 +747,9 @@ char*   Zdate::edtDMY() {
 
 char*   Zdate::edtMDY() {
 
- char * P_date = (char*) malloc(10  * sizeof(char*));
- sprintf(P_date,"%02d/%02d/%04d",_MOIS,_JOUR,_YEAR);
-    return P_date;
+	char * P_date = (char*) malloc(10  * sizeof(char*));
+	sprintf(P_date,"%02d/%02d/%04d",_MOIS,_JOUR,_YEAR);
+	return P_date;
 }
 
 ///---------------------------------------------------------------------------
@@ -768,9 +769,9 @@ char*   Zdate::edtYM() {
 
 char*   Zdate::edtMY() {
 
- char * P_date = (char*) malloc(7  * sizeof(char*));
- sprintf(P_date,"%02d/%04d",_MOIS,_YEAR);
-    return P_date;
+	char * P_date = (char*) malloc(7  * sizeof(char*));
+	sprintf(P_date,"%02d/%04d",_MOIS,_YEAR);
+	return P_date;
 }
 
 ///---------------------------------------------------------------------------
@@ -779,9 +780,9 @@ char*   Zdate::edtMY() {
 
 char*   Zdate::longdate() {
 
- char * P_date = (char*) malloc(50  * sizeof(char*));
- sprintf(P_date,"%s %02d %s %04d%c",this->D_date(),_JOUR,M_date(),_YEAR,'\0');
-    return P_date;
+	char * P_date = (char*) malloc(50  * sizeof(char*));
+	sprintf(P_date,"%s %02d %s %04d%c",this->D_date(),_JOUR,M_date(),_YEAR,'\0');
+	return P_date;
 }
 
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -791,7 +792,7 @@ char*   Zdate::longdate() {
 ///---------------------------------------------------------------------------
 /// renvoie date *char
 ///---------------------------------------------------------------------------
-char*   Zdate::ToChar(unsigned int date = 0) {
+char*   Zdate::Chr(unsigned int date = 0) {
 
 switch( date)
   {
@@ -810,7 +811,7 @@ switch( date)
 
 
      case sISO:         return edtsysISO(); break ;    /// YYYY-MM-DD
-     case sNUM:         return edtsysNUM();   break ; /// YYYYMMDD
+     case sNUM:         return edtsysNUM(); break ;    /// YYYYMMDD
      case sYMD:         return edtsysYMD(); break ;    /// YYYY/MM/DD
      case sDMY:         return edtsysDMY(); break ;    /// DD/MM/YYYY
      case sMDY:         return edtsysMDY(); break ;    /// MM/DD/YYYY
@@ -822,7 +823,7 @@ switch( date)
     return edtISO();
 }
 
-const char* Zdate::ConstChar(unsigned int date = 0) {
+const char* Zdate::ConstChr(unsigned int date = 0) {
 
 switch( date)
   {
@@ -853,7 +854,7 @@ switch( date)
     return (const char *) edtISO();
 }
 
-std::string    Zdate::StringChar(unsigned int date =0) {
+std::string    Zdate::Str(unsigned int date =0) {
 
 switch( date)
   {
@@ -1068,7 +1069,6 @@ char* Zdate:: M_date()
 
   return buffer ;
 }
-
 
 ///----------------------------------------------------------------------------
 /// Retourne 1 si l'annee est bissextile, sinon 0

@@ -1228,7 +1228,7 @@ bool Zdcml::isNegative()
 /// FONCTIONS OUTPUT ---return VAL-------------------------
 
 
-char* Zdcml::ToChar()
+char* Zdcml::Chr()
 {
 	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
 	{
@@ -1248,7 +1248,7 @@ char* Zdcml::ToChar()
 }
 
 
-const char* Zdcml::ConstChar()
+const char* Zdcml::ConstChr()
 {
 	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
 	{
@@ -1270,7 +1270,7 @@ const char* Zdcml::ConstChar()
 }
 
 
-std::string Zdcml::String()
+std::string Zdcml::Str()
 {
 	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
 	{
@@ -1292,7 +1292,7 @@ std::string Zdcml::String()
 	return _STRING_;
 }
 
-std::string Zdcml::Editcode()
+std::string Zdcml::Edt()
 {
 	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
 	{

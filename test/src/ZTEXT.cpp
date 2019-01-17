@@ -30,7 +30,7 @@ std::string tstr = "bonne nuit";
   std::cout<<tstring<<std::endl;
 
   
-std::cout<<test<<" :"<<tchar.ToChar()<<" :"<<tstring.StringChar()<<std::endl;
+std::cout<<test<<" :"<<tchar.Chr()<<" :"<<tstring.Str()<<std::endl;
 
 
     return 0;

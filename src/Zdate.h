@@ -176,10 +176,11 @@ public:
     char* edtYM();          /// YYYY/MM
     char* edtMY();          /// MM/YYYY
     char* longdate();       /// vendredi 12 octobre 1950
+    
 
-    char* ToChar(unsigned int date );             /// YYYYMMDD  full format
-    const char*   ConstChar(unsigned int date );  /// idem ToChar
-    std::string   StringChar(unsigned int date ); /// idem ToChar
+    char* Chr(unsigned int date );					/// YYYYMMDD  full format
+    const char*   ConstChr(unsigned int date );		/// idem Chr
+    std::string   Str(unsigned int date ); 			/// idem CHR
 
     char* D_date();         /// Texte
     char* M_date();         /// Texte

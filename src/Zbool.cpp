@@ -95,19 +95,19 @@ bool Zbool::operator!=(Zbool _B_ )
     return false;
 }
 
-char*   Zbool::ToChar()
+char*   Zbool::Chr()
 {
 	if (P_buffer == true ) return (char*)"true" ;
      
     return (char*)"false";
 }
-const char *   Zbool::ConstChar()
+const char *   Zbool::ConstChr()
 {
 	if (P_buffer == true ) return (const char *)"true" ;
      
     return (const char *)"false";
 }
-std::string    Zbool::StringChar()
+std::string    Zbool::Str()
 {
 	if (P_buffer == true ) return std::string("true") ;
      

@@ -72,9 +72,9 @@ class Ztime {
 	void  chr(const char * , std::string );											// date system ex 23:01:58 + AM/PM/24
 	void  str(std::string  , std::string );											// date system ex 23:01:58 + AM/PM/24       
  
-	char*         ToChar();
-	const char*   ConstChar();
-	std::string   StringChar(); 
+	char*         Chr();
+	const char*   ConstChr();
+	std::string   Str(); 
 
 	const char* print();															// initialised
 	const char* getAmPm();															// return am pm 24

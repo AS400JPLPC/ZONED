@@ -35,11 +35,11 @@ Zdcml test_dbl0(5,0);
 
 test_dbl0=33.00;    std::cout<<test_dbl0.clen()<<std::endl;
 
-printf(" test_dbl0.ToChar() >>>    %s\n",test_dbl0.ToChar());
-printf(" test_dbl0.ConstChar() >>>    %s\n",test_dbl0.ConstChar());
+printf(" test_dbl0.Chr() >>>    %s\n",test_dbl0.Chr());
+printf(" test_dbl0.ConstChr() >>>    %s\n",test_dbl0.ConstChr());
 
-std::string xstring0 = test_dbl0.String();
-std::cout<<"test_dbl0.String()  >>>"<<   xstring0<<std::endl;
+std::string xstring0 = test_dbl0.str();
+std::cout<<"test_dbl0.str()  >>>"<<   xstring0<<std::endl;
 
 
 if(test_dbl0.CPFERR) std::cout<<"test_dbl0=33.20;  "<<test_dbl0.cerror()<<std::endl;
@@ -56,17 +56,17 @@ Zdcml test_dbl(5,2);
 
 test_dbl=33.20;    std::cout<<test_dbl.clen()<<std::endl;
 
-printf(" test_dbl.ToChar() >>>    %s\n",test_dbl.ToChar());
-printf(" test_dbl.ConstChar() >>>    %s\n",test_dbl.ConstChar());
+printf(" test_dbl.Chr() >>>    %s\n",test_dbl.Chr());
+printf(" test_dbl.ConstChr() >>>    %s\n",test_dbl.ConstChr());
 
-std::string xstring = test_dbl.String();
-std::cout<<"test_dbl.String()  >>>"<<   xstring<<std::endl;
+std::string xstring = test_dbl.str();
+std::cout<<"test_dbl.str()  >>>"<<   xstring<<std::endl;
 
 
 
 if(test_dbl.CPFERR) std::cout<<"test_dbl=33.20;  "<<test_dbl.cerror()<<std::endl;
 std::cout<<"test_dbl=33.20;  >>"<<test_dbl<<std::endl;
-std::cout<<"test_dbl=33.20; Editcode >>>"<<   test_dbl.Editcode()<<std::endl;
+std::cout<<"test_dbl=33.20; Edt >>>"<<   test_dbl.Edt()<<std::endl;
  
 
 std::cout<<"-----int--------"<<std::endl;
@@ -143,9 +143,9 @@ std::cout<<"-----double--------"<<std::endl;
 Zdcml test_dbl(5,2);
 //std::cout<<"init   "<<test_dbl<<std::endl;
 
-test_dbl=33.20; printf("33.20   >>> %s",test_dbl.ToChar());
+test_dbl=33.20; printf("33.20   >>> %s",test_dbl.Chr());
 if(test_dbl.CPFERR) std::cout<<"test_dbl=33.02;  "<<test_dbl.cerror()<<std::endl;
-std::cout<<"test_dbl=33.02;  >>"<<test_dbl.ToChar()<<std::endl;
+std::cout<<"test_dbl=33.02;  >>"<<test_dbl.Chr()<<std::endl;
 */
 
 test_dbl=123456.99;

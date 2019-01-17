@@ -81,9 +81,9 @@ public:
 ///AFFECTATION BUFFER       ---------------------------------------------------
 ///**************************************************************************** 
 
-	char*         ToChar();
-	const char*   ConstChar();
-	std::string   StringChar();
+	char*         Chr();
+	const char*   ConstChr();
+	std::string   Str();
 
 	Zchar operator=(const Zchar);
 	Zchar operator+=(const Zchar);
@@ -107,7 +107,8 @@ public:
 	Zchar           Extrac(const char*   src   ,size_t , size_t );
 	Zchar           Extrac(const Zchar         ,size_t , size_t );
 	Zchar           strtrim(const Zchar );
-	char *          ExtracToChar(size_t , size_t );
+	char *          ExtracToChr(size_t , size_t );
+	std::string     ExtracToStr(size_t , size_t );
 ///****************************************************************************
 /// FONCTIONS UTILE--------- --------------------------------------------------
 ///****************************************************************************

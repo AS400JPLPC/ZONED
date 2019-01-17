@@ -43,19 +43,19 @@ Ztext Ztext::operator=(std::string _S_)
 }
 
 
-char*   Ztext::ToChar()
+char*   Ztext::Chr()
 {
     return (char*)P_buffer.c_str();
 }
 
 
-const char *   Ztext::ConstChar()
+const char *   Ztext::ConstChr()
 {
     return (const char *)P_buffer.c_str();
 }
 
 
-std::string    Ztext::StringChar()
+std::string    Ztext::Str()
 { 
     return P_buffer;
 }

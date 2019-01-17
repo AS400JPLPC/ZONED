@@ -33,7 +33,7 @@ w="àéla";
 std::cout<<w<<std::endl;
 w.ToUper();
 std::cout<<w<<"   "<<w.deflen()<<" clen "<<w.clen()<<std::endl;
-std::cout<<"   w >"<<w<<"   w.ToChar() >  "<<w.ToChar()<<" w.ConstChar()  >"<<w.ConstChar()<<" w.StringChar() > "<<w.StringChar()<<std::endl;
+std::cout<<"   w >"<<w<<"   w.Chr() >  "<<w.Chr()<<" w.ConstChr()  >"<<w.ConstChr()<<" w.Str() > "<<w.Str()<<std::endl;
 
 Zchar Tw(100) ;
 std::cout<<"-------------"<<std::endl;
@@ -46,14 +46,14 @@ Tw=" bonjour méméà{ test ";
 Tw.Replace("o","z");
 if (Tw.CPFERR ) std::cout<<"   msgerr :		>"<<Tw.cerror()<<std::endl;
 std::cout<<a<<"   "<<"Tw.Replace(\"o\",\"z\")		>"<<Tw<<std::endl;
-Tw.Replace(a.ToChar(),"o");
+Tw.Replace(a.Chr(),"o");
 if (Tw.CPFERR ) std::cout<<"   msgerr :		>"<<Tw.cerror()<<std::endl;
-std::cout<<a<<"   "<<"Tw.Replace(a.ToChar() = o ,\"o\")		>"<<Tw<<std::endl;
+std::cout<<a<<"   "<<"Tw.Replace(a.Chr() = o ,\"o\")		>"<<Tw<<std::endl;
 
 
-Tx.concat("TEXT concat  %s %d  text %s",Tw.ToChar(),10,b.ToChar());
+Tx.concat("TEXT concat  %s %d  text %s",Tw.Chr(),10,b.Chr());
 if (Tx.CPFERR ) std::cout<<"   msgerr :		>"<<Tx.cerror()<<std::endl;
-std::cout<<"Tx.concat(\"bonjour  %s %d  text %s\",Tw.ToChar(),10,b.ToChar()); >"<<Tx<<std::endl;
+std::cout<<"Tx.concat(\"bonjour  %s %d  text %s\",Tw.Chr(),10,b.Chr()); >"<<Tx<<std::endl;
 
 a="àéla";
 b="àéla";
@@ -124,40 +124,40 @@ if ( LT == a.cmp( b) ) std::cout<<"if (LT == a.cmp( b)) " << std::endl; else std
 if ( GT == a.cmp( b) ) std::cout<<"if (GT == a.cmp( b)) " << std::endl; else std::cout<<"no if (GT == a.cmp( b))"<<std::endl;
 std::cout<<"-------------"<<std::endl;
 
-std::cout<<a.ToChar()<<std::endl;
-std::cout<<a.ConstChar()<<std::endl;
-std::cout<<a.StringChar()<<std::endl;
+std::cout<<a.Chr()<<std::endl;
+std::cout<<a.ConstChr()<<std::endl;
+std::cout<<a.Str()<<std::endl;
 
 std::cout<<"-------------"<<std::endl;
 
 Zchar text(100);
 
 b="12345.12345";
-text.concat("bonjour  %s %d  text %s",a.ToChar(),10,b.ToChar());
+text.concat("bonjour  %s %d  text %s",a.Chr(),10,b.Chr());
 if (b.CPFERR ) std::cout<<"   msgerr :		>"<<b.cerror()<<std::endl;
-std::cout<<"text.concat(\"bonjour  %s %d  text %s\",a.ToChar(),10,b.ToChar())		>"<<text<<std::endl;
+std::cout<<"text.concat(\"bonjour  %s %d  text %s\",a.Chr(),10,b.Chr())		>"<<text<<std::endl;
 
 std::cout<<"-------------"<<std::endl;
 
-text.Replace(a.ToChar(),"z");
+text.Replace(a.Chr(),"z");
 if (a.CPFERR ) std::cout<<"   msgerr :		>"<<a.cerror()<<std::endl;
-std::cout<<"text.Replace(a.ToChar(),\"z\")		>"<<text<<std::endl;
+std::cout<<"text.Replace(a.Chr(),\"z\")		>"<<text<<std::endl;
 
-text.Replace("z",a.ToChar());
+text.Replace("z",a.Chr());
 if (a.CPFERR ) std::cout<<"   msgerr :		>"<<a.cerror()<<std::endl;
-std::cout<<"text.Replace(a.ToChar(),\"z\")		>"<<text<<std::endl;
+std::cout<<"text.Replace(a.Chr(),\"z\")		>"<<text<<std::endl;
 
 std::cout<<"-------------"<<std::endl;
 Zchar text_A(20);
-text_A.concat("bonjour  %s %d  text %s jpl marie",a.ToChar(),10,b.ToChar());
+text_A.concat("bonjour  %s %d  text %s jpl marie",a.Chr(),10,b.Chr());
 if (text_A.CPFERR ) std::cout<<"   msgerr :		>"<<text_A.cerror()<<std::endl;
-std::cout<<"text_A.concat(\"bonjour  %s %d  text %s jpl marie\",a.ToChar(),10,b.ToChar())		>"<<text_A<<std::endl;
+std::cout<<"text_A.concat(\"bonjour  %s %d  text %s jpl marie\",a.Chr(),10,b.Chr())		>"<<text_A<<std::endl;
 
 std::cout<<"-------------"<<std::endl;
 b="12345.12345";
-text.concat("bonjour  %s %d  text %s",a.ToChar(),10,b.ToChar());
+text.concat("bonjour  %s %d  text %s",a.Chr(),10,b.Chr());
 if (b.CPFERR ) std::cout<<"   msgerr :		>"<<text.cerror()<<std::endl;
-std::cout<<"text.concat(\"bonjour  %s %d  text %s\",a.ToChar(),10,b.ToChar())		>"<<text<<std::endl;
+std::cout<<"text.concat(\"bonjour  %s %d  text %s\",a.Chr(),10,b.Chr())		>"<<text<<std::endl;
 
 std::cout<<"-------------"<<std::endl;
 

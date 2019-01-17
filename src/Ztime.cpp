@@ -349,21 +349,21 @@ const char * Ztime::print()
 }
 
 
-char*   Ztime::ToChar()
+char*   Ztime::Chr()
 {
     std::stringstream ss;
     ss<< std::setfill('0') << std::setw(2)<<hu<< ":" << std::setw(2)<<min<<":"<< std::setw(2)<<sec;
     return (char*) ss.str().c_str();
 }
 
-const char*   Ztime::ConstChar()
+const char*   Ztime::ConstChr()
 {
     std::stringstream ss;
     ss<< std::setfill('0') << std::setw(2)<<hu<< ":" << std::setw(2)<<min<<":"<< std::setw(2)<<sec;
     return   ss.str().c_str();
 }
 
-std::string   Ztime::StringChar()
+std::string   Ztime::Str()
 {
     std::stringstream ss;
     ss<< std::setfill('0') << std::setw(2)<<hu<< ":" << std::setw(2)<<min<<":"<< std::setw(2)<<sec;

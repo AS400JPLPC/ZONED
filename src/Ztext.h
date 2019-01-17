@@ -55,9 +55,9 @@ protected :
         Ztext();																/// comprendre cela  comme un string 
         ~Ztext();																/// pour travailler avec SQL
 
-char*         ToChar();
-const char*   ConstChar();
-std::string   StringChar();
+char*         Chr();
+const char*   ConstChr();
+std::string   Str();
 
 
  Ztext operator=(const char* );

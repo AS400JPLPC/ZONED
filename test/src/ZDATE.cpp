@@ -38,7 +38,7 @@ cout<<"Date  test :"<<endl;
  dats= "";
 
 
-cout<<"Date  test :"<<dats.ToChar(dats.enull)<<"   int: "<< dats.ToInt()<<endl;  
+cout<<"Date  test :"<<dats.Chr(dats.enull)<<"   int: "<< dats.ToInt()<<endl;  
 
 
  dats= "2016-12-24"; 

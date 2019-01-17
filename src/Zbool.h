@@ -61,9 +61,9 @@ public:
 ///****************************************************************************
 
 
-	char*         ToChar();
-	const char*   ConstChar();
-	std::string   StringChar();
+	char*         Chr();
+	const char*   ConstChr();
+	std::string   Str();
 
 	Zbool operator=(const bool ) ;
 	Zbool operator=(const char * );

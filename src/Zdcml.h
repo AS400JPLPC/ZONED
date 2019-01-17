@@ -171,10 +171,10 @@ unsigned int cmp(const Zdcml);
 
 
 /// FONCTIONS OUTPUT ---return VAL-------------------------
-char*           ToChar();							/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = def
-const char*     ConstChar();						/// idem ToChar
-std::string     String();							/// idem ToChar
-std::string     Editcode();							/// idem ToChar + edtcode
+	char*           Chr();							/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = def
+	const char*     ConstChr();						/// idem Chr
+	std::string     Str();							/// idem Chr
+	std::string     Edt();							/// idem Chr + edtcode
 /// FONCTION Contrôle Type --------------------------------------
 	bool isZeros();      							/// contrôle ZEROS
 	bool isNegative();   							/// contrôle IsNegative

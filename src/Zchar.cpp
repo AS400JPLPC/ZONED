@@ -294,7 +294,7 @@ unsigned int  Zchar::cmp(std::string _S_)
 
 
 
-char*   Zchar::ToChar()
+char*   Zchar::Chr()
 {
 	CPFERR= false ; CPFMSG = "";
     
@@ -303,7 +303,7 @@ char*   Zchar::ToChar()
     return (char *)P_buffer.c_str();
 }
 
-const char*   Zchar::ConstChar()
+const char*   Zchar::ConstChr()
 {
 	CPFERR= false ; CPFMSG = "";
     
@@ -312,7 +312,7 @@ const char*   Zchar::ConstChar()
     return (const char *)P_buffer.c_str();
 }
 
-std::string   Zchar::StringChar()
+std::string   Zchar::Str()
 {
 	CPFERR= false ; CPFMSG = "";
 	   
@@ -568,7 +568,7 @@ Zchar Zchar::Movel(const Zchar Z_fld )
 
 
 
-char * Zchar::ExtracToChar(size_t start , size_t len  )
+char * Zchar::ExtracToChr(size_t start , size_t len  )
 {
 	CPFERR= false ; CPFMSG = "";
 	
@@ -589,6 +589,29 @@ char * Zchar::ExtracToChar(size_t start , size_t len  )
 	}
 	
 	return (char*)s_arg.c_str();
+}
+
+std::string Zchar::ExtracToStr(size_t start , size_t len  )
+{
+	CPFERR= false ; CPFMSG = "";
+	
+    std::string s_arg = P_buffer ;
+
+	if ( start<= nbrcar(s_arg)  && (((start) + len) <= nbrcar(s_arg) ))
+	{
+			s_arg = s_arg.substr(start,len);
+	
+	}
+	else
+	{
+		_name_ +=  "val :" + s_arg;
+		_name_ +=  " start :" + std::to_string(start);
+		_name_ +=  " len :" + std::to_string(len);
+		_name_ +=  " length :" + std::to_string(nbrcar(s_arg.c_str()));
+		CPFERR= true ; CPFMSG = "Extrac : Zchar  borne invalide name :" + _name_ ; return (char*)"" ;
+	}
+	
+	return s_arg;
 }
 
 Zchar Zchar::strtrim()
