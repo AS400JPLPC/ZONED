@@ -16,14 +16,14 @@ BINDIR = $(CURDIR)/lib/
 OBJDIR = $(CURDIR)/obj/
 
 INCLUDES = \
- -I $(CURDIR)/ \
--I$ $(SRCDIR) \
--I$ $(OBJDIR)
+-I $(CURDIR)/ \
+-I $(SRCDIR) \
+-I $(OBJDIR)
 
 # choix du compilateur :
 CXX = g++
 # options compilations :   
-CXXFLAGS=  -fexpensive-optimizations -O2 -Os -Wmain -pedantic-errors -Wfatal-errors -Wall -Wextra -std=c++17   -Wparentheses 
+CXXFLAGS=  -fexpensive-optimizations -O2 -Os -Wmain -pedantic-errors -Wfatal-errors -Wall -Wextra -std=c++17   -Wparentheses -fpermissive 
 
 
 OBJCPP = $(patsubst %.cpp,$(OBJDIR)%.o,$(notdir $(wildcard $(SRCDIR)*.cpp)))

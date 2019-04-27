@@ -18,7 +18,7 @@
  * MA 02110-1301, USA.
  * 
  */
-#ifndef ZADTE_CPP_INCLUDED
+#ifndef ZDATE_CPP_INCLUDED
 #define ZDATE_CPP_INCLUDED
 
 #include <Zdate.h>
@@ -130,7 +130,7 @@ Zdate Zdate::operator=(const char* P_date )
 	}
        
           
-	if (strlen(P_date) == 10)
+	if (( strlen(P_date) == 10 &&  P_date[4] =='-') || (strlen(P_date) == 10 &&  P_date[4] =='/'))
 	{
 		x_date = x_date.substr(0,4);  _YEAR = atoi(x_date.c_str());  
 		x_date = P_date;
@@ -138,7 +138,16 @@ Zdate Zdate::operator=(const char* P_date )
 		x_date = P_date;
 		x_date = x_date.substr(8,2);  _JOUR = atoi(x_date.c_str());  
 	}
-	
+
+          
+	if ((strlen(P_date) == 10 &&  P_date[2] =='-') ||(strlen(P_date) == 10 &&  P_date[2] =='/'))
+	{
+		x_date = x_date.substr(0,2);  _JOUR = atoi(x_date.c_str());  
+		x_date = P_date;
+		x_date = x_date.substr(3,2);  _MOIS = atoi(x_date.c_str());  
+		x_date = P_date;
+		x_date = x_date.substr(6,4);  _YEAR = atoi(x_date.c_str());  
+	}
 	if (strlen(P_date) == 8)
 	{
 		x_date = x_date.substr(0,4);  _YEAR = atoi(x_date.c_str());
@@ -201,13 +210,21 @@ Zdate Zdate::operator=(std::string S_date)
 		CPFERR= true ; CPFMSG = "Msgerror :ZONED Type date invalide :" + S_date; return *this ;
 	}
 
-	if (S_date.length() == 10)
+	if ((S_date.length() == 10  && S_date.compare(4,1,"-") ) || (S_date.length() == 10  && S_date.compare(4,1,"/") ))
 	{
 		x_date = x_date.substr(0,4);  _YEAR = atoi(x_date.c_str());
 		x_date = S_date;
 		x_date = x_date.substr(5,2);  _MOIS = atoi(x_date.c_str());
 		x_date = S_date;
 		x_date = x_date.substr(8,2);  _JOUR = atoi(x_date.c_str());
+	}
+	if ((S_date.length() == 10  && S_date.compare(2,1,"-")) || (S_date.length() == 10  && S_date.compare(2,1,"/") ) )
+	{
+		x_date = x_date.substr(0,2);  _JOUR = atoi(x_date.c_str());
+		x_date = S_date;
+		x_date = x_date.substr(3,2);  _MOIS = atoi(x_date.c_str());
+		x_date = S_date;
+		x_date = x_date.substr(6,4);  _YEAR = atoi(x_date.c_str());
 	}
 
 	if (S_date.length() == 8)
@@ -1429,18 +1446,33 @@ char * Zdate::getdays(int _numday )
 {
     switch(_numday)
    {
-       case 0 : return (char*)("Dimanche");     break;
-       case 1 : return (char*)("Lundi");        break;
-       case 2 : return (char*)("Mardi");        break;
-       case 4 : return (char*)("Mercredi");     break;
-       case 5 : return (char*)("jeudi");        break;
-       case 6 : return (char*)("Vendredi");     break;
-       case 7 : return (char*)("Samedi");       break;
+       case 1 : return (char*)("Lundi");		break;
+       case 2 : return (char*)("Mardi");		break;
+       case 3 : return (char*)("Mercredi");		break;
+       case 4 : return (char*)("Jeudi");		break;
+       case 5 : return (char*)("Vendredi");		break;
+       case 6 : return (char*)("Samedi");		break;
+       case 0 : return (char*)("Dimanche");		break;
 
    }
    return (char*)("");
 }
 
+char * Zdate::getdaysMin(int _numday )
+{
+	// http://icalendrier.fr/calendriers-saga/etudes-thematiques/iso-8601
+    switch(_numday)
+   {
+       case 1 : return (char*)("Lun");	break;
+       case 2 : return (char*)("Mar");	break;
+       case 3 : return (char*)("Mer");	break;
+       case 4 : return (char*)("Jeu");	break;
+       case 5 : return (char*)("Ven");	break;
+       case 6 : return (char*)("Sam");	break;
+       case 0 : return (char*)("Dim");	break;
+   }
+   return (char*)("");
+}
 ///----------------------------------------------------------------------------
 /// Retourne le nom du mois de l'année
 ///----------------------------------------------------------------------------
@@ -1457,11 +1489,34 @@ char * Zdate::getmonths(int _nummonth)
        case 5 : return  (char*)("Mai");         break;
        case 6 : return  (char*)("Juin");        break;
        case 7 : return  (char*)("Juillet");     break;
-       case 8 : return  (char*)("Aout");        break;
+       case 8 : return  (char*)("Août");        break;
        case 9 : return  (char*)("Septembre");   break;
        case 10 : return (char*)("Octobre");     break;
        case 11 : return (char*)("Novembre");    break;
        case 12 : return (char*)("Décembre");    break;
+   }
+
+  return (char*)("");
+}
+
+
+char * Zdate::getmonthsMin(int _nummonth)
+{
+
+    switch(_nummonth)
+   {
+       case 1 : return  (char*)("JAN");		break;
+       case 2 : return  (char*)("FEV");		break;
+       case 3 : return  (char*)("MAR");		break;
+       case 4 : return  (char*)("AVR");		break;
+       case 5 : return  (char*)("MAI");		break;
+       case 6 : return  (char*)("JUN");		break;
+       case 7 : return  (char*)("JUL");		break;
+       case 8 : return  (char*)("AOÛ");		break;
+       case 9 : return  (char*)("SEP");		break;
+       case 10 : return (char*)("OCT");		break;
+       case 11 : return (char*)("NOV");		break;
+       case 12 : return (char*)("DEC");		break;
    }
 
   return (char*)("");

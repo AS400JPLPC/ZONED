@@ -15,7 +15,7 @@
 #define NAMEOF(variable) ((void)variable, #variable)
 
 
-#define   DeLiMiTaTioN		'~'		///  caractère de délimitation
+//#define   DeLiMiTaTioN		'~'		///  caractère de délimitation
 /// use direct char* for sql buffer 
 
 

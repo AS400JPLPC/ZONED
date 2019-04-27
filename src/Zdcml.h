@@ -41,8 +41,13 @@
 #include <limits>
 #include <stdarg.h>                 /// For va_start, etc.
  
- 
-#define  DECNUMDIGITS 128   /// work with up to 128 digits
+
+#define  DECDIGIT 34 				/// work with max 34 digit
+
+#define  DECBUFFER DECDIGIT+2 		/// work with max digit and signe and ponct
+
+#define  DECNUMDIGITS 128
+
 
 #include <decNumber.h>
 
@@ -89,6 +94,7 @@ protected:
 	
 	void printformat();					/// formate et tronque selon la definition
 
+	std::string string_format(const std::string fmt, ...);	/// Format String--idem sprintf
 ///=============================================================================
 public:
     bool 		CPFERR ;				/// flag msg error
@@ -171,10 +177,10 @@ unsigned int cmp(const Zdcml);
 
 
 /// FONCTIONS OUTPUT ---return VAL-------------------------
-	char*           Chr();							/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = def
+	char*           Chr();							/// format text limit def ex: a(10,5); 1234567890.12345  nbr digit = 15
 	const char*     ConstChr();						/// idem Chr
 	std::string     Str();							/// idem Chr
-	std::string     Edt();							/// idem Chr + edtcode
+	std::string     Edt();							/// edit local punct
 /// FONCTION Contrôle Type --------------------------------------
 	bool isZeros();      							/// contrôle ZEROS
 	bool isNegative();   							/// contrôle IsNegative
@@ -186,8 +192,10 @@ unsigned int cmp(const Zdcml);
 ///****************************************************************************
 	const char* cerror();							/// text flag error
 	int		clen();									/// longueur maxi du champ 
+	int		centier();								/// longueur maxi precision 
+	int		cdec();									/// longueur maxi scale
+	
 
-	std::string string_format(const std::string fmt, ...);	/// Format String--idem sprintf
 
 	friend std::istream& operator>>(std::istream& is,  Zdcml& t)
 	{
@@ -198,7 +206,7 @@ unsigned int cmp(const Zdcml);
 	}
 
 	friend std::ostream& operator<<(std::ostream& out, const Zdcml t)	// out only ponct . use sql or cout 
-	{   char *  _C_ = (char*) malloc(36  * sizeof(char*)); decNumberToString(t._dcml, _C_);
+	{   char *  _C_ = (char*) malloc(DECBUFFER  * sizeof(char*)); decNumberToString(t._dcml, _C_);
 		std::string _STRING_ = _C_;
 		return out << _STRING_;
 	}

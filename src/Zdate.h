@@ -63,8 +63,6 @@ protected:
     int   Paques();
     void next_day();
     void prev_day();
-    char* getdays(int);
-    char* getmonths(int);
     
 //STATUS -----------------------------------------------------------------------
     unsigned int CMP;
@@ -199,8 +197,11 @@ public:
     int   NumeroJour();     /// le Numéro du jour 0 1 2 3 4 5 6
     int   ResteJour();      /// le nombre jour restant dans l'année
     int   Semaine();        /// le numéro de semaine
-    int   Ferier();          /// is fête ?? pour construire un calendrier
-
+    int   Ferier();			/// is fête ?? pour construire un calendrier
+    char* getdays(int);		/// nom du jour
+    char* getmonths(int);	/// nom du mois
+    char* getdaysMin(int);	/// nom du jour abrégé
+    char* getmonthsMin(int);/// nom du mois abrégé
 ///****************************************************************************
 /// FONCTIONS util     --------------------------------------------------------
 ///****************************************************************************

@@ -21,9 +21,10 @@
 #ifndef ZDCML_CPP_INCLUDED
 #define ZDCML_CPP_INCLUDED
 
-
-
 #include <Zdcml.h>
+
+#include "decNumber.c"
+#include "decContext.c"
 namespace ZONED
 {
 
@@ -39,17 +40,17 @@ Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
 
 
 
-     if (_e_ > 34) CPFERR= true ;
+     if (_e_ > DECDIGIT) CPFERR= true ;
      if (_e_ < 1)  CPFERR= true ;
-     if (_d_ > 34) CPFERR= true ;
-     if ( (_d_ + _e_ ) > 34  ) CPFERR=true;  
+     if (_d_ > DECDIGIT) CPFERR= true ;
+     if ( (_d_ + _e_ ) > DECDIGIT  ) CPFERR=true;  
      
 
      if (CPFERR ) { throw std::invalid_argument("CPFERRor - BAD DEFINE  - Max 31 digits OVERFLOW : init" ); }
 
-    T_char = (char*) malloc(36  * sizeof(char*));
+    T_char = (char*) malloc(DECBUFFER  * sizeof(char*));
 
-    T_string = (char*) malloc(36  * sizeof(char*));
+    T_string = (char*) malloc(DECBUFFER  * sizeof(char*));
 
 
     decContextDefault(&T_set, DEC_INIT_DECIMAL128 );    // initialize
@@ -69,7 +70,7 @@ Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
 
 	/// preparation des mask pour les contrôles
 
-	p_mask = (char*) malloc(36  * sizeof(char*));
+	p_mask = (char*) malloc(DECBUFFER  * sizeof(char*));
         
 	unsigned int pos =0, posd = 0;
         
@@ -82,7 +83,7 @@ Zdcml::Zdcml(unsigned int _e_  ,unsigned int _d_  )
 			p_mask[pos] ='.';
 			for (pos++, posd=0; posd < _dec;posd++,pos++ ) p_mask[pos] ='9';
         }
-	n_mask = (char*) malloc(36  * sizeof(char*));
+	n_mask = (char*) malloc(DECBUFFER  * sizeof(char*));
         
 	pos =0; posd = 0;
         
@@ -330,7 +331,7 @@ Zdcml& Zdcml::operator=(const Zdcml X_dcml)
 
     ClearBufferDcml();
 
-	char *  _X_ =  (char*) malloc(36  * sizeof(char*));
+	char *  _X_ =  (char*) malloc(DECBUFFER  * sizeof(char*));
 	
 	decNumberToString(X_dcml._dcml, _X_);
     /// contrôle validité
@@ -709,7 +710,7 @@ bool  Zdcml::operator==(const int _X_)
 {
     _STRING_ =string_format("%d",_X_);
     
-     char * T_comp=  (char*) malloc(36  * sizeof(char*));
+     char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
 
      
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
@@ -732,7 +733,7 @@ bool Zdcml::operator<(const int _X_)
 {
     _STRING_ =string_format("%d",_X_);
     
-     char * T_comp=  (char*) malloc(36  * sizeof(char*));
+     char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -754,7 +755,7 @@ bool Zdcml::operator>(const int _X_)
 {
     _STRING_ =string_format("%d",_X_);
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -776,7 +777,7 @@ bool  Zdcml::operator!=(const int _X_)
 {
     _STRING_ =string_format("%d",_X_);
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
         
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -796,7 +797,7 @@ unsigned int  Zdcml::cmp(const int _X_)
 {
     _STRING_ =string_format("%d",_X_);
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -822,7 +823,7 @@ bool  Zdcml::operator==(const long int _X_)
 {
     _STRING_ =string_format("%ld",_X_);
     
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -845,7 +846,7 @@ bool  Zdcml::operator<(const long int _X_)
 
     _STRING_ =string_format("%ld",_X_);
     
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -866,7 +867,7 @@ bool  Zdcml::operator>(const long int _X_)
 {
     _STRING_ =string_format("%ld",_X_);
     
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -888,7 +889,7 @@ bool  Zdcml::operator!=(const long int _X_)
 {
     _STRING_ =string_format("%ld",_X_);
     
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
         
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -910,7 +911,7 @@ unsigned int  Zdcml::cmp(const long int _X_)
 {
     _STRING_ =string_format("%ld",_X_);
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
         
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -936,7 +937,7 @@ bool  Zdcml::operator==(const double _X_)
 {
     _STRING_ =string_format("%s", ZDoubleToChar(_X_ ,_dec));
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
       
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -958,7 +959,7 @@ bool Zdcml::operator<(const double _X_)
 {
      _STRING_ =string_format("%s", ZDoubleToChar(_X_ ,_dec));
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
      
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -980,7 +981,7 @@ bool  Zdcml::operator>(const double _X_)
 {
 	_STRING_ =string_format("%s", ZDoubleToChar(_X_ ,_dec));
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -1002,7 +1003,7 @@ bool  Zdcml::operator!=(const double _X_)
 {
 	_STRING_ =string_format("%s", ZDoubleToChar(_X_ ,_dec));
 
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -1024,7 +1025,7 @@ unsigned int  Zdcml::cmp(const double _X_)
 {
     _STRING_ =string_format("%s", ZDoubleToChar(_X_ ,_dec));
  
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
        
     decNumberFromString(T_dcml, (char*)_STRING_.c_str(), &T_set);
 
@@ -1049,7 +1050,7 @@ unsigned int  Zdcml::cmp(const double _X_)
 /// avec un opérateur  Zdcml
 bool  Zdcml::operator==(const Zdcml  X_dcml)
 {
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberCompare(T_dcml, _dcml, X_dcml._dcml, &T_set);
     
@@ -1066,7 +1067,7 @@ bool  Zdcml::operator==(const Zdcml  X_dcml)
 
 bool  Zdcml::operator<(const Zdcml  X_dcml)
 {
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberCompare(T_dcml, _dcml, X_dcml._dcml, &T_set);
     
@@ -1083,7 +1084,7 @@ bool  Zdcml::operator<(const Zdcml  X_dcml)
 
 bool  Zdcml::operator<=(const Zdcml  X_dcml)
 {
-    char * T_comp=  (char*) malloc(36  * sizeof(char*));
+    char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberCompare(T_dcml, _dcml, X_dcml._dcml, &T_set);
     
@@ -1102,7 +1103,7 @@ bool  Zdcml::operator<=(const Zdcml  X_dcml)
 
 bool  Zdcml::operator>(const Zdcml  X_dcml)
 {
-	char * T_comp=  (char*) malloc(36  * sizeof(char*));
+	char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberCompare(T_dcml, _dcml, X_dcml._dcml, &T_set);
     
@@ -1119,7 +1120,7 @@ bool  Zdcml::operator>(const Zdcml  X_dcml)
 
 bool  Zdcml::operator>=(const Zdcml  X_dcml)
 {
-	char * T_comp=  (char*) malloc(36  * sizeof(char*));
+	char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberCompare(T_dcml, _dcml, X_dcml._dcml, &T_set);
     
@@ -1138,7 +1139,7 @@ bool  Zdcml::operator>=(const Zdcml  X_dcml)
 
 bool  Zdcml::operator!=(const Zdcml  X_dcml)
 {
-	char * T_comp=  (char*) malloc(36  * sizeof(char*));
+	char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberCompare(T_dcml, _dcml, X_dcml._dcml, &T_set);
     
@@ -1155,7 +1156,7 @@ bool  Zdcml::operator!=(const Zdcml  X_dcml)
 
 unsigned int  Zdcml::cmp(const Zdcml  X_dcml)
 {
-	char * T_comp=  (char*) malloc(36  * sizeof(char*));
+	char * T_comp=  (char*) malloc(DECBUFFER  * sizeof(char*));
     
     decNumberCompare(T_dcml, _dcml, X_dcml._dcml, &T_set);
     
@@ -1181,7 +1182,7 @@ unsigned int  Zdcml::cmp(const Zdcml  X_dcml)
 bool Zdcml::CheckOverflow()
 {
 	
-    char * T_chek =  (char*) malloc(36  * sizeof(char*));
+    char * T_chek =  (char*) malloc(DECBUFFER  * sizeof(char*));
     if( decNumberIsNegative(T_dcml))
     {
 		decNumberFromString(C_dcml, n_mask,&T_set);
@@ -1274,7 +1275,7 @@ std::string Zdcml::Str()
 {
 	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
 	{
-		CPFERR = true ;  CPFMSG = "DCML numeric   StringChar() ";  return NULL;
+		CPFERR = true ;  CPFMSG = "DCML numeric   Str() ";  return NULL;
 	}
     
 	ClearBufferDcml();
@@ -1296,7 +1297,7 @@ std::string Zdcml::Edt()
 {
 	if ( decNumberIsNaN(_dcml)  || CheckOverflow())
 	{
-		CPFERR = true ;  CPFMSG = "DCML numeric   StringChar() ";  return NULL;
+		CPFERR = true ;  CPFMSG = "DCML numeric   Edtcode() ";  return NULL;
 	}
     
 	ClearBufferDcml();
@@ -1311,7 +1312,9 @@ std::string Zdcml::Edt()
 
 	std::string _STRING_ = T_char;
 	
-	const struct lconv* loc = localeconv();
+	const struct lconv* loc;
+	loc = localeconv();
+
 	std::string ponct=".";
 	int pos = _STRING_.find(ponct);
 	if (pos >0)
@@ -1325,10 +1328,6 @@ std::string Zdcml::Edt()
 
 	return _STRING_;
 }
-
-
-
-
 ///****************************************************************************
 /// FONCTIONS util     --------------------------------------------------------
 ///****************************************************************************
@@ -1337,8 +1336,8 @@ std::string Zdcml::Edt()
 char* Zdcml::ZDoubleToChar(double _X_ ,unsigned _precision_)
 {
 
-	char * X_value   = (char*) malloc(36  * sizeof(char*));   sprintf(X_value,"%c",'\0');
-	char * X_cmd     = (char*) malloc(36  * sizeof(char*));
+	char * X_value   = (char*) malloc(DECBUFFER  * sizeof(char*));   sprintf(X_value,"%c",'\0');
+	char * X_cmd     = (char*) malloc(DECBUFFER  * sizeof(char*));
 	char sign = _X_ >= 0 ? '+' : '-';
 
 	if ( sign == '-')
@@ -1425,6 +1424,18 @@ int   Zdcml::clen()
 	decNumberCopy( T_dcml,_dcml);
 	printformat();
     return  (int) strlen(T_string);
+}
+
+/// char length- precision-------------------
+int   Zdcml::centier()
+{
+    return  _entier;
+}
+
+/// char length- scale-----------------------
+int   Zdcml::cdec()
+{
+    return  _dec;
 }
 /// code retour cerror or ok------------------------------
 const char * Zdcml::cerror()

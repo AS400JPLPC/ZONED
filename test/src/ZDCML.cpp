@@ -13,6 +13,13 @@
 #include <ZONED.hpp>
 using namespace std;
 
+struct Employee {
+  string Name;
+  string Age;			// traitement interne conversion en decimal
+//  Zdcml Salaire(5,2);		// traitement interne conversion en decimal		affichage mathématique 
+  string Adresse;
+  } ;
+
 ///  traitement des nombres l'approche est celle de IBM38 RPGIII
 ///  34 chiffres maxi pour la gestion c'est confortable
 ///  conforme au DOUBLE et ODBC  voir alinéa postgesql
@@ -30,6 +37,10 @@ setlocale(LC_ALL,"fr_FR.UTF-8");
 std::cout<<"-----double--------"<<std::endl;
 
 
+  Zdcml Salaire(5,2);		// traitement interne conversion en decimal		affichage mathématique 
+
+  Employee testxx;
+  
 Zdcml test_dbl0(5,0);
  std::cout<<"init   "<<test_dbl0<<std::endl;
 
@@ -38,7 +49,7 @@ test_dbl0=33.00;    std::cout<<test_dbl0.clen()<<std::endl;
 printf(" test_dbl0.Chr() >>>    %s\n",test_dbl0.Chr());
 printf(" test_dbl0.ConstChr() >>>    %s\n",test_dbl0.ConstChr());
 
-std::string xstring0 = test_dbl0.str();
+std::string xstring0 = test_dbl0.Str();
 std::cout<<"test_dbl0.str()  >>>"<<   xstring0<<std::endl;
 
 
@@ -59,7 +70,7 @@ test_dbl=33.20;    std::cout<<test_dbl.clen()<<std::endl;
 printf(" test_dbl.Chr() >>>    %s\n",test_dbl.Chr());
 printf(" test_dbl.ConstChr() >>>    %s\n",test_dbl.ConstChr());
 
-std::string xstring = test_dbl.str();
+std::string xstring = test_dbl.Str();
 std::cout<<"test_dbl.str()  >>>"<<   xstring<<std::endl;
 
 
